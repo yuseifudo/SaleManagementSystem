@@ -1,9 +1,9 @@
 <template>
   <div class="login-container pull-height" @keyup.enter.native="handleLogin">
     <div class="login-info text-white animated fadeInLeft">
-      <div class="logo" style="margin-top:-426px">
-          <img src="../../assets/images/home/logo.png" width="160px" height="160px" alt="logo" style="vertical-align: middle;" />
-      </div>
+      <!--<div class="logo" style="margin-top:-426px">
+          <img src="../../assets/images/home/unicom.png" width="160px" height="160px" alt="logo" style="vertical-align: middle;" />
+      </div>-->
       <h2 class="login-info-title">{{website.info.title}}</h2>
       <ul class="login-info-list">
         <li class="login-info-item" v-for="item in website.info.list">
@@ -55,7 +55,7 @@ export default {
   justify-content: space-around;
   background: rgba(0, 0, 0, 0.2);
   position: relative;
-  height: 900px;
+  height: 100%;
 }
 .login-container::before {
   z-index: -999;
@@ -101,7 +101,8 @@ export default {
   margin: 0 0 20px;
   text-align: center;
   color: #409eff;
-  letter-spacing: 3px;
+  font-size: 25px;
+  /*letter-spacing: 3px;*/
 }
 .login-submit {
   margin-top: 20px;

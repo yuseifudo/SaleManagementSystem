@@ -2,7 +2,7 @@
   <div class="login-container pull-height" @keyup.enter.native="handleLogin">
     <div class="login-info text-white animated fadeInLeft">
       <div class="logo" style="margin-top:-426px">
-          <img src="../../assets/images/home/logo.jpg" width="160px" height="160px" alt="logo" style="vertical-align: middle;" />
+          <img src="../../assets/images/home/logo.png" width="160px" height="160px" alt="logo" style="vertical-align: middle;" />
       </div>
       <h2 class="login-info-title">{{website.info.title}}</h2>
       <ul class="login-info-list">

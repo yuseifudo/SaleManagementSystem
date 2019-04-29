@@ -19,6 +19,7 @@ export default {
     announcement: 'Announcement',
     commissionReward: 'CommissionReward',
     report: 'Report',
+    salesmen:salesmen,//销售人员
     AliIcons: 'AliIcons',
     list: 'list',
     Digitalanimation: 'Digitalanimation',

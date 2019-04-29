@@ -59,6 +59,69 @@ export const constantRouterMap = [
       }
     ]
   },
+  // 数据管理
+  {
+    path: '/dataManage',
+    component: Layout,
+    // redirect: '/dataManage/DiscountFigure',
+    name: 'dataManage',
+    meta: { title: 'dataManage', icon: 'chart' },
+    children: []
+  },
+  // 信息管理
+  {
+    path: '/infoManage',
+    component: Layout,
+    // redirect: '/dataManage/DiscountFigure',
+    name: 'infoManage',
+    meta: { title: 'infoManage', icon: 'chart' },
+    children: []
+  },
+  // 图表呈现数据
+  {
+    path: '/dataCharts',
+    component: Layout,
+    // redirect: '/dataManage/DiscountFigure',
+    name: 'dataCharts',
+    meta: { title: 'dataCharts', icon: 'chart' },
+    children: []
+  },
+  // 地图呈现数据
+  {
+    path: '/dataMap',
+    component: Layout,
+    // redirect: '/dataManage/DiscountFigure',
+    name: 'dataMap',
+    meta: { title: 'dataMap', icon: 'chart' },
+    children: []
+  },
+  // 公告
+  {
+    path: '/announcement',
+    component: Layout,
+    // redirect: '/dataManage/DiscountFigure',
+    name: 'announcement',
+    meta: { title: 'announcement', icon: 'chart' },
+    children: []
+  },
+  // 佣金奖励
+  {
+    path: '/commissionReward',
+    component: Layout,
+    // redirect: '/dataManage/DiscountFigure',
+    name: 'commissionReward',
+    meta: { title: 'commissionReward', icon: 'chart' },
+    children: []
+  },
+  // 报表
+  {
+    path: '/report',
+    component: Layout,
+    // redirect: '/dataManage/DiscountFigure',
+    name: 'report',
+    meta: { title: 'report', icon: 'chart' },
+    children: []
+  },
   // 图表
   {
     path: '/charts',

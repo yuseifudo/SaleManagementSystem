@@ -6,11 +6,11 @@
         src="../../../static/img/report/forkme.png"
         alt="Fork me on GitHub"></a> -->
     <div class="item">
-      <h4>数据展示</h4>
+      <h4>销售数据</h4>
       <nx-data-display :option="option"></nx-data-display>
     </div>
     <div class="item">
-      <h4>选项卡展示</h4>
+      <h4>热销套餐</h4>
       <nx-data-tabs :option="easyDataOption"></nx-data-tabs>
     </div>
     <div class="item">
@@ -69,7 +69,7 @@ export default {
         span: 6,
         data: [
           {
-            title: '分类统计',
+            title: '天王卡',
             subtitle: '实时',
             count: 7993,
             allcount: 10222,
@@ -78,7 +78,7 @@ export default {
             key: '类'
           },
           {
-            title: '附件统计',
+            title: '地王卡',
             subtitle: '实时',
             count: 3112,
             allcount: 10222,
@@ -87,7 +87,7 @@ export default {
             key: '附'
           },
           {
-            title: '文章统计',
+            title: '大冰神',
             subtitle: '实时',
             count: 908,
             allcount: 10222,
@@ -96,7 +96,7 @@ export default {
             key: '评'
           },
           {
-            title: '新闻统计',
+            title: '小冰神',
             subtitle: '实时',
             count: 908,
             allcount: 10222,

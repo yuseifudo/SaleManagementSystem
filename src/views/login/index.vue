@@ -13,14 +13,11 @@
     </div>
     <div class="login-border  animated fadeInRight">
       <div class="login-main">
-        <h4 class="login-title">登录{{website.title}}
+        <h4 class="login-title">{{website.title}}
         </h4>
         <el-tabs v-model="activeName">
-          <el-tab-pane label="用户密码" name="user">
+          <el-tab-pane label="请输入登录信息：" name="user">
             <userLogin></userLogin>
-          </el-tab-pane>
-          <el-tab-pane label="短信验证码" name="code">
-            <codeLogin></codeLogin>
           </el-tab-pane>
         </el-tabs>
       </div>
@@ -30,13 +27,11 @@
 </template>
 <script>
 import userLogin from './userlogin'
-import codeLogin from './codelogin'
 import { mapGetters } from 'vuex'
 export default {
   name: 'login',
   components: {
-    userLogin,
-    codeLogin
+    userLogin
   },
   data() {
     return {

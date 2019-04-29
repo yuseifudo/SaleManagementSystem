@@ -2,7 +2,7 @@
   <div class="login-container pull-height" @keyup.enter.native="handleLogin">
     <div class="login-info text-white animated fadeInLeft">
       <div class="logo" style="margin-top:-426px">
-          <img src="../../assets/images/home/logo.png" width="160px" height="160px" alt="logo" style="vertical-align: middle;" />
+          <img src="../../assets/images/home/logo.jpg" width="160px" height="160px" alt="logo" style="vertical-align: middle;" />
       </div>
       <h2 class="login-info-title">{{website.info.title}}</h2>
       <ul class="login-info-list">
@@ -13,14 +13,11 @@
     </div>
     <div class="login-border  animated fadeInRight">
       <div class="login-main">
-        <h4 class="login-title">登录{{website.title}}
+        <h4 class="login-title">{{website.title}}
         </h4>
         <el-tabs v-model="activeName">
-          <el-tab-pane label="用户密码" name="user">
+          <el-tab-pane label="请输入登录信息：" name="user">
             <userLogin></userLogin>
-          </el-tab-pane>
-          <el-tab-pane label="短信验证码" name="code">
-            <codeLogin></codeLogin>
           </el-tab-pane>
         </el-tabs>
       </div>
@@ -30,13 +27,11 @@
 </template>
 <script>
 import userLogin from './userlogin'
-import codeLogin from './codelogin'
 import { mapGetters } from 'vuex'
 export default {
   name: 'login',
   components: {
-    userLogin,
-    codeLogin
+    userLogin
   },
   data() {
     return {

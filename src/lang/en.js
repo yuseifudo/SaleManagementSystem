@@ -12,6 +12,13 @@ export default {
     Default: 'Default'
   },
   route: {
+    dataManage: 'DataManagement',
+    infoManage: 'InfoManagement',
+    dataCharts: 'ChartsInfo',
+    dataMap: 'MapInfo',
+    announcement: 'Announcement',
+    commissionReward: 'CommissionReward',
+    report: 'Report',
     AliIcons: 'AliIcons',
     list: 'list',
     Digitalanimation: 'Digitalanimation',

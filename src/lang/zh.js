@@ -14,6 +14,13 @@ export default {
     Default: '默认'
   },
   route: {
+    dataManage: '数据管理',
+    infoManage: '信息管理',
+    dataCharts: '图表',
+    dataMap: '地图',
+    announcement: '公告',
+    commissionReward: '佣金奖励',
+    report: '报表',
     AliIcons: '阿里图标',
     contextmenu: '右键菜单',
     simple: '基础',

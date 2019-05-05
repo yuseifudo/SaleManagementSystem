@@ -11,7 +11,7 @@
             <h2><nx-count-up :start="14" :end="item.count"/></h2>
           </div>
           <div class="item-footer">
-            <span>{{item.allcount}}</span>
+            <!--<span>{{item.allcount}}</span>-->
             <p>{{item.text}}</p>
           </div>
           <p class="item-tip">{{item.key}}</p>

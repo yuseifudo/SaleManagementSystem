@@ -1,3 +1,8 @@
+<!--
+    功能：
+    作者：
+    日期：
+-->
 <template>
 	<section class="app-container">
 		<!--工具条-->
@@ -199,10 +204,12 @@ export default {
           this.$confirm('确认提交吗？', '提示', {})
             .then(() => {
               const para = Object.assign({}, this.editForm)
-              /*para.birth =
+              /*
+              para.birth =
                 !para.birth || para.birth === ''
                   ? ''
-                  : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd')*/
+                  : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd')
+                  */
               editAdmin(para).then(res => {
                 this.$message({
                   message: '提交成功',
@@ -230,10 +237,12 @@ export default {
               const para = Object.assign({}, this.editForm)
               console.log(para)
 
-              /*para.birth =
+              /*
+              para.birth =
                 !para.birth || para.birth === ''
                   ? ''
-                  : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd')*/
+                  : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd')
+                  */
               addAdmin(para).then(res => {
                 this.$message({
                   message: '提交成功',

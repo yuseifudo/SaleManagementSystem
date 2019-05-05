@@ -2,6 +2,7 @@ import Mock from 'mockjs'
 import tableAPI from './table'
 import loginAPI from './login'
 import articleAPI from './article'
+import packageManageAPI from './packageManage'
 // 设置全局延时 没有延时的话有时候会检测不到数据变化 建议保留
 Mock.setup({
   timeout: '300-600'
@@ -25,4 +26,11 @@ Mock.mock(/\/user\/remove/, 'get', tableAPI.deleteUser)
 Mock.mock(/\/user\/batchremove/, 'get', tableAPI.batchremove)
 Mock.mock(/\/user\/add/, 'get', tableAPI.createUser)
 Mock.mock(/\/user\/edit/, 'get', tableAPI.updateUser)
+
+//套餐管理相关
+Mock.mock(/\/packageManage\/list/,packageManageAPI.getList)
+Mock.mock(/\/packageManage\/detail/,packageManageAPI.getItemDetail)
+Mock.mock(/\/packageManage\/create/,packageManageAPI.insertPackageInfo)
+Mock.mock(/\/packageManage\/delete/,packageManageAPI.deletePackageInfo)
+Mock.mock(/\/packageManage\/update/,packageManageAPI.updatePackageInfo)
 export default Mock

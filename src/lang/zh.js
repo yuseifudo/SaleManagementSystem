@@ -21,6 +21,7 @@ export default {
     announcement: '公告',
     commissionReward: '佣金奖励',
     report: '报表',
+    packageManage: '套餐管理',
     AliIcons: '阿里图标',
     contextmenu: '右键菜单',
     simple: '基础',

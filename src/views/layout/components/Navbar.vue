@@ -7,9 +7,9 @@
     <div class="right-menu">
      <error-log class="errLog-container right-menu-item"></error-log>
 
-      <nx-github style="margin-top:2px" class="nx-help right-menu-item"></nx-github>
-      <!-- <error-log class="errLog-container right-menu-item"></error-log> -->
-      <nx-help class="nx-help right-menu-item" />
+      <!--<nx-github style="margin-top:2px" class="nx-help right-menu-item"></nx-github>
+       <error-log class="errLog-container right-menu-item"></error-log>
+      <nx-help class="nx-help right-menu-item" />-->
       <nx-top-lock style="cursor:pointer" class="nx-help"></nx-top-lock>
       <el-tooltip effect="dark" content="全屏" placement="bottom">
         <nx-full-screen class="screenfull right-menu-item"></nx-full-screen>
@@ -18,29 +18,29 @@
       <!-- <lang-select class="international right-menu-item"></lang-select> -->
       <nx-lang-select class="international right-menu-item"></nx-lang-select>
 
-      <el-tooltip effect="dark" content="主题" placement="bottom">
+      <!--<el-tooltip effect="dark" content="主题" placement="bottom">-->
         <!-- <theme-picker class="theme-switch right-menu-item"></theme-picker> -->
-        <nx-skin class="theme-switch right-menu-item"></nx-skin>
+        <!--<nx-skin class="theme-switch right-menu-item"></nx-skin>-->
       </el-tooltip>
 
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
         <div class="avatar-wrapper">
-          <img class="user-avatar" src="https://mgbq.github.io/nx-admin-site/home.png">
+          <img class="user-avatar" src="../../../assets/images/home/index_logo.png">
           <i class="el-icon-caret-bottom"></i>
         </div>
         <el-dropdown-menu slot="dropdown">
           <router-link to="/">
             <el-dropdown-item>
-              home
+              系统首页
             </el-dropdown-item>
           </router-link>
           <a target='_blank' href="https://github.com/mgbq/nx-admin/">
             <el-dropdown-item>
-              github地址
+              修改密码
             </el-dropdown-item>
           </a>
           <el-dropdown-item divided>
-            <span @click="logout" style="display:block;">退出</span>
+            <span @click="logout" style="display:block;">注销</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -91,7 +91,7 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 .navbar {
   height: 50px;
-  line-height: 50px;
+  line-height: 43px;
   border-radius: 0px !important;
   .hamburger-container {
     line-height: 58px;
@@ -137,8 +137,8 @@ export default {
         margin-top: 5px;
         position: relative;
         .user-avatar {
-          width: 40px;
-          height: 40px;
+          /*width: 40px;*/
+          /*height: 40px;*/
           border-radius: 10px;
         }
         .el-icon-caret-bottom {

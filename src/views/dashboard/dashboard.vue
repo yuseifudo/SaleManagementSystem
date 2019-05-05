@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-   <nx-github-corner></nx-github-corner>
+   <!--<nx-github-corner></nx-github-corner>-->
      <!-- <a target="_blank" href="https://github.com/mgbq/vue-permission"><img
         style="position: absolute; top: 48px; right: 0; border: 0;"
         src="../../../static/img/report/forkme.png"
@@ -14,17 +14,17 @@
       <nx-data-tabs :option="easyDataOption"></nx-data-tabs>
     </div>
     <div class="item">
-      <h4>卡片的展示</h4>
+      <h4>销售精英</h4>
       <nx-data-card :option="easyDataOption0"></nx-data-card>
     </div>
-    <div class="item">
+    <!--<div class="item">
       <h4>带数字的展示</h4>
       <nx-data-icons :option="easyDataOption1"></nx-data-icons>
     </div>
     <div class="item">
       <h4>简易展示</h4>
       <nx-data-icons :option="easyDataOption2"></nx-data-icons>
-    </div>
+    </div>-->
   </div>
 </template>
 
@@ -41,7 +41,7 @@ export default {
     nxDataDisplay,
     nxDataCard,
     nxDataTabs,
-    nxDataIcons,
+    // nxDataIcons,
     nxGithubCorner
 
   },
@@ -52,16 +52,16 @@ export default {
         color: '#15A0FF',
         data: [
           {
-            count: 1000,
-            title: '日活跃数'
+            count: 1215,
+            title: '日销售额'
           },
           {
-            count: 3000,
-            title: '月活跃数'
+            count: 13560,
+            title: '月销售额'
           },
           {
-            count: 20000,
-            title: '年活跃数'
+            count: 898566,
+            title: '年销售额'
           }
         ]
       },
@@ -70,39 +70,39 @@ export default {
         data: [
           {
             title: '天王卡',
-            subtitle: '实时',
-            count: 7993,
+            subtitle: '59元/月',
+            count: 1993,
             allcount: 10222,
-            text: '当前分类总记录数',
+            text: '首次充值100送50元话费',
             color: 'rgb(49, 180, 141)',
-            key: '类'
+            key: '王'
           },
           {
             title: '地王卡',
-            subtitle: '实时',
+            subtitle: '39元/月',
             count: 3112,
             allcount: 10222,
-            text: '当前上传的附件数',
+            text: '首次充值100送5G全国流量',
             color: 'rgb(56, 161, 242)',
-            key: '附'
+            key: '王'
           },
           {
-            title: '大冰神',
-            subtitle: '实时',
+            title: '大冰神卡',
+            subtitle: '199元/月',
             count: 908,
             allcount: 10222,
-            text: '评论次数',
+            text: '国内流量不限量',
             color: 'rgb(117, 56, 199)',
-            key: '评'
+            key: '冰'
           },
           {
-            title: '小冰神',
-            subtitle: '实时',
-            count: 908,
+            title: '小冰神卡',
+            subtitle: '99元/月',
+            count: 1659,
             allcount: 10222,
-            text: '评论次数',
+            text: '国内流量通话不限量',
             color: 'rgb(59, 103, 164)',
-            key: '新'
+            key: '冰'
           }
         ]
       },
@@ -132,7 +132,7 @@ export default {
           }
         ]
       },
-      easyDataOption1: {
+      /*easyDataOption1: {
         color: 'rgb(63, 161, 255)',
         span: 4,
         data: [
@@ -204,7 +204,7 @@ export default {
             icon: 'icon-caidanguanli'
           }
         ]
-      }
+      }*/
     }
   },
   created() {},

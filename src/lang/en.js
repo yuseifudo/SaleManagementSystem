@@ -20,6 +20,7 @@ export default {
     commissionReward: 'CommissionReward',
     report: 'Report',
     salesmen:salesmen,//销售人员
+    packageManage: 'PackageManagement',
     AliIcons: 'AliIcons',
     list: 'list',
     Digitalanimation: 'Digitalanimation',

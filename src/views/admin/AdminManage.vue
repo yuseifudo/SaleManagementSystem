@@ -7,31 +7,38 @@
 					<el-input v-model="filters.name" placeholder="姓名"></el-input>
 				</el-form-item>
 				<el-form-item>
-					<el-button type="primary" v-on:click="getUsers">查询</el-button>
+					<el-button type="primary" v-on:click="getAdmins">查询</el-button>
 				</el-form-item>
 				<el-form-item>
 					<el-button type="primary" @click="handleAdd">新增</el-button>
+				</el-form-item>
+				<el-form-item>
+          <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>
 				</el-form-item>
 			</el-form>
 		</el-col>
 
 		<!--列表-->
-		<el-table :data="users" highlight-current-row @selection-change="selsChange" style="width: 100%;">
-			<el-table-column type="selection" width="55">
+		<el-table :data="admins" highlight-current-row @selection-change="selsChange" style="width: 100%;" align="center">
+			<el-table-column type="selection" width="55" >
 			</el-table-column>
-			<el-table-column type="index" width="60">
+			<!--<el-table-column type="index" width="60">
+			</el-table-column>-->
+			<el-table-column prop="adminId" label="编号" width="80" align="center" sortable>
 			</el-table-column>
-			<el-table-column prop="name" label="姓名" width="120">
+      <el-table-column prop="name" label="姓名" width="120" align="center">
 			</el-table-column>
-			<el-table-column prop="sex" label="性别" width="120" :formatter="formatSex">
+      <el-table-column prop="loginName" label="登录名" width="120" align="center">
+      </el-table-column>
+			<el-table-column prop="sex" label="性别" width="120" :formatter="formatSex" align="center">
 			</el-table-column>
-			<el-table-column prop="age" label="年龄" width="120">
+			<el-table-column prop="age" label="年龄" width="120" align="center" sortable>
 			</el-table-column>
-			<el-table-column prop="birth" label="生日" width="120">
+			<el-table-column prop="tel" label="联系电话" width="120" align="center">
 			</el-table-column>
-			<el-table-column prop="addr" label="地址" min-width="160">
+			<el-table-column prop="email" label="邮箱" min-width="160" align="center">
 			</el-table-column>
-			<el-table-column label="操作" width="150">
+			<el-table-column label="操作" width="150" align="center">
 				<template slot-scope="scope">
 					<el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
 					<el-button type="danger" size="small" @click="handleDel(scope.$index, scope.row)">删除</el-button>
@@ -41,7 +48,7 @@
 
 		<!--工具条-->
 		<el-col :span="24" class="toolbar">
-			<el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>
+			<!--<el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>-->
 			<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">
 			</el-pagination>
 		</el-col>
@@ -49,9 +56,12 @@
 		<!--编辑界面-->
 		<el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" :close-on-click-modal="false">
 			<el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
-				<el-form-item label="姓名" prop="name">
-					<el-input v-model="editForm.name" auto-complete="off"></el-input>
+				<el-form-item label="姓名" prop="name" >
+					<el-input v-model="editForm.name" auto-complete="off" ></el-input>
 				</el-form-item>
+        <el-form-item label="登录名" prop="loginName">
+          <el-input v-model="editForm.loginName" auto-complete="off" ></el-input>
+        </el-form-item>
 				<el-form-item label="性别">
 					<el-radio-group v-model="editForm.sex">
 						<el-radio class="radio" :label=1>男</el-radio>
@@ -59,13 +69,13 @@
 					</el-radio-group>
 				</el-form-item>
 				<el-form-item label="年龄">
-					<el-input-number v-model="editForm.age" :min="0" :max="200"></el-input-number>
+					<el-input-number v-model="editForm.age" :min="0" :max="150"></el-input-number>
 				</el-form-item>
-				<el-form-item label="生日">
-					<el-date-picker type="date" placeholder="选择日期" v-model="editForm.birth"></el-date-picker>
-				</el-form-item>
-				<el-form-item label="地址">
-					<el-input type="textarea" v-model="editForm.addr"></el-input>
+        <el-form-item label="联系方式" >
+          <el-input v-model="editForm.tel"></el-input>
+        </el-form-item>
+				<el-form-item label="邮箱" >
+					<el-input type="textarea" v-model="editForm.email"></el-input>
 				</el-form-item>
 			</el-form>
 			<div slot="footer" class="dialog-footer">
@@ -78,47 +88,50 @@
 </template>
 
 <script>
-import util from '@/utils/table.js'
+// import util from '@/utils/table.js'
 import {
-  getUserListPage,
-  removeUser,
-  batchRemoveUser,
-  editUser,
-  addUser
-} from '@/api/userTable'
+  getAdminListPage,
+  removeAdmin,
+  batchRemoveAdmin,
+  editAdmin,
+  addAdmin
+} from '@/api/adminTable'
 
 export default {
   data() {
     return {
       dialogStatus: '',
       textMap: {
-        update: 'Edit',
-        create: 'Create'
+        update: '编辑',
+        create: '添加'
       },
       dialogFormVisible: false,
       filters: {
         name: ''
       },
-      users: [],
+      admins: [],
       total: 0,
       page: 1,
       sels: [], // 列表选中列
       editFormRules: {
-        name: [{ required: true, message: '请输入姓名', trigger: 'blur' }]
+        name: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
+        loginName: [{ required: true, message: '请输入登录名', trigger: 'blur' }]
       },
       // 编辑界面数据
       editForm: {
         id: '0',
         name: '',
+        loginName: '',
         sex: 1,
         age: 0,
-        birth: '',
-        addr: ''
+        tel: '',
+        email: ''
       },
 
       addFormVisible: false, // 新增界面是否显示
       addFormRules: {
-        name: [{ required: true, message: '请输入姓名', trigger: 'blur' }]
+        name: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
+        loginName: [{ required: true, message: '请输入登录名', trigger: 'blur' }]
       }
     }
   },
@@ -129,17 +142,17 @@ export default {
     },
     handleCurrentChange(val) {
       this.page = val
-      this.getUsers()
+      this.getAdmins()
     },
     // 获取用户列表
-    getUsers() {
+    getAdmins() {
       const para = {
         page: this.page,
         name: this.filters.name
       }
-      getUserListPage(para).then(res => {
+      getAdminListPage(para).then(res => {
         this.total = res.data.total
-        this.users = res.data.users
+        this.admins = res.data.admins
       })
     },
     // 删除
@@ -149,12 +162,12 @@ export default {
       })
         .then(() => {
           const para = { id: row.id }
-          removeUser(para).then(res => {
+          removeAdmin(para).then(res => {
             this.$message({
               message: '删除成功',
               type: 'success'
             })
-            this.getUsers()
+            this.getAdmins()
           })
         })
         .catch(() => {})
@@ -172,10 +185,11 @@ export default {
       this.editForm = {
         id: '0',
         name: '',
+        loginName: '',
         sex: 1,
         age: 0,
-        birth: '',
-        addr: ''
+        tel: '',
+        email: ''
       }
     },
     // 编辑
@@ -185,18 +199,18 @@ export default {
           this.$confirm('确认提交吗？', '提示', {})
             .then(() => {
               const para = Object.assign({}, this.editForm)
-              para.birth =
+              /*para.birth =
                 !para.birth || para.birth === ''
                   ? ''
-                  : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd')
-              editUser(para).then(res => {
+                  : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd')*/
+              editAdmin(para).then(res => {
                 this.$message({
                   message: '提交成功',
                   type: 'success'
                 })
                 this.$refs['editForm'].resetFields()
                 this.dialogFormVisible = false
-                this.getUsers()
+                this.getAdmins()
               })
             })
             .catch(e => {
@@ -216,18 +230,18 @@ export default {
               const para = Object.assign({}, this.editForm)
               console.log(para)
 
-              para.birth =
+              /*para.birth =
                 !para.birth || para.birth === ''
                   ? ''
-                  : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd')
-              addUser(para).then(res => {
+                  : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd')*/
+              addAdmin(para).then(res => {
                 this.$message({
                   message: '提交成功',
                   type: 'success'
                 })
                 this.$refs['editForm'].resetFields()
                 this.dialogFormVisible = false
-                this.getUsers()
+                this.getAdmins()
               })
             })
             .catch(e => {
@@ -249,19 +263,19 @@ export default {
       })
         .then(() => {
           const para = { ids: ids }
-          batchRemoveUser(para).then(res => {
+          batchRemoveAdmin(para).then(res => {
             this.$message({
               message: '删除成功',
               type: 'success'
             })
-            this.getUsers()
+            this.getAdmins()
           })
         })
         .catch(() => {})
     }
   },
   mounted() {
-    this.getUsers()
+    this.getAdmins()
   }
 }
 </script>

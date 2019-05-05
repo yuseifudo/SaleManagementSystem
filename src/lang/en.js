@@ -19,6 +19,7 @@ export default {
     announcement: 'Announcement',
     commissionReward: 'CommissionReward',
     report: 'Report',
+    packageManage: 'PackageManagement',
     AliIcons: 'AliIcons',
     list: 'list',
     Digitalanimation: 'Digitalanimation',

@@ -3,6 +3,7 @@ import tableAPI from './table'
 import loginAPI from './login'
 import articleAPI from './article'
 import packageManageAPI from './packageManage'
+import adminAPI from './admin'
 // 设置全局延时 没有延时的话有时候会检测不到数据变化 建议保留
 Mock.setup({
   timeout: '300-600'
@@ -33,4 +34,12 @@ Mock.mock(/\/packageManage\/detail/,packageManageAPI.getItemDetail)
 Mock.mock(/\/packageManage\/create/,packageManageAPI.insertPackageInfo)
 Mock.mock(/\/packageManage\/delete/,packageManageAPI.deletePackageInfo)
 Mock.mock(/\/packageManage\/update/,packageManageAPI.updatePackageInfo)
+
+//管理员相关
+Mock.mock(/\/admin\/listpage/, 'get', adminAPI.getAdminList)
+Mock.mock(/\/admin\/remove/, 'get', adminAPI.deleteAdmin)
+Mock.mock(/\/admin\/batchremove/, 'get', adminAPI.batchremove)
+Mock.mock(/\/admin\/add/, 'get', adminAPI.createAdmin)
+Mock.mock(/\/admin\/edit/, 'get', adminAPI.updateAdmin)
+
 export default Mock

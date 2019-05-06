@@ -110,7 +110,15 @@ export const constantRouterMap = [
     // redirect: '/dataManage/DiscountFigure',
     name: 'announcement',
     meta: {title: 'announcement', icon: 'chart'},
-    children: []
+    children: [
+      {
+        path: 'notice-table',
+        name: 'notice-table',
+        component: () => import('@/views//notices-table/notices-table'),
+        meta: {title: 'noticeTable', icon: 'chart'}
+      },
+
+    ]
   },
   // 佣金奖励
   {

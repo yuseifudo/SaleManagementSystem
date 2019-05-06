@@ -17,6 +17,7 @@ export default {
     dataCharts: 'ChartsInfo',
     dataMap: 'MapInfo',
     announcement: 'Announcement',
+    noticeTable:'NoticeTable',//公告信息
     commissionReward: 'CommissionReward',
     report: 'Report',
     packageManage: 'PackageManagement',

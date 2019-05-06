@@ -1,8 +1,14 @@
+/*
+* 作者：杨昌海
+* 时间：2019.05.06
+* 功能：公告信息Mock文件
+*
+* */
 import Mock from 'mockjs'
 import { param2Obj } from '@/utils'
 
 let List = []
-const count =100
+const count =30
 
 for (let i = 0; i < count; i++) {
   List.push(Mock.mock({

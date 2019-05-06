@@ -1,3 +1,9 @@
+/*
+* 作者：杨昌海
+* 时间：2019.05.06
+* 功能：公告信息API文件
+*
+* */
 import axios from 'axios'
 
 const base = ''

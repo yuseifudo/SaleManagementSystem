@@ -1,3 +1,9 @@
+/*
+* 作者：杨昌海
+* 时间：2019.05.06
+* 功能：公告信息API文件
+*
+* */
 import request from '@/utils/request'
 
 export function getNoticeListPage(params) {

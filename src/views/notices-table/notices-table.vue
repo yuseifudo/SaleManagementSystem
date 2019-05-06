@@ -1,3 +1,8 @@
+<!--
+作者：杨昌海
+时间：2019.05.06
+功能：公告信息显示页面
+-->
 <template>
   <section class="app-container">
     <!--工具条-->

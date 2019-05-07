@@ -16,9 +16,11 @@ export default {
   route: {
     dataManage: '数据管理',
     infoManage: '信息管理',
+    AdminManage:'管理员信息',
     dataCharts: '图表',
     dataMap: '地图',
     announcement: '公告',
+    noticeTable:'公告信息',//公告信息
     commissionReward: '佣金奖励',
     report: '报表',
     salesman:'营销人员列表',

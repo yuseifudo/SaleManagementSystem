@@ -31,11 +31,11 @@
       <!--</el-table-column >-->
       <!--<el-table-column type="index" label="序号" width="60"  >-->
       </el-table-column>
-      <el-table-column prop="num" label="编号" width="100" sortable >
+      <el-table-column prop="num" label="编号" width="80" sortable >
       </el-table-column>
-      <el-table-column prop="name" label="姓名" width="120" align="center">
+      <el-table-column prop="name" label="姓名" width="100" align="center">
       </el-table-column>
-      <el-table-column prop="sex" label="性别" width="100" :formatter="formatSex" align="center">
+      <el-table-column prop="sex" label="性别" width="80" :formatter="formatSex" align="center">
       </el-table-column>
       <el-table-column prop="telephone" label="联系号码" width="160" align="center">
       </el-table-column>
@@ -59,7 +59,7 @@
               disable-transitions>{{scope.row.totals}}</el-tag>
           </template>
       </el-table-column>
-      <el-table-column prop="commission" label="已获取佣金" width="130" align="center">
+      <el-table-column prop="commission" label="已获取佣金" width="100" align="center">
       </el-table-column>
       <el-table-column label="操作" width="240" align="center">
         <template slot-scope="scope">

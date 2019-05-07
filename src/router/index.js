@@ -21,7 +21,7 @@ import Layout from '../views/layout/Layout'
     title: 'title'               the name show in submenu and breadcrumb (recommend set)
     icon: 'svg-name'             the icon show in the sidebar,
   }
- **/
+**/
 export const constantRouterMap = [
   // {
   //   path: '/',
@@ -35,15 +35,9 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/dashboard/dashboard'
   },
-
   {path: '/login', component: () => import('@/views/login'), name: '登录NxAdmin', hidden: true},
   {path: '/404', component: () => import('@/views/errorPage/404'), hidden: true},
   {path: '/401', component: () => import('@/views/errorPage/401'), hidden: true},
-
-  { path: '/login', component: () => import('@/views/login'), name: '触点营销后台管理系统', hidden: true },
-  { path: '/404', component: () => import('@/views/errorPage/404'), hidden: true },
-  { path: '/401', component: () => import('@/views/errorPage/401'), hidden: true },
-
   // 锁屏
   {
     path: '/lock',
@@ -72,13 +66,20 @@ export const constantRouterMap = [
     // redirect: '/dataManage/DiscountFigure',
     name: 'dataManage',
     meta: {title: 'dataManage', icon: 'chart'},
-    children: []
+    children: [{
+      path: 'salesman',
+      name: 'salesman',
+      component: () => import('@/views/dataManage-table/salesman.vue'),
+      meta: {title: 'salesman', icon: 'form'}
+
+    }
+
+    ]
   },
   // 信息管理
   {
     path: '/infoManage',
     component: Layout,
-
     redirect: '/infoManage/packageManage',
     name: 'infoManage',
     meta: {title: 'infoManage', icon: 'chart'},
@@ -88,12 +89,7 @@ export const constantRouterMap = [
         name: 'packageManage',
         component: () => import('@/views/infoManage/packageManage.vue'),
         meta: {title: 'packageManage', icon: 'form'}
-      },
-      {
-        path: 'adminManage',
-        name: 'AdminManage',
-        component: () => import('@/views/admin/AdminManage'),
-        meta: { title: 'AdminManage', icon: 'discounting' }
+
       }
     ]
   },

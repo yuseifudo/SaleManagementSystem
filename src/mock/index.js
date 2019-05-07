@@ -4,6 +4,7 @@ import loginAPI from './login'
 import articleAPI from './article'
 import packageManageAPI from './packageManage'
 import adminAPI from './admin'
+import salesmanAPI from './salesman'
 // 设置全局延时 没有延时的话有时候会检测不到数据变化 建议保留
 Mock.setup({
   timeout: '300-600'
@@ -42,4 +43,13 @@ Mock.mock(/\/admin\/batchremove/, 'get', adminAPI.batchremove)
 Mock.mock(/\/admin\/add/, 'get', adminAPI.createAdmin)
 Mock.mock(/\/admin\/edit/, 'get', adminAPI.updateAdmin)
 
+
+//功能：销售人员相关
+//作者：李娜容
+//日期：2019/5/6
+Mock.mock(/\/salesman\/listpage/, 'get', salesmanAPI.getSalesmanList)
+Mock.mock(/\/salesman\/remove/, 'get', salesmanAPI.deleteSalesman)
+Mock.mock(/\/salesman\/batchremove/, 'get', salesmanAPI.batchremove)
+Mock.mock(/\/salesman\/add/, 'get', salesmanAPI.createSalesman)
+Mock.mock(/\/salesman\/edit/, 'get', salesmanAPI.updateSalesman)
 export default Mock

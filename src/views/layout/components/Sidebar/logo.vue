@@ -12,7 +12,7 @@
     </transition>
     <transition-group name="fade">
       <template v-if="!isCollapse">
-        <span class="logo_title is-bold" key="1">{{website.title}} </span>
+        <!--<span class="logo_title is-bold" key="1">{{website.title}} </span>-->
         <span class="logo_subtitle" key="2">{{website.author}}</span>
       </template>
     </transition-group>
@@ -86,5 +86,6 @@ export default {
 .logo_subtitle {
   font-size: 16px;
   padding-top: 5px;
+  letter-spacing: 3px;
 }
 </style>

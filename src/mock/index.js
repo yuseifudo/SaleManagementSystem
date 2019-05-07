@@ -2,6 +2,7 @@ import Mock from 'mockjs'
 import tableAPI from './table'
 import loginAPI from './login'
 import articleAPI from './article'
+import noticeAPI from './notice'
 import packageManageAPI from './packageManage'
 import adminAPI from './admin'
 import homeAPI from './home'
@@ -30,6 +31,18 @@ Mock.mock(/\/user\/remove/, 'get', tableAPI.deleteUser)
 Mock.mock(/\/user\/batchremove/, 'get', tableAPI.batchremove)
 Mock.mock(/\/user\/add/, 'get', tableAPI.createUser)
 Mock.mock(/\/user\/edit/, 'get', tableAPI.updateUser)
+
+/*
+* 作者：杨昌海
+* 时间：2019.05.06
+* 功能：公告相关
+* */
+Mock.mock(/\/notice\/listpage/, 'get', noticeAPI.getNoticeList)
+Mock.mock(/\/notice\/remove/, 'get', noticeAPI.deleteNotice)
+Mock.mock(/\/notice\/batchremove/, 'get', noticeAPI.batchremove)
+Mock.mock(/\/notice\/add/, 'get', noticeAPI.createNotice)
+Mock.mock(/\/notice\/edit/, 'get', noticeAPI.updateNotice)
+
 
 //套餐管理相关
 Mock.mock(/\/packageManage\/list/,packageManageAPI.getList)

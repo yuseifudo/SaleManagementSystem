@@ -20,6 +20,7 @@ export default {
     dataCharts: '图表',
     dataMap: '地图',
     announcement: '公告',
+    noticeTable:'公告信息',//公告信息
     commissionReward: '佣金奖励',
     report: '报表',
     packageManage: '套餐管理',

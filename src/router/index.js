@@ -114,8 +114,22 @@ export const constantRouterMap = [
     component: Layout,
     // redirect: '/dataManage/DiscountFigure',
     name: 'announcement',
-    meta: { title: 'announcement', icon: 'chart' },
-    children: []
+
+    meta: {title: 'announcement', icon: 'chart'},
+    children: [
+      {
+        path: 'notice-table',
+        name: 'notice-table',
+        component: () => import('@/views//notices-table/notices-table'),
+        meta: {title: 'noticeTable', icon: 'chart'}
+      },
+      {
+        path: 'award-table',
+        name: 'award-table',
+        component: () => import('@/views//award-table/award-table'),
+        meta: {title: 'noticeTable', icon: 'chart'}
+      },
+    ]
   },
   // 佣金奖励
   {

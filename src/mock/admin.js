@@ -37,7 +37,7 @@ export default {
     }
   },
   createAdmin: config => {
-    const { id, name,loginName, age, sex,tel,email } = param2Obj(config.url)
+    const { id,adminId,name,loginName, age, sex,tel,email } = param2Obj(config.url)
     console.log('66')
     List.push({
       id: id,

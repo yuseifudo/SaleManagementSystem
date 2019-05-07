@@ -7,7 +7,7 @@ const userMap = {
     token: 'admin',
     introduction: '我是超级管理员',
     avatar: 'https://raw.githubusercontent.com/mgbq/nx-admin/master/src/assets/img/home/logo.png',
-    name: 'Super Admin'
+    name: '触点营销后台管理'
   },
   editor: {
     code: 0,

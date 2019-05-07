@@ -30,12 +30,12 @@ export default {
   name: 'nx-data-tabs',
   data() {
     return {
-      span: this.option.span || 6,
-      data: this.option.data || []
+      span: this.homeTc.span || 6,
+      data: this.homeTc.data || []
     }
   },
   props: {
-    option: {
+    homeTc: {
       type: Object,
       default: () => {}
     }

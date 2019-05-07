@@ -16,6 +16,7 @@ export default {
   route: {
     dataManage: '数据管理',
     infoManage: '信息管理',
+    AdminManage:'管理员信息',
     dataCharts: '图表',
     dataMap: '地图',
     announcement: '公告',

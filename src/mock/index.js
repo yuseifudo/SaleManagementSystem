@@ -4,6 +4,9 @@ import loginAPI from './login'
 import articleAPI from './article'
 import packageManageAPI from './packageManage'
 import adminAPI from './admin'
+import homeAPI from './home'
+import homeTcAPI from './homeTc'
+
 // 设置全局延时 没有延时的话有时候会检测不到数据变化 建议保留
 Mock.setup({
   timeout: '300-600'
@@ -41,5 +44,9 @@ Mock.mock(/\/admin\/remove/, 'get', adminAPI.deleteAdmin)
 Mock.mock(/\/admin\/batchremove/, 'get', adminAPI.batchremove)
 Mock.mock(/\/admin\/add/, 'get', adminAPI.createAdmin)
 Mock.mock(/\/admin\/edit/, 'get', adminAPI.updateAdmin)
+
+//首页相关
+Mock.mock(/\/home\/data/, 'get', homeAPI.getHomeData)
+Mock.mock(/\/home\/taocan/, 'get', homeTcAPI.getHomeTc)
 
 export default Mock

@@ -34,6 +34,7 @@ Mock.mock(/\/packageManage\/detail/,packageManageAPI.getItemDetail)
 Mock.mock(/\/packageManage\/create/,packageManageAPI.insertPackageInfo)
 Mock.mock(/\/packageManage\/delete/,packageManageAPI.deletePackageInfo)
 Mock.mock(/\/packageManage\/update/,packageManageAPI.updatePackageInfo)
+Mock.mock(/\/packageManage\/setFirstPush/,packageManageAPI.setFirstPush)
 
 //管理员相关
 Mock.mock(/\/admin\/listpage/, 'get', adminAPI.getAdminList)

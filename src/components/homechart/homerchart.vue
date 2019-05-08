@@ -45,6 +45,7 @@
             console.log(obj)
             for (var i = 0; i < obj.length; i++) {
                 this.cardData.push(obj[i].data[0])
+                this.nameData.push(obj[i].data[0].name)
                 // this.cardData.push({value:obj[i].value,name:obj[i].name})
             }
             this.cardDataT=this.cardData.slice(0,3)
@@ -75,14 +76,15 @@
                 orient: 'horizontal',
                 x: 'center',
                 y: 'bottom',
-                data: ['腾讯王卡', '蚂蚁宝卡', '京东强卡', '工行E卡', '百度圣卡', '滴滴橙卡']
+                data:this.nameData
+                  // ['腾讯王卡', '蚂蚁宝卡', '京东强卡', '工行E卡', '百度圣卡', '滴滴橙卡']
               },
               series: [
                 {
                   name: '售出占比',
                   type: 'pie',
                   selectedMode: 'single',
-                  radius: [0, '30%'],
+                  radius: [10,'30%'],
 
                   label: {
                     normal: {
@@ -107,7 +109,8 @@
                   radius: ['40%', '55%'],
                   label: {
                     normal: {
-                      formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                      // formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                      formatter: '{b|{b}：}\n{hr|}\n  {c}  {per|{d}%}  ',
                       backgroundColor: '#eee',
                       borderColor: '#aaa',
                       borderWidth: 1,
@@ -123,13 +126,13 @@
                           lineHeight: 22,
                           align: 'center'
                         },
-                        // abg: {
-                        //     backgroundColor: '#333',
-                        //     width: '100%',
-                        //     align: 'right',
-                        //     height: 22,
-                        //     borderRadius: [4, 4, 0, 0]
-                        // },
+                        abg: {
+                            backgroundColor: '#333',
+                            width: '100%',
+                            align: 'right',
+                            height: 22,
+                            borderRadius: [4, 4, 0, 0]
+                        },
                         hr: {
                           borderColor: '#aaa',
                           width: '100%',
@@ -137,7 +140,7 @@
                           height: 0
                         },
                         b: {
-                          fontSize: 16,
+                          fontSize: 15,
                           lineHeight: 33
                         },
                         per: {

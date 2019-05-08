@@ -21,6 +21,7 @@ export default {
     dataMap: '地图',
     announcement: '公告',
     noticeTable:'公告信息',//公告信息
+    salesVolume:'销量对比图',//杨昌海练习图表
     commissionReward: '佣金奖励',
     report: '报表',
     salesman:'营销人员列表',

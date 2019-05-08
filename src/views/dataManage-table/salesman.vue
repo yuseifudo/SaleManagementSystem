@@ -31,7 +31,7 @@
       <!--</el-table-column >-->
       <!--<el-table-column type="index" label="序号" width="60"  >-->
       </el-table-column>
-      <el-table-column prop="num" label="编号" width="60" sortable >
+      <el-table-column prop="num" label="编号" width="80" sortable >
       </el-table-column>
       <el-table-column prop="name" label="姓名" width="100" align="center">
       </el-table-column>
@@ -191,7 +191,7 @@
 
     </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click.native="dialogFormVisible=false">取消</el-button>
+        <el-button @click="callOf('editForm')">取消</el-button>
         <el-button v-if="dialogStatus=='create'" type="primary" @click="createData">添加</el-button>
         <el-button v-else type="primary" @click="updateData">修改</el-button>
       </div>
@@ -217,6 +217,7 @@
     components:{Chart},
     data() {
       return {
+        List:[],
 
         dialogStatus: '',
         textMap: {
@@ -273,6 +274,11 @@
       }
     },
     methods: {
+      //模态框取消方法，关闭后清除提示
+      callOf(editForm){
+        this.dialogFormVisible = false;
+        this.$refs[editForm].resetFields();
+      },
 
       //销售总数筛选方法
       filtercount(value,row){

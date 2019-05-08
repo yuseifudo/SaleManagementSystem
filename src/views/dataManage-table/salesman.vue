@@ -35,11 +35,11 @@
       </el-table-column>
       <el-table-column prop="name" label="姓名" width="100" align="center">
       </el-table-column>
-      <el-table-column prop="sex" label="性别" width="80" :formatter="formatSex" align="center">
+      <el-table-column prop="sex" label="性别" width="60" :formatter="formatSex" align="center">
       </el-table-column>
       <el-table-column prop="telephone" label="联系号码" width="160" align="center">
       </el-table-column>
-      <el-table-column prop="count" label="销售套餐总数" width="160" sortable align="center"
+      <el-table-column prop="count" label="销售套餐总数" width="150" sortable align="center"
                        :filters="[{ text: '销售高手', value: '100' }, { text: '销售精英', value: '200' }]"
                        :filter-method="filtercount">
 
@@ -49,7 +49,7 @@
             disable-transitions>{{scope.row.count}}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column prop="totals" label="销售总额" width="160" sortable align="center"
+      <el-table-column prop="totals" label="销售总额" width="150" sortable align="center"
                        :filters="[{ text: '赚钱小能手', value: '7000' }, { text: '赚钱担当', value: '15000' }]"
                        :filter-method="filtertotals"
                        filter-placement="bottom-end">
@@ -191,7 +191,7 @@
 
     </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click.native="dialogFormVisible=false">取消</el-button>
+        <el-button @click="callOf('editForm')">取消</el-button>
         <el-button v-if="dialogStatus=='create'" type="primary" @click="createData">添加</el-button>
         <el-button v-else type="primary" @click="updateData">修改</el-button>
       </div>
@@ -217,6 +217,7 @@
     components:{Chart},
     data() {
       return {
+        List:[],
 
         dialogStatus: '',
         textMap: {
@@ -273,6 +274,11 @@
       }
     },
     methods: {
+      //模态框取消方法，关闭后清除提示
+      callOf(editForm){
+        this.dialogFormVisible = false;
+        this.$refs[editForm].resetFields();
+      },
 
       //销售总数筛选方法
       filtercount(value,row){

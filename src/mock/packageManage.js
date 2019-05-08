@@ -1,5 +1,6 @@
 import Mock from 'mockjs'
 import { param2Obj } from '@/utils'
+import util from '@/utils/table.js'
 /*
   author:shilongcheng
   date:2019-4-30
@@ -15,12 +16,12 @@ let packageInfo=Mock.mock({
       isFirstPush: false,// 是否首推
       startTime: '@date("yyyy-MM-dd")',// 套餐开始时间
       endTime: '@date("yyyy-MM-dd")',// 套餐结束时间
-      number: 'integer(1,100)',// 套餐售出人数
+      number: '@integer(1,100)',// 套餐售出人数
       updateUser: '@cname',// 套餐更新人
       updateTime: '@date("yyyy-MM-dd")',// 套餐更新时间
       span: 6,// 页面布局span
       borderColor: '#fff', //页面布局边框颜色
-      img: Mock.Random.image('960x1394','#ffcc33', '#FFF', 'png', 'Test'),// 图片地址
+      img: Mock.Random.image('960x1394','#409EFF', '#FFF', 'png', 'Test'),// 图片地址
       isDelete: false,//是否删除
       color: '#fff',//文字颜色
       bgText: '#2e323f'//背景颜色
@@ -31,31 +32,42 @@ let packageInfo=Mock.mock({
 export default {
   getList: config =>{
     const {} = param2Obj(config.url);
-    console.log(packageInfo)
+    //console.log(packageInfo)
     const dataList=packageInfo.data.filter(item=>{
       return item.isDelete==false
     })
     return{
       code: 0,
-      data:dataList
+      data:dataList,
+      message:"数据传输成功"
   }
   },
   getItemDetail: config =>{
-    const{id} = param2Obj(config.url);
+    const{params}=param2Obj(config.url);
+
+    let paraObj=JSON.parse(params);
+    console.log(paraObj)
+    const{id} = paraObj;
     const dataItem=packageInfo.data.filter(item=>{
       return item.id===id;
     })
+    console.log(dataItem)
     return{
       code: 0,
-      data:dataItem
+      data:{
+        item:dataItem,
+        message:'显示详情成功'
+      }
     }
   },
 
   insertPackageInfo: config =>{
-    const{id,name,fee,description,startTime,endTime,}=param2Obj(config.url);
-    let time= new Date().pattern("yyyy-MM-dd hh:mm:ss");
+    const{params}=param2Obj(config.url);
+    let paraObj=JSON.parse(params);
+    const{name,fee,description,startTime,endTime,}=paraObj;
+    let time=util.formatDate.format(new Date(), 'yyyy-MM-dd')
     packageInfo.data.push({
-      id:1000+packageInfo["data|3-10"].length,
+      id:1000+packageInfo.data.length,
       name: name,
       fee: fee,
       description: description,
@@ -67,42 +79,43 @@ export default {
       updateTime: time.toString(),
       span: 6,// 页面布局span
       borderColor: '#fff', //页面布局边框颜色
-      img: {
-      name: '@integer(1,960)',
-        uid: '-@name',
-        url: 'https://unsplash.it/400/800/@name',
-        status: 'done',
-      },// 图片地址
+      img: Mock.Random.image('960x1394','#ffcc33', '#FFF', 'png', 'Test'),// 图片地址
       isDelete: false,
       color: '#fff',
       bgText: '#2e323f'
     })
     return{
       code:0,
-      data:{
-        message:'添加成功'
-      }
+      data:packageInfo.data
     }
   },
 
   deletePackageInfo:config=>{
-    const{id}=param2Obj(config.url);
+    const{params}=param2Obj(config.url);
+    let paraObj=JSON.parse(params);
+    const{id}=paraObj;
     for (let i=0;i<packageInfo.data.length;i++){
       if (id==packageInfo.data[i].id){
         packageInfo.data[i].isDelete=true;
       }
     }
+    const dataList=packageInfo.data.filter(item=>{
+      return item.isDelete==false
+    })
     return{
       code:0,
       data:{
-        message:'删除成功'
+        message:'删除成功',
+        lists:dataList
       }
     }
   },
 
   updatePackageInfo:config=>{
-    const{id,name,fee,description,startTime,endTime,number}=param2Obj(config.url);
-    let time= new Date().pattern("yyyy-MM-dd hh:mm:ss");
+    const{params}=param2Obj(config.url);
+    let paraObj=JSON.parse(params);
+    const{id,name,fee,description,startTime,endTime,number}=paraObj;
+    let time=util.formatDate.format(new Date(), 'yyyy-MM-dd')
     packageInfo.data.some(u=>{
       if (u.id===id){
         u.name=name;
@@ -114,13 +127,42 @@ export default {
         u.number=number;
         u.updateUser='admin';
         u.updateTime=time.toString();
-        return{
-          code:0,
-          data:{
-            message:'更新成功'
-          }
-        }
+
       }
     })
+    const dataList=packageInfo.data.filter(item=>{
+      return item.isDelete==false
+    })
+    return{
+      code:0,
+      data:{
+        message:'更新成功',
+        lists:dataList
+      }
+    }
+  },
+
+  setFirstPush:config=> {
+  // .replace(/"/g,'')
+  //   console.log(config.url);
+  //   console.log(param2Obj(config.url));
+    const{params}=param2Obj(config.url);
+    let paraObj=JSON.parse(params);
+    const{id}=paraObj;
+    console.log(id);
+    for (let i=0;i<packageInfo.data.length;i++){
+      if (packageInfo.data[i].id==id){
+        packageInfo.data[i].isFirstPush=true;
+      } else{
+        packageInfo.data[i].isFirstPush=false;
+      }
+    }
+    const dataList=packageInfo.data.filter(item=>{
+      return item.isDelete==false
+    })
+    return{
+      code:0,
+      data:dataList
+    }
   }
 }

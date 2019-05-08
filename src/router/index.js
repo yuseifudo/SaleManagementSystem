@@ -133,7 +133,12 @@ export const constantRouterMap = [
         component: () => import('@/views//notices-table/notices-table'),
         meta: {title: 'noticeTable', icon: 'chart'}
       },
-
+      {
+        path: 'award-table',
+        name: 'award-table',
+        component: () => import('@/views//award-table/award-table'),
+        meta: {title: 'awardTable', icon: 'chart'}
+      }
     ]
   },
   // 佣金奖励

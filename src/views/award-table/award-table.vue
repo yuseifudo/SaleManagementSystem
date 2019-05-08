@@ -7,7 +7,7 @@
           <el-input v-model="filters.title" placeholder="请输入奖励规则标题"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" v-on:click="getNotice" >查询奖励规则</el-button>
+          <el-button type="primary" v-on:click="getAward" >查询奖励规则</el-button>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="handleAdd">发布新的奖励规则</el-button>
@@ -16,7 +16,7 @@
     </el-col>
 
     <!--列表-->
-    <el-table :data="notices" highlight-current-row @selection-change="selsChange" :default-sort = "{prop: 'createDate', order: 'descending'}"
+    <el-table :data="awards" highlight-current-row @selection-change="selsChange" :default-sort = "{prop: 'createDate', order: 'descending'}"
               style="width: 100%;" align="center">
       <el-table-column type="selection" width="55">
       </el-table-column>
@@ -39,7 +39,7 @@
     <!--工具条-->
     <el-col :span="24" class="toolbar">
       <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">删除所选</el-button>
-      <el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="5" :total="total" style="float:right;">
+      <el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="10" :total="total" style="float:right;">
       </el-pagination>
     </el-col>
 
@@ -67,12 +67,12 @@
 <script>
   import util from '@/utils/table.js'
   import {
-    getNoticeListPage,
-    removeNotice,
-    batchRemoveNotice,
-    editNotice,
-    addNotice
-  } from '@/api/noticesT'
+    getAwardListPage,
+    removeAward,
+    batchRemoveAward,
+    editAward,
+    addAward
+  } from '@/api/awardsT'
 
   export default {
     data() {
@@ -86,7 +86,7 @@
         filters: {
           title: ''
         },
-        notices: [],
+        awards: [],
         total: 0,
         page: 1,
         sels: [], // 列表选中列
@@ -110,18 +110,18 @@
     methods: {
       handleCurrentChange(val) {
         this.page = val
-        this.getNotice()
+        this.getAward()
       },
       // 获取公告列表
-      getNotice() {
+      getAward() {
         const para = {
           page: this.page,
           title: this.filters.title
         }
-        getNoticeListPage(para).then(res => {
+        getAwardListPage(para).then(res => {
           this.total = res.data.total
-          this.notices = res.data.notices
-          console.log( this.notices)
+          this.awards = res.data.awards
+          console.log( this.awards)
         })
 
       },
@@ -132,12 +132,12 @@
         })
           .then(() => {
             const para = { id: row.id }
-            removeNotice(para).then(res => {
+            removeAward(para).then(res => {
               this.$message({
                 message: '删除成功',
                 type: 'success'
               })
-              this.getNotice()
+              this.getAward()
             })
           })
           .catch(() => {})
@@ -171,14 +171,14 @@
                 para.content = para.content.replace(/(\r\n|\n|\r)/gm, "\\r")
                 // para.content= para.content.replace(/\s/gm, "&nbsp;")
                 console.log(para)
-                editNotice(para).then(res => {
+                editAward(para).then(res => {
                   this.$message({
                     message: '编辑成功',
                     type: 'success'
                   })
                   this.$refs['editForm'].resetFields()
                   this.dialogFormVisible = false
-                  this.getNotice()
+                  this.getAward()
                 })
               })
               .catch(e => {
@@ -200,14 +200,14 @@
                 const para = Object.assign({}, this.editForm)
                 para.content = para.content.replace(/(\r\n|\n|\r)/gm, "\\r")
                 console.log(para)
-                addNotice(para).then(res => {
+                addAward(para).then(res => {
                   this.$message({
                     message: '提交成功',
                     type: 'success'
                   })
                   this.$refs['editForm'].resetFields()
                   this.dialogFormVisible = false
-                  this.getNotice()
+                  this.getAward()
                 })
               })
               .catch(e => {
@@ -217,7 +217,7 @@
           }
         })
         this.filters.title=''
-        // this.getNotice()
+
       },
       // 全选单选多选
       selsChange(sels) {
@@ -231,19 +231,19 @@
         })
           .then(() => {
             const para = { ids: ids }
-            batchRemoveNotice(para).then(res => {
+            batchRemoveAward(para).then(res => {
               this.$message({
                 message: '删除成功',
                 type: 'success'
               })
-              this.getNotice()
+              this.getAward()
             })
           })
           .catch(() => {})
       }
     },
     mounted() {
-      this.getNotice()
+      this.getAward()
     }
   }
 </script>

@@ -18,6 +18,7 @@ export default {
     dataMap: 'MapInfo',
     announcement: 'Announcement',
     noticeTable:'NoticeTable',//公告信息
+    awardTable:'AwardTable',//奖励规则
     commissionReward: 'CommissionReward',
     report: 'Report',
     salesman:'salesman',//销售人员

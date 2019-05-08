@@ -45,7 +45,7 @@
 			</el-table-column>
 			<el-table-column label="操作" width="150" align="center">
 				<template slot-scope="scope">
-					<el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+					<el-button type="success" size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
 					<el-button type="danger" size="small" @click="handleDel(scope.$index, scope.row)">删除</el-button>
 				</template>
 			</el-table-column>
@@ -125,6 +125,7 @@ export default {
       // 编辑界面数据
       editForm: {
         id: '0',
+        adminId:'',
         name: '',
         loginName: '',
         sex: 1,
@@ -143,7 +144,7 @@ export default {
   methods: {
     // 性别显示转换
     formatSex: function(row, column) {
-      return row.sex === 1 ? '男' : row.sex === 0 ? '女' : '未知'
+      return row.sex == 1 ? '男' : row.sex == 0 ? '女' : '未知'
     },
     handleCurrentChange(val) {
       this.page = val
@@ -189,6 +190,7 @@ export default {
       this.dialogFormVisible = true
       this.editForm = {
         id: '0',
+        adminId:'',
         name: '',
         loginName: '',
         sex: 1,
@@ -234,6 +236,7 @@ export default {
           this.$confirm('确认提交吗？', '提示', {})
             .then(() => {
               this.editForm.id = (parseInt(Math.random() * 100)).toString() // mock a id
+              this.editForm.adminId = (parseInt(Math.random() * 100)).toString() // mock a adminId
               const para = Object.assign({}, this.editForm)
               console.log(para)
 

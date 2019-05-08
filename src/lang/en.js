@@ -20,6 +20,7 @@ export default {
     noticeTable:'NoticeTable',//公告信息
     commissionReward: 'CommissionReward',
     report: 'Report',
+    salesman:'salesman',//销售人员
     packageManage: 'PackageManagement',
     AliIcons: 'AliIcons',
     list: 'list',

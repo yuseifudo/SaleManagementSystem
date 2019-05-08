@@ -70,7 +70,7 @@
         <!--<bar style="height: 300px;width: 100%"></bar>-->
       <!--</div>-->
       <div slot="footer" class="dialog-footer">
-        <el-button @click.native="dialogFormVisible=false">取消</el-button>
+        <el-button @click="callOf('editForm')">取消</el-button>
         <el-button v-if="dialogStatus=='create'" type="primary" @click="createData">确认发布</el-button>
         <el-button v-else type="primary" @click="updateData">确认修改</el-button>
       </div>
@@ -87,13 +87,8 @@
     editNotice,
     addNotice
   } from '@/api/noticesT'
-  import Bar from '@/components/Charts/Bar'
 
   export default {
-    components:{
-      Bar
-    },
-
     data() {
       return {
         dialogStatus: '',
@@ -128,13 +123,18 @@
         },
 
         addFormVisible: false, // 新增公告界面是否显示
-        addFormRules: {
-          title: [{required: true, message: '请输入公告标题', trigger: 'blur'}],
-          content: [{required: true, message: '请输入公告内容', trigger: 'blur'}]
-        }
+        // addFormRules: {
+        //   title: [{required: true, message: '请输入公告标题', trigger: 'blur'}],
+        //   content: [{required: true, message: '请输入公告内容', trigger: 'blur'}]
+        // }
       }
     },
     methods: {
+      //模态框取消方法，关闭后清除提示
+      callOf(editForm){
+        this.dialogFormVisible = false;
+        this.$refs[editForm].resetFields();
+      },
       handleCurrentChange(val) {
         this.page = val
         this.getNotice()

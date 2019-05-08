@@ -18,13 +18,13 @@
         ];
 
        const option = {
-          backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
+        /*  backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
             offset: 0,
             color: '#f7f8fa'
           }, {
             offset: 1,
             color: '#cdd0d5'
-          }]),
+          }]),*/
           title: {
             text: '销量销售额利润气泡图'
           },

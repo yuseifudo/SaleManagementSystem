@@ -23,7 +23,6 @@ export default {
     report: 'Report',
     salereport: 'salereport',
     monreport: 'monreport',
-    profitreport: 'profitreport',
     salesman:'salesman',//销售人员
     packageManage: 'PackageManagement',
     AliIcons: 'AliIcons',

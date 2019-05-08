@@ -8,7 +8,6 @@
     <el-table-column prop="amount3" sortable label="套餐3销售额（元）"></el-table-column>
     <el-table-column prop="amount4" sortable label="套餐4销售额（元）"></el-table-column>
   </el-table>
-
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
@@ -58,7 +57,7 @@
         this.currentChangePage(this.users,currentPage)
 
       },
-      //分页方法（重点）
+      //分页方法
       currentChangePage(list,currentPage) {
         let from = (currentPage - 1) * this.pageSize;
         let to = currentPage * this.pageSize;

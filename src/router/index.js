@@ -167,12 +167,6 @@ export const constantRouterMap = [
         meta: {title: 'monreport', icon: 'monreport'}
       },
       {
-        path: 'profitreport',
-        name: 'profitreport',
-        component: () => import('@/views/report/profitreport'),
-        meta: {title: 'profitreport', icon: 'profitreport'}
-      },
-      {
         path: 'salereport',
         name: 'salereport',
         component: () => import('@/views/report/salereport'),

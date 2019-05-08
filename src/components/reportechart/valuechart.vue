@@ -1,5 +1,5 @@
 <template>
-<div id="num" style="width: 48% ;height: 400px; display: inline-block" ></div>
+<div id="num" style="width: 50% ;height: 400px; display: inline-block"  ></div>
 </template>
 <script>
   import echarts from 'echarts'
@@ -40,17 +40,17 @@
        const option = {
 
           color: ['#A0CE3A', '#31C5C0', '#1E9BD1', '#0F347B', '#585247', '#7F6AAD', '#009D85', "rgba(250,250,250,0.3)"],
-          backgroundColor: '#cdd0d5',
+  /*        backgroundColor: '#cdd0d5',*/
           title: {
-            text: '总数',
+            text: '总销售额',
             subtext: 7789,
             textStyle: {
-              color: '#f2f2f2',
-              fontSize: 40,
+              color: 'black',
+              fontSize: 30,
               // align: 'center'
             },
             subtextStyle: {
-              fontSize: 30,
+              fontSize: 24,
               color: ['#ff9d19']
             },
             x: 'center',
@@ -66,7 +66,7 @@
             top: "middle",
             right: "5%",
             textStyle: {
-              color: '#f2f2f2',
+              color: 'black',
               fontSize: 25,
 
             },

@@ -186,6 +186,7 @@
 
 <script>
   import util from '@/utils/table.js'
+  import PubSub from 'pubsub-js'
   import {
     fetchList,
     fetchPackageDetail,
@@ -302,6 +303,7 @@ export default {
           deletePackageInfo(para).then(res=>{
             if (res.code==0){
               this.packageLists=res.data.lists
+              PubSub.publish("deleted","item has been deleted");
               this.$message({
                 message: '套餐信息删除成功',
                 type: 'success'
@@ -405,6 +407,7 @@ export default {
                   this.addForm.endTime='';
                   this.param='';
                   this.src='';
+                  PubSub.publish("added","item has been added");
                   //this.$refs.upload.submit();//文件上传
                 }
                 else{
@@ -433,7 +436,7 @@ export default {
       })
 
     },
-    updateItem(id){
+    updateItem(id){//更新套餐信息
       this.$refs.addForm.validate((valid) => {
         if (valid){
           this.$confirm('是否更新该套餐?', '提示', {
@@ -463,6 +466,7 @@ export default {
                   this.addForm.endTime='';
                   this.param='';
                   this.src='';
+                  PubSub.publish("updated","item has been updated");
                   //this.$refs.upload.submit();//文件上传
                 }
                 else{

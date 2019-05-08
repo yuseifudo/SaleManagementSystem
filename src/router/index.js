@@ -108,7 +108,14 @@ export const constantRouterMap = [
     // redirect: '/dataManage/DiscountFigure',
     name: 'dataCharts',
     meta: {title: 'dataCharts', icon: 'chart'},
-    children: []
+    children: [
+      {
+        path: 'salesvolume',
+        name: 'salesvolume',
+        component: () => import('@/views/charts/salesVolume'),
+        meta: {title: 'salesVolume', icon: 'discounting'}
+      }
+    ]
   },
   // 地图呈现数据
   {
@@ -181,6 +188,7 @@ export const constantRouterMap = [
     name: 'charts',
     meta: {title: 'charts', icon: 'chart'},
     children: [
+
       {
         path: 'DiscountFigure',
         name: 'DiscountFigure',

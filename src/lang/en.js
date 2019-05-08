@@ -18,6 +18,7 @@ export default {
     dataMap: 'MapInfo',
     announcement: 'Announcement',
     noticeTable:'NoticeTable',//公告信息
+    salesVolume:'SalesVolume',//杨昌海练习图表
     commissionReward: 'CommissionReward',
     report: 'Report',
     salereport: 'salereport',

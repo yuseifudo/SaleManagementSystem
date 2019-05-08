@@ -27,7 +27,6 @@
       data() {
         return {
           chart:null,
-          rChartData:[],
           nameData:[],
           cardData:[],
           cardDataT:[],
@@ -48,8 +47,8 @@
                 this.nameData.push(obj[i].data[0].name)
                 // this.cardData.push({value:obj[i].value,name:obj[i].name})
             }
-            this.cardDataT=this.cardData.slice(0,3)
-            this.cardDataB=this.cardData.slice(3,6)
+            this.cardDataT=this.cardData.slice(0,4)
+            this.cardDataB=this.cardData.slice(4,8)
             console.log(this.cardDataT)
             console.log(this.cardDataB)
             //初始化echarts图表实例

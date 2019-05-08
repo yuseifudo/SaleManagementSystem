@@ -3,7 +3,7 @@ import Mock from 'mockjs'
 let LchartList=[]
 let RchartList=[]
 const count1=12
-const count2=6
+const count2=8
 
 for (let i = 0; i < count1; i++) {
   LchartList.push(Mock.mock({
@@ -21,7 +21,7 @@ for (let i = 0; i < count2; i++) {
     data:[
       {
         'value|300-1500':335,
-        'name|1':['腾讯王卡','蚂蚁宝卡','京东强卡','工行E卡','百度圣卡','滴滴橙卡']
+        'name|1':['腾讯王卡','蚂蚁宝卡','京东强卡','工行E卡','百度圣卡','滴滴橙卡','畅淘卡','微博微卡']
       }
     ]
   }))

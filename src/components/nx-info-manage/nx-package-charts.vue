@@ -5,6 +5,7 @@
 </template>
 <script>
   import echarts from 'echarts'
+  import PubSub from 'pubsub-js'
   import {
     fetchList,
   }from '@/api/packageManage.js'
@@ -20,24 +21,30 @@
         },
         mounted() {
           this.getPackageList()
-
-
-
+          let deleted=PubSub.subscribe('deleted',(msg,data)=>{
+            this.getPackageList()
+          })
+          let added=PubSub.subscribe('added',(msg,data)=>{
+            this.getPackageList()
+          })
+          let updated=PubSub.subscribe('updated',(msg,data)=>{
+            this.getPackageList()
+          })
         },
         methods:{
           getPackageList(){
             fetchList().then((res)=>{
               if (res.code==0){
+                this.dataTitle=[]
+                this.dataItems=[]
                 this.packageData=res.data;
                 this.chart = echarts.init(document.getElementById("packageChart"));
 
-                console.log(this.packageData)
                 for (let i=0;i<this.packageData.length;i++){
                   this.dataTitle.push(this.packageData[i].name)
                   this.dataItems.push({value:this.packageData[i].number,name:this.packageData[i].name})
                 }
-                console.log(this.dataTitle)
-                console.log(this.dataItems)
+
                 this.option = {
                   title: {
                     text: '全国热销套餐',
@@ -80,10 +87,7 @@
                   ]
                 }
                 //完成图表绘制的配置
-                console.log(this.chart)
                 this.chart.setOption(this.option);
-                console.log(this.chart)
-                console.log(this.option)
               }
               else{
                 this.$message({
@@ -94,6 +98,11 @@
               }
             })
           },
+        },
+        destroy(){
+          Pubsub.unsubscribe(deleted);
+          Pubsub.unsubscribe(added);
+          Pubsub.unsubscribe(updated);
         }
     }
 </script>

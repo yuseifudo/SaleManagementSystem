@@ -74,6 +74,7 @@ Mock.mock(/\/salesman\/remove/, 'get', salesmanAPI.deleteSalesman)
 Mock.mock(/\/salesman\/batchremove/, 'get', salesmanAPI.batchremove)
 Mock.mock(/\/salesman\/add/, 'get', salesmanAPI.createSalesman)
 Mock.mock(/\/salesman\/edit/, 'get', salesmanAPI.updateSalesman)
+Mock.mock(/\/salesman\/pie/, 'get', salesmanAPI.getPieInfo)
 
 
 /**

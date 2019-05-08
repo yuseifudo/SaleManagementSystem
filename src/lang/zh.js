@@ -16,14 +16,18 @@ export default {
   route: {
     dataManage: '数据管理',
     infoManage: '信息管理',
+    AdminManage:'管理员信息',
     dataCharts: '图表',
     dataMap: '地图',
     announcement: '公告',
+    noticeTable:'公告信息',//公告信息
     commissionReward: '佣金奖励',
     report: '报表',
     salereport: '销售报表',
     monreport: '月销售报表',
     profitreport: '利润总报表',
+    salesman:'营销人员列表',
+    userinfo:'用户列表',
     packageManage: '套餐管理',
     AliIcons: '阿里图标',
     contextmenu: '右键菜单',
@@ -133,5 +137,6 @@ export default {
     tips: '请点击右上角bug小图标',
     description: '现在的管理后台基本都是spa的形式了，它增强了用户体验，但同时也会增加页面出问题的可能性，可能一个小小的疏忽就导致整个页面的死锁。好在 Vue 官网提供了一个方法来捕获处理异常，你可以在其中进行错误处理或者异常上报。',
     documentation: '文档介绍'
-  }
+  },
+
 }

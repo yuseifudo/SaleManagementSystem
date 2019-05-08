@@ -1,3 +1,6 @@
+// 功能：月销售报表对应的mock文件
+// 作者：熊铭
+// 日期：2019/5/6
 import Mock from 'mockjs'
 
 let List = []

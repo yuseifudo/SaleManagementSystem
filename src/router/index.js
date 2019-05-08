@@ -36,10 +36,6 @@ export const constantRouterMap = [
     redirect: '/dashboard/dashboard'
   },
 
-  {path: '/login', component: () => import('@/views/login'), name: '登录NxAdmin', hidden: true},
-  {path: '/404', component: () => import('@/views/errorPage/404'), hidden: true},
-  {path: '/401', component: () => import('@/views/errorPage/401'), hidden: true},
-
   { path: '/login', component: () => import('@/views/login'), name: '触点营销后台管理系统', hidden: true },
   { path: '/404', component: () => import('@/views/errorPage/404'), hidden: true },
   { path: '/401', component: () => import('@/views/errorPage/401'), hidden: true },
@@ -72,7 +68,15 @@ export const constantRouterMap = [
     // redirect: '/dataManage/DiscountFigure',
     name: 'dataManage',
     meta: {title: 'dataManage', icon: 'chart'},
-    children: []
+    children: [{
+      path: 'salesman',
+      name: 'salesman',
+      component: () => import('@/views/dataManage-table/salesman.vue'),
+      meta: {title: 'salesman', icon: 'form'}
+
+    }
+
+    ]
   },
   // 信息管理
   {
@@ -122,7 +126,15 @@ export const constantRouterMap = [
     // redirect: '/dataManage/DiscountFigure',
     name: 'announcement',
     meta: {title: 'announcement', icon: 'chart'},
-    children: []
+    children: [
+      {
+        path: 'notice-table',
+        name: 'notice-table',
+        component: () => import('@/views//notices-table/notices-table'),
+        meta: {title: 'noticeTable', icon: 'chart'}
+      },
+
+    ]
   },
   // 佣金奖励
   {

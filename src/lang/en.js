@@ -17,11 +17,13 @@ export default {
     dataCharts: 'ChartsInfo',
     dataMap: 'MapInfo',
     announcement: 'Announcement',
+    noticeTable:'NoticeTable',//公告信息
     commissionReward: 'CommissionReward',
     report: 'Report',
     salereport: 'salereport',
     monreport: 'monreport',
     profitreport: 'profitreport',
+    salesman:'salesman',//销售人员
     packageManage: 'PackageManagement',
     AliIcons: 'AliIcons',
     list: 'list',

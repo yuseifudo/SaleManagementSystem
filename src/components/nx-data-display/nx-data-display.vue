@@ -9,7 +9,6 @@
         </div>
       </el-col>
     </el-row>
-
   </div>
 </template>
 
@@ -22,13 +21,13 @@ export default {
   },
   data() {
     return {
-      span: this.option.span || 8,
-      data: this.option.data,
-      color: this.option.color || 'rgb(63, 161, 255)'
+      span: this.homeData.span || 8,
+      color: this.homeData.color || 'rgb(63, 161, 255)',
+      data: this.homeData.data
     }
   },
   props: {
-    option: {
+    homeData: {
       type: Object,
       default: () => {}
     }

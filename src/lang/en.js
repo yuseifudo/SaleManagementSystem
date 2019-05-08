@@ -21,6 +21,8 @@ export default {
     salesVolume:'SalesVolume',//杨昌海练习图表
     commissionReward: 'CommissionReward',
     report: 'Report',
+    salereport: 'salereport',
+    monreport: 'monreport',
     salesman:'salesman',//销售人员
     packageManage: 'PackageManagement',
     AliIcons: 'AliIcons',

@@ -5,6 +5,8 @@ import articleAPI from './article'
 import noticeAPI from './notice'
 import packageManageAPI from './packageManage'
 import adminAPI from './admin'
+import salereportAPI from './salereport'
+import monreportAPI from './monreport'
 import salesmanAPI from './salesman'
 import homeAPI from './home'
 import homeTcAPI from './homeTc'
@@ -65,6 +67,9 @@ Mock.mock(/\/admin\/batchremove/, 'get', adminAPI.batchremove)
 Mock.mock(/\/admin\/add/, 'get', adminAPI.createAdmin)
 Mock.mock(/\/admin\/edit/, 'get', adminAPI.updateAdmin)
 
+//报表相关
+Mock.mock(/\/user\/list/, 'get', monreportAPI.getUserList)
+Mock.mock(/\/sale\/list/, 'get', salereportAPI.getSaleList)
 
 //功能：销售人员相关
 //作者：李娜容

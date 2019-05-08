@@ -24,6 +24,8 @@ export default {
     salesVolume:'销量对比图',//杨昌海练习图表
     commissionReward: '佣金奖励',
     report: '报表',
+    salereport: '销售报表',
+    monreport: '月销售报表',
     salesman:'营销人员列表',
     userinfo:'用户列表',
     packageManage: '套餐管理',

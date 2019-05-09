@@ -54,11 +54,11 @@ Mock.mock(/\/notice\/edit/, 'get', noticeAPI.updateNotice)
 * 时间：2019.05.06
 * 功能：奖励相关/
 * */
-Mock.mock(/\/award\/listpage/, 'get', noticeAPI.getAwardList)
-Mock.mock(/\/award\/remove/, 'get', noticeAPI.deleteAward)
-Mock.mock(/\/award\/batchremove/, 'get', noticeAPI.batchremove)
-Mock.mock(/\/award\/add/, 'get', noticeAPI.createAward)
-Mock.mock(/\/award\/edit/, 'get', noticeAPI.updateAward)
+Mock.mock(/\/award\/listpage/, 'get', awardAPI.getAwardList)
+Mock.mock(/\/award\/remove/, 'get', awardAPI.deleteAward)
+Mock.mock(/\/award\/batchremove/, 'get', awardAPI.batchremove)
+Mock.mock(/\/award\/add/, 'get', awardAPI.createAward)
+Mock.mock(/\/award\/edit/, 'get', awardAPI.updateAward)
 
 
 //套餐管理相关

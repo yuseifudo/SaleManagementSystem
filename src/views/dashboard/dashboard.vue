@@ -1,10 +1,5 @@
 <template>
   <div class="app-container">
-   <!--<nx-github-corner></nx-github-corner>-->
-     <!-- <a target="_blank" href="https://github.com/mgbq/vue-permission"><img
-        style="position: absolute; top: 48px; right: 0; border: 0;"
-        src="../../../static/img/report/forkme.png"
-        alt="Fork me on GitHub"></a> -->
     <div class="item">
       <h4>销售数据</h4>
       <nx-data-display :homeData="homeData"></nx-data-display>
@@ -23,7 +18,6 @@
       </div>
     </div>
     <div class="item">
-      <!--<h4>图表展示</h4>-->
       <div class="itemq" style="height: 325px;border: 1px solid lightgray">
         <homelbchart height="100%" width="100%"></homelbchart>
       </div>
@@ -59,6 +53,7 @@ import homelbchart from '@/components/homechart/homelbchart'
 import homerbchart from '@/components/homechart/homerbchart'
 import { getHomeData } from '@/api/homeTable'
 import { getHomeTc } from '@/api/homeTcTable'
+
 export default {
   name: 'report',
   components: {
@@ -249,7 +244,7 @@ export default {
     getHomeTc() {
       getHomeTc().then(res => {
         this.homeTc = res.data.homeTc
-        // console.log(this.homeTc.data+'aaaaa')
+        // console.log(this.homeTc.data)
       })
     },
   },

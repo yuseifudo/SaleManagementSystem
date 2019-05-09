@@ -13,7 +13,7 @@ const count =30
 for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
     id: Mock.Random.guid(),
-    num:'@increment()',
+    num:Mock.mock('@increment()'),
     title: Mock.Random.ctitle(),
     content: Mock.mock('@cparagraph'),
     createDate: Mock.mock('@datetime("yyyy-MM-dd-HH:mm")')
@@ -22,10 +22,12 @@ for (let i = 0; i < count; i++) {
 
 export default {
   getNoticeList: config => {
-    const { title, page = 1, limit = 20 } = param2Obj(config.url)
+    const { title,createDate,page = 1, limit = 10 } = param2Obj(config.url)
 
     const mockList = List.filter(notice => {
       if (title && notice.title.indexOf(title) === -1) return false
+
+      if(createDate && notice.createDate.indexOf(createDate) === -1) return false
       return true
     })
 
@@ -46,7 +48,7 @@ export default {
       id: id,
       num:num,
       title: title,
-      content: content.replace(/\n/g,"<br/>"),
+      content: content,
       createDate: createDate,
     })
     return {

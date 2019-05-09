@@ -105,27 +105,21 @@ export const constantRouterMap = [
   {
     path: '/dataCharts',
     component: Layout,
-    // redirect: '/dataManage/DiscountFigure',
+    redirect: '/dataCharts/salesvolume',
     name: 'dataCharts',
     meta: {title: 'dataCharts', icon: 'chart'},
     children: [
       {
-        path: 'DiscountFigure',
-        name: 'DiscountFigure',
-        component: () => import('@/views/charts-ckb/DiscountFigure'),
-        meta: { title: 'DiscountFigure', icon: 'discounting' }
+        path: 'salesvolume',
+        name: 'salesvolume',
+        component: () => import('@/views/dataCharts/salesVolume/salesVolume'),
+        meta: {title: 'salesVolume', icon: 'discounting'}
       },
       {
-        path: 'columnar',
-        name: 'columnar',
-        component: () => import('@/views/charts-ckb/columnar'),
-        meta: { title: 'columnar', icon: 'columnar' }
-      },
-      {
-        path: 'pieChart',
-        name: 'pieChart',
-        component: () => import('@/views/charts-ckb/pieChart'),
-        meta: {title: 'pieChart', icon: 'pieChart'}
+        path: 'charts-total',
+        name: 'charts-total',
+        component: () => import('@/views/dataCharts/charts-total/charts-total'),
+        meta: { title: 'chartsTotal', icon: 'discounting' }
       }
     ]
   },
@@ -135,11 +129,32 @@ export const constantRouterMap = [
     component: Layout,
     // redirect: '/dataManage/DiscountFigure',
     name: 'dataMap',
-    meta: {title: 'dataMap', icon: 'chart'},
-    children: []
+
+    meta: { title: 'dataMap', icon: 'chart' },
+    children: [
+      {
+        path: 'salesVolumeHeat',
+        name: 'salesVolumeHeat',
+        component: () => import('@/views/dataMap/salesVolumeHeat'),
+        meta: { title: 'salesVolumeHeat', icon: 'chart' }
+      },
+      {
+        path: 'branchAddress',
+        name: 'branchAddress',
+        component: () => import('@/views/dataMap/branchAddress'),
+        meta: { title: 'branchAddress', icon: 'chart' }
+      },
+      {
+        path: 'userAddress',
+        name: 'userAddress',
+        component: () => import('@/views/dataMap/userAddress'),
+        meta: { title: 'userAddress', icon: 'chart' }
+      }
+    ]
+
+
   },
   // 公告
-
   {
     path: '/announcement',
     component: Layout,
@@ -150,40 +165,49 @@ export const constantRouterMap = [
       {
         path: 'notice-table',
         name: 'notice-table',
-        component: () => import('@/views//notices-table/notices-table'),
+        component: () => import('@/views/notices-table/notices-table'),
         meta: { title: 'noticeTable', icon: 'chart'}
       },
       {
-        path: 'commission',
-        name: 'commission',
-        component: () => import('@/views/charts-ckb/commission'),
-        meta: { title: 'commission', icon: 'chart' }
-      }
-
+        path: 'award-table',
+        name: 'award-table',
+        component: () => import('@/views/award-table/award-table'),
+        meta: {title: 'awardTable', icon: 'chart'}
+      },
+      {
+        path: 'commission-publish',
+        name: 'commission-publish',
+        component: () => import('@/views/notices-table/commission-rule/commission-publish'),
+        meta: { title: 'commissionPublish', icon: 'chart' }
+      },
     ]
   },
-  // // 佣金奖励
-  // {
-  //   path: '/commissionReward',
-  //   component: Layout,
-  //   // redirect: '/dataManage/DiscountFigure',
-  //   name: 'commissionReward',
-  //   meta: {title: 'commissionReward', icon: 'chart'},
-  //   children: [
-  //     {
-  //       path: 'commission',
-  //       name: 'commission',
-  //       component: () => import('@/views/table/commission'),
-  //       meta: { title: 'commission' }
-  //     },
-  //     {
-  //       path: 'reward',
-  //       name: 'reward',
-  //       component: () => import('@/views/table/reward'),
-  //       meta: {title: 'reward'}
-  //     }
-  //   ]
-  // },
+  // 佣金奖励
+  {
+    path: '/commisionReward',
+    component: Layout,
+    // redirect: '/dataManage/DiscountFigure',
+
+    name: 'commisionReward',
+    meta: { title: 'commisionReward', icon: 'chart' },
+    children: [
+      {
+        path: 'commisionRules',
+        component: () => import('@/views/commisionReward/commisionRules'),
+        name: 'commisionRules',
+        meta: { title: 'commisionRules', icon: 'commisionRules' }
+      },
+      {
+        path: 'report',
+        component: () => import('@/views/dashboard/dashboard'),
+        name: 'report',
+        meta: { title: 'report', icon: 'chart' }
+      },
+      {
+        path:''
+      }
+    ]
+  },
   // 报表
   {
     path: '/report',
@@ -191,7 +215,20 @@ export const constantRouterMap = [
     // redirect: '/dataManage/DiscountFigure',
     name: 'report',
     meta: {title: 'report', icon: 'chart'},
-    children: []
+    children: [
+      {
+        path: 'monreport',
+        name: 'monreport',
+        component: () => import('@/views/report/monreport'),
+        meta: {title: 'monreport', icon: 'monreport'}
+      },
+      {
+        path: 'salereport',
+        name: 'salereport',
+        component: () => import('@/views/report/salereport'),
+        meta: {title: 'salereport', icon: 'salereport'}
+      },
+    ]
   },
   // 图表
   {
@@ -201,6 +238,7 @@ export const constantRouterMap = [
     name: 'charts',
     meta: {title: 'charts', icon: 'chart'},
     children: [
+
       {
         path: 'DiscountFigure',
         name: 'DiscountFigure',

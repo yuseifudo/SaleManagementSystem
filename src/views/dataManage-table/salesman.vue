@@ -217,8 +217,6 @@
     components:{Chart},
     data() {
       return {
-        List:[],
-
         dialogStatus: '',
         textMap: {
           update: '编辑销售人员信息',

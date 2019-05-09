@@ -17,3 +17,5 @@ export const batchRemoveSalesman = params => { return axios.get(`${base}/salesma
 export const editSalesman = params => { return axios.get(`${base}/salesman/edit`, { params: params }) }
 
 export const addSalesman = params => { return axios.get(`${base}/salesman/add`, { params: params }) }
+
+export const getPieInfo = params => { return axios.get(`${base}/salesman/pie`, { params: params }) }

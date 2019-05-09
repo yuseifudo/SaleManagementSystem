@@ -16,11 +16,18 @@ export default {
     infoManage: 'InfoManagement',
     dataCharts: 'ChartsInfo',
     dataMap: 'MapInfo',
+    salesVolumeHeat:'salesVolumeHeat',//地区销量
+    branchAddress:'branchAddress',//各地市分公司驻点
+    salesVolume:'salesVolume',//地区销售额
     announcement: 'Announcement',
     noticeTable:'NoticeTable',//公告信息
-    salesVolume:'SalesVolume',//杨昌海练习图表
+    commisionReward: 'CommisionReward',//佣金奖励
+    CommisionRules:'CommisionRules',//佣金规则
+    awardTable:'AwardTable',//奖励规则
     commissionReward: 'CommissionReward',
     report: 'Report',
+    salereport: 'salereport',
+    monreport: 'monreport',
     salesman:'salesman',//销售人员
     packageManage: 'PackageManagement',
     AliIcons: 'AliIcons',

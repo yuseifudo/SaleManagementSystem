@@ -1,7 +1,7 @@
 /*
-* 作者：杨昌海
+* 作者：王震
 * 时间：2019.05.06
-* 功能：公告信息Mock文件
+* 功能：奖励规则Mock文件
 *
 * */
 import Mock from 'mockjs'
@@ -13,7 +13,7 @@ const count =30
 for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
     id: Mock.Random.guid(),
-    num:Mock.mock('@increment()'),
+    num:'@increment()',
     title: Mock.Random.ctitle(),
     content: Mock.mock('@cparagraph'),
     createDate: Mock.mock('@datetime("yyyy-MM-dd-HH:mm")')
@@ -21,13 +21,12 @@ for (let i = 0; i < count; i++) {
 }
 
 export default {
-  getNoticeList: config => {
-    const { title,createDate,page = 1, limit = 10 } = param2Obj(config.url)
+  getAwardList: config => {
+    const { title, createDate, page = 1, limit = 5 } = param2Obj(config.url)
 
-    const mockList = List.filter(notice => {
-      if (title && notice.title.indexOf(title) === -1) return false
-
-      if(createDate && notice.createDate.indexOf(createDate) === -1) return false
+    const mockList = List.filter(award => {
+      if (title && award.title.indexOf(title) === -1) return false
+      if(createDate && award.createDate.indexOf(createDate) === -1) return false
       return true
     })
 
@@ -37,11 +36,11 @@ export default {
       code: 0,
       data: {
         total: mockList.length,
-        notices: pageList
+        awards: pageList
       }
     }
   },
-  createNotice: config => {
+  createAward: config => {
     const { id,num, title, content, createDate } = param2Obj(config.url)
     console.log('66')
     List.unshift({
@@ -58,7 +57,7 @@ export default {
       }
     }
   },
-  deleteNotice: config => {
+  deleteAward: config => {
     const { id } = param2Obj(config.url)
     List = List.filter(u => u.id !== id)
     return {
@@ -79,13 +78,13 @@ export default {
       }
     }
   },
-  updateNotice: config => {
+  updateAward: config => {
     const { id,num, title, content, createDate} = param2Obj(config.url)
     List.some(u => {
       if (u.id === id) {
         u.num=num
         u.title = title
-        u.content = content.replace(/\n/g,"<br/>")
+        u.content = content
         u.createDate = createDate
         return true
       }

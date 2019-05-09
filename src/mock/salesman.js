@@ -25,6 +25,15 @@ for (let i = 0; i < count; i++) {
   }))
 }
 
+let Piedata=Mock.mock({
+  'data|4': [
+    {
+      number:'@integer(29, 400)',
+      'name|1':['腾讯王卡','蚂蚁宝卡','京东强卡','工行E卡','百度圣卡','滴滴橙卡','畅淘卡','百度女神卡']
+    }
+  ]
+})
+
 export default {
   getSalesmanList: config => {
     const { name, num, page = 1, limit = 20 } = param2Obj(config.url)
@@ -108,5 +117,13 @@ export default {
         message: '编辑成功'
       }
     }
+  },
+  getPieInfo:() => {
+    return {
+      code: 0,
+      data: Piedata.data
+      // data:Piedata
+    }
   }
+
 }

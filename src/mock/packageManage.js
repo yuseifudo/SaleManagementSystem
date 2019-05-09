@@ -17,7 +17,7 @@ let packageInfo=Mock.mock({
   'data|3-10': [
     {
       'id|+1': 1000,//套餐id
-      name: '@ctitle',// 套餐名
+      'name|1':['腾讯王卡','蚂蚁宝卡','京东强卡','工行E卡','百度圣卡','滴滴橙卡','畅淘卡','百度女神卡','阿里鱼卡','网易白金卡','哔哩哔哩卡'],
       fee: '@integer(29, 400)',// 套餐资费
       description: '@cparagraph',// 套餐描述
       isFirstPush: false,// 是否首推

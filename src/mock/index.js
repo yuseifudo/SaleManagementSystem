@@ -3,11 +3,15 @@ import tableAPI from './table'
 import loginAPI from './login'
 import articleAPI from './article'
 import noticeAPI from './notice'
+import awardAPI from './award'
 import packageManageAPI from './packageManage'
 import adminAPI from './admin'
+import salereportAPI from './salereport'
+import monreportAPI from './monreport'
 import salesmanAPI from './salesman'
 import homeAPI from './home'
 import homeTcAPI from './homeTc'
+import taocanListAPI from './taocanList'
 import homeEchartAPI from './homechart'
 
 // 设置全局延时 没有延时的话有时候会检测不到数据变化 建议保留
@@ -37,13 +41,24 @@ Mock.mock(/\/user\/edit/, 'get', tableAPI.updateUser)
 /*
 * 作者：杨昌海
 * 时间：2019.05.06
-* 功能：公告相关
+* 功能：公告相关/
 * */
 Mock.mock(/\/notice\/listpage/, 'get', noticeAPI.getNoticeList)
 Mock.mock(/\/notice\/remove/, 'get', noticeAPI.deleteNotice)
 Mock.mock(/\/notice\/batchremove/, 'get', noticeAPI.batchremove)
 Mock.mock(/\/notice\/add/, 'get', noticeAPI.createNotice)
 Mock.mock(/\/notice\/edit/, 'get', noticeAPI.updateNotice)
+
+/*
+* 作者：王震
+* 时间：2019.05.06
+* 功能：奖励相关/
+* */
+Mock.mock(/\/award\/listpage/, 'get', awardAPI.getAwardList)
+Mock.mock(/\/award\/remove/, 'get', awardAPI.deleteAward)
+Mock.mock(/\/award\/batchremove/, 'get', awardAPI.batchremove)
+Mock.mock(/\/award\/add/, 'get', awardAPI.createAward)
+Mock.mock(/\/award\/edit/, 'get', awardAPI.updateAward)
 
 
 /**
@@ -69,6 +84,9 @@ Mock.mock(/\/admin\/batchremove/, 'get', adminAPI.batchremove)
 Mock.mock(/\/admin\/add/, 'get', adminAPI.createAdmin)
 Mock.mock(/\/admin\/edit/, 'get', adminAPI.updateAdmin)
 
+//报表相关
+Mock.mock(/\/user\/list/, 'get', monreportAPI.getUserList)
+Mock.mock(/\/sale\/list/, 'get', salereportAPI.getSaleList)
 
 //功能：销售人员相关
 //作者：李娜容
@@ -78,6 +96,7 @@ Mock.mock(/\/salesman\/remove/, 'get', salesmanAPI.deleteSalesman)
 Mock.mock(/\/salesman\/batchremove/, 'get', salesmanAPI.batchremove)
 Mock.mock(/\/salesman\/add/, 'get', salesmanAPI.createSalesman)
 Mock.mock(/\/salesman\/edit/, 'get', salesmanAPI.updateSalesman)
+Mock.mock(/\/salesman\/pie/, 'get', salesmanAPI.getPieInfo)
 
 
 /**
@@ -89,5 +108,12 @@ Mock.mock(/\/home\/data/, 'get', homeAPI.getHomeData)
 Mock.mock(/\/home\/taocan/, 'get', homeTcAPI.getHomeTc)
 Mock.mock(/\/home\/lchartdata/, 'get', homeEchartAPI.getLchartData)
 Mock.mock(/\/home\/rchartdata/, 'get', homeEchartAPI.getRchartData)
+
+//功能：套餐佣金相关；作者：吴丽娟；日期：20190507
+Mock.mock(/\/taocanList\/list/, 'get', taocanListAPI.getTaocanList)
+Mock.mock(/\/taocanList\/remove/, 'get', taocanListAPI.deleteTaocan)
+Mock.mock(/\/taocanList\/batchremove/, 'get', taocanListAPI.batchremove)
+Mock.mock(/\/taocanList\/add/, 'get', taocanListAPI.createTaocan)
+Mock.mock(/\/taocanList\/edit/, 'get', taocanListAPI.updateTaocan)
 
 export default Mock

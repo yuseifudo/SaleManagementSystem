@@ -206,7 +206,6 @@
                 this.editForm.createDate=util.formatDate.format(new Date(), 'yyyy-MM-dd-hh:mm')
                 const para = Object.assign({}, this.editForm)
                 para.content = para.content.replace(/(\r\n|\n|\r)/gm, "\\r")
-                console.log(para)
                 addAward(para).then(res => {
                   this.$message({
                     message: '提交成功',

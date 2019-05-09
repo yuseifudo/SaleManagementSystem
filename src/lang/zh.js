@@ -19,9 +19,14 @@ export default {
     AdminManage:'管理员信息',
     dataCharts: '图表',
     dataMap: '地图',
+    branchAddress:'各地市分公司驻点',
+    salesVolumeHeat:'地区销量热力图',
+    salesVolume:'地区销售额',
     announcement: '公告',
     noticeTable:'公告信息',//公告信息
-    salesVolume:'销量对比图',//杨昌海练习图表
+    commisionReward: '佣金奖励',
+    commisionRules:'佣金规则',
+    awardTable:'奖励规则',
     commissionReward: '佣金奖励',
     report: '报表',
     salereport: '销售报表',

@@ -45,7 +45,7 @@
 
         <template slot-scope="scope">
           <el-tag
-            :type="scope.row.count >= 200 ? 'danger' : scope.row.count <=100 ? 'success':'warning'"
+            :type="scope.row.count >=   200 ? 'danger' : scope.row.count <=100 ? 'success':'warning'"
             disable-transitions>{{scope.row.count}}</el-tag>
         </template>
       </el-table-column>

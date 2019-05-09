@@ -1,3 +1,6 @@
+// 功能：月销售额柱状图对应的mock文件
+// 作者：熊铭
+// 日期：2019/5/7
 import Mock from 'mockjs'
 import { param2Obj } from '@/utils'
 

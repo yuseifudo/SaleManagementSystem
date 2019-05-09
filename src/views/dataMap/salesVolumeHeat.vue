@@ -29,8 +29,6 @@
       getmapdata().then(res=>{
         let list=res.data.data
 
-        console.log("================================")
-        console.log(JSON.stringify(list))
 
         let option = {
 

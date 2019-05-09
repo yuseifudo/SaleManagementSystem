@@ -154,13 +154,12 @@
         <!--</el-row>-->
       </el-form>
       <div class="saleschart">
-        <chart height="70%" width="100%"></chart>
+        <chart height='70%' width="100%"></chart>
       </div>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="detailFormVisible = false">关闭</el-button>
       </div>
     </el-dialog>
-
     <!--编辑界面和新增加界面-->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" :close-on-click-modal="false">
     <el-form :model="editForm" label-width="100px" :rules="editFormRules" ref="editForm" style="padding-left: 50px">
@@ -170,7 +169,7 @@
     <el-form-item label="性别" >
         <el-radio-group v-model="editForm.sex">
           <el-radio class="radio" :label=1>男</el-radio>
-          <el-radio class="radio" :label=0>女</el-radio>
+          <el-radio class="radio" :label=0>女</el-radio>0
         </el-radio-group>
       </el-form-item>
     <el-form-item label="员工编号" prop="num" style="width: 600px">
@@ -326,7 +325,10 @@
                   message: '删除成功',
                   type: 'success'
                 })
+                if ((this.salesmanList.length-1)==0)
+                  this.page=this.page-1
                 this.getSalesman()
+
               })
             })
             .catch(() => {})
@@ -435,6 +437,11 @@
                   message: '删除成功',
                   type: 'success'
                 })
+                if ((this.salesmanList.length-this.sels.length)==0){
+                  if (this.page!=1) {
+                  this.page=this.page-1
+                  }
+                }
                 this.getSalesman()
               })
             })

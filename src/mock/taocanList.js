@@ -1,3 +1,8 @@
+//功能：套餐佣金规则
+//作者：吴丽娟
+// 日期：2019/5/7
+
+
 import Mock from 'mockjs'
 import { param2Obj } from '@/utils'
 

@@ -103,8 +103,8 @@
               this.dataTitle.push(this.pieData[i].name)
               this.dataItems.push({value:this.pieData[i].number,name:this.pieData[i].name})
             }
-            console.log(this.dataTitle)
-            console.log(this.dataItems)
+            // console.log(this.dataTitle)
+            // console.log(this.dataItems)
             //完成图表绘制配置
             this.option=({
               title: {

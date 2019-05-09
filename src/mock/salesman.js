@@ -40,7 +40,7 @@ export default {
 
     const mockList = List.filter(salesman => {
       if (name && salesman.name.indexOf(name) === -1) return false
-      if (num && salesman.num != num) return false
+      if (num && salesman.num != num) return false12
 
       return true
     })
@@ -57,7 +57,7 @@ export default {
   },
   createSalesman: config => {
     const { id, num,name,sex,telephone,count,totals,commission } = param2Obj(config.url)
-    console.log('66')
+    // console.log(config.url)
     List.push({
       id: id,
       num:num,

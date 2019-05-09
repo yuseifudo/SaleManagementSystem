@@ -39,3 +39,12 @@ export function getRchartData(params) {
     params: params
   })
 }
+
+
+export function getLbchartData(params) {
+  return request({
+    url: '/home/lbchartdata',
+    method: 'get',
+    params: params
+  })
+}

@@ -105,6 +105,7 @@ Mock.mock(/\/home\/sale/, 'get', homeAPI.getHomeSaleData)
 Mock.mock(/\/home\/taocan/, 'get', homeAPI.getHomeTc)
 Mock.mock(/\/home\/lchartdata/, 'get', homeEchartAPI.getLchartData)
 Mock.mock(/\/home\/rchartdata/, 'get', homeEchartAPI.getRchartData)
+Mock.mock(/\/home\/lbchartdata/, 'get', homeEchartAPI.getLbchartData)
 
 //功能：套餐佣金相关；
 // 作者：吴丽娟；

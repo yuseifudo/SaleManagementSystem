@@ -156,7 +156,7 @@
             }
           }, {
             id: 'statistic',
-            text: count ? '用户人数: ' + parseInt((sum / count).toFixed(4)) : '',
+            text: count ? '平均用户人数: ' + parseInt((sum / count).toFixed(4)) : '',
             right: 120,
             top: 40,
             width: 100,

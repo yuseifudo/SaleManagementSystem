@@ -4,6 +4,8 @@ const base = ''
 
 export const getHomeData = params => { return axios.get(`${base}/home/data`, { params: params }) }
 
+export const getHomeTc = params => { return axios.get(`${base}/home/taocan`, { params: params }) }
+
 export const getHomeSaleData = params => { return axios.get(`${base}/home/sale`, { params: params }) }
 
 export const getLchartData = params => { return axios.get(`${base}/home/lchartdata`, { params: params }) }

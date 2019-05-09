@@ -64,7 +64,7 @@
             y:'center'
           },
           title : {
-            text: '2018年套餐销售金额对比图',
+            text: '近年套餐销售金额对比图',
             subtext: '单位：百万',
             left: 'center'
           },

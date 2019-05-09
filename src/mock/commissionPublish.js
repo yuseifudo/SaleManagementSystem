@@ -7,22 +7,18 @@ const count = 60
 for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
     id: Mock.Random.guid(),
-    name: Mock.Random.cname(),
-    addr: Mock.mock('@county(true)'),
-    'age|18-60': 1,
-    birth: Mock.Random.date(),
-    sex: Mock.Random.integer(0, 1),
-    title: Mock.Random.cparagraph(1),
-    content: Mock.Random.cparagraph(3, 8)
+    title: Mock.Random.ctitle(),
+    content: Mock.Random.cparagraph(3, 8),
+    createDate: Mock.mock('@datetime("yyyy-MM-dd-HH:mm")')
   }))
 }
 
 export default {
   getUserList: config => {
-    const { name, page = 1, limit = 20 } = param2Obj(config.url)
+    const { title, page = 1, limit = 20 } = param2Obj(config.url)
 
     const mockList = List.filter(user => {
-      if (name && user.name.indexOf(name) === -1) return false
+      if (title && user.title.indexOf(title) === -1) return false
       return true
     })
 
@@ -37,16 +33,12 @@ export default {
     }
   },
   createUser: config => {
-    const { id, name, addr, age, birth, sex, title, content } = param2Obj(config.url)
+    const { id, title, content, createDate } = param2Obj(config.url)
     List.push({
       id: id,
-      name: name,
-      addr: addr,
-      age: age,
-      birth: birth,
-      sex: sex,
       title: title,
-      content: content
+      content: content,
+      createDate: createDate
     })
     return {
       code: 0,
@@ -77,17 +69,13 @@ export default {
     }
   },
   updateUser: config => {
-    const { id, name, addr, age, birth, sex, title, content} = param2Obj(config.url)
-    const sex_num = parseInt(sex)
+    const { id, title, content, createDate } = param2Obj(config.url)
+    // const sex_num = parseInt(sex)
     List.some(u => {
       if (u.id === id) {
-        u.name = name
-        u.addr = addr
-        u.age = age
-        u.birth = birth
-        u.sex = sex_num
         u.title = title
         u.content = content
+        u.createDate = createDate
         return true
       }
     })
@@ -99,4 +87,3 @@ export default {
     }
   }
 }
-

@@ -33,7 +33,7 @@ export default {
     awardTable:'奖励规则',
     commissionReward: '佣金奖励',
     report: '报表',
-    salereport: '销售报表',
+    salereport: '销售利润分析图',
     monreport: '月销售报表',
     salesman:'营销人员列表',
     userinfo:'用户列表',

@@ -16,7 +16,7 @@ export default {
     dataManage: 'DataManagement',// 数据管理
     infoManage: 'InfoManagement',// 信息管理
     dataCharts: 'DataCharts',// 图表
-    dataMap: 'MapInfo',// 地图
+    dataMap: 'DataMap',// 地图
     salesVolumeHeat:'SalesVolumeHeat',//地区销量
     branchAddress:'BranchAddress',//各地市分公司驻点
     userAddress:'UserAddress',//各地市用户数
@@ -30,8 +30,8 @@ export default {
     awardTable:'AwardTable',//奖励规则
     commissionReward: 'CommissionReward',
     report: 'Report',
-    salereport: 'Salereport',
-    monreport: 'monreport',
+    salereport: 'Salereport',//销售利润分析图
+    monreport: 'monreport',//月销售报表
     salesman:'Salesman',//销售人员
     packageManage: 'PackageManagement',//套餐管理
     infoChange: 'InfoChange',

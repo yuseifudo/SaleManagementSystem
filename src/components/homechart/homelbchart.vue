@@ -5,9 +5,7 @@
 <script>
     import echarts from 'echarts'
     import '../../../node_modules/echarts/map/js/china'
-    // import resize from './mixins/resize'
     export default {
-      // mixins:[resize],
       props: {
         className: {
           type: String,
@@ -38,7 +36,7 @@
         const option={
           title : {
             text: '全国联通用户分布',
-            subtext: '单位：百万人',
+            subtext: '单位：百万',
             x:'center'
           },
           tooltip : {
@@ -47,7 +45,7 @@
           legend: {
             orient: 'vertical',
             x:'left',
-            data:['iphoneX']
+            data:['用户']
           },
           dataRange: {
             min: 0,

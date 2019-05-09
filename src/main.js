@@ -2,6 +2,10 @@ import Vue from 'vue'
 
 import VCharts from 'v-charts'
 
+//echarts
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
 // 地图
 import BaiduMap from 'vue-baidu-map'
 import ElementUI from 'element-ui'

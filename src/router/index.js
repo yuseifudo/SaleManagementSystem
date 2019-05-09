@@ -108,7 +108,14 @@ export const constantRouterMap = [
     // redirect: '/dataManage/DiscountFigure',
     name: 'dataCharts',
     meta: {title: 'dataCharts', icon: 'chart'},
-    children: []
+    children: [
+      {
+        path: 'salesvolume',
+        name: 'salesvolume',
+        component: () => import('@/views/charts/salesVolume'),
+        meta: {title: 'salesVolume', icon: 'discounting'}
+      }
+    ]
   },
   // 地图呈现数据
   {
@@ -120,10 +127,10 @@ export const constantRouterMap = [
     meta: { title: 'dataMap', icon: 'chart' },
     children: [
       {
-        path: 'salesVolume',
-        name: 'salesVolume',
-        component: () => import('@/views/dataMap/salesVolume'),
-        meta: { title: 'salesVolume', icon: 'chart' }
+        path: 'salesVolumeHeat',
+        name: 'salesVolumeHeat',
+        component: () => import('@/views/dataMap/salesVolumeHeat'),
+        meta: { title: 'salesVolumeHeat', icon: 'chart' }
       },
       {
         path: 'branchAddress',
@@ -149,7 +156,12 @@ export const constantRouterMap = [
         component: () => import('@/views//notices-table/notices-table'),
         meta: {title: 'noticeTable', icon: 'chart'}
       },
-
+      {
+        path: 'award-table',
+        name: 'award-table',
+        component: () => import('@/views//award-table/award-table'),
+        meta: {title: 'awardTable', icon: 'chart'}
+      }
     ]
   },
   // 佣金奖励
@@ -182,7 +194,20 @@ export const constantRouterMap = [
     // redirect: '/dataManage/DiscountFigure',
     name: 'report',
     meta: {title: 'report', icon: 'chart'},
-    children: []
+    children: [
+      {
+        path: 'monreport',
+        name: 'monreport',
+        component: () => import('@/views/report/monreport'),
+        meta: {title: 'monreport', icon: 'monreport'}
+      },
+      {
+        path: 'salereport',
+        name: 'salereport',
+        component: () => import('@/views/report/salereport'),
+        meta: {title: 'salereport', icon: 'salereport'}
+      },
+    ]
   },
   // 图表
   {
@@ -192,6 +217,7 @@ export const constantRouterMap = [
     name: 'charts',
     meta: {title: 'charts', icon: 'chart'},
     children: [
+
       {
         path: 'DiscountFigure',
         name: 'DiscountFigure',

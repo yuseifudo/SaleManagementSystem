@@ -13,6 +13,7 @@ import homeAPI from './home'
 import homeTcAPI from './homeTc'
 import taocanListAPI from './taocanList'
 import homeEchartAPI from './homechart'
+import salesQuantityAPI from './salesQuantity'
 
 // 设置全局延时 没有延时的话有时候会检测不到数据变化 建议保留
 Mock.setup({
@@ -94,11 +95,17 @@ Mock.mock(/\/home\/taocan/, 'get', homeTcAPI.getHomeTc)
 Mock.mock(/\/home\/lchartdata/, 'get', homeEchartAPI.getLchartData)
 Mock.mock(/\/home\/rchartdata/, 'get', homeEchartAPI.getRchartData)
 
-//功能：套餐佣金相关；作者：吴丽娟；日期：20190507
+//功能：套餐佣金相关；
+// 作者：吴丽娟；
+// 日期：20190507
 Mock.mock(/\/taocanList\/list/, 'get', taocanListAPI.getTaocanList)
 Mock.mock(/\/taocanList\/remove/, 'get', taocanListAPI.deleteTaocan)
 Mock.mock(/\/taocanList\/batchremove/, 'get', taocanListAPI.batchremove)
 Mock.mock(/\/taocanList\/add/, 'get', taocanListAPI.createTaocan)
 Mock.mock(/\/taocanList\/edit/, 'get', taocanListAPI.updateTaocan)
 
+//功能：套餐销量热力图随机数据
+//作者：吴丽娟
+// 日期：2019/5/9
+Mock.mock(/\/salesQuantity\/list/, 'get', salesQuantityAPI.getmapdata)
 export default Mock

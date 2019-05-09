@@ -8,6 +8,22 @@ export function getHomeData(params) {
   })
 }
 
+export function getHomeTc(params) {
+  return request({
+    url: '/home/taocan',
+    method: 'get',
+    params: params
+  })
+}
+
+export function getHomeSaleData(params) {
+  return request({
+    url: '/home/sale',
+    method: 'get',
+    params: params
+  })
+}
+
 export function getLchartData(params) {
   return request({
     url: '/home/lchartdata',

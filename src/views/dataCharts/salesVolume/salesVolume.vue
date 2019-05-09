@@ -117,7 +117,7 @@
                 formatter: '{b}: {@2019} ({d}%)'
               },
               encode: {
-                itemName: '月份',
+                itemName: '年份',
                 value: '2019',
                 tooltip: '2019'
               }

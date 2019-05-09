@@ -239,7 +239,7 @@ export default {
               this.editForm.id = (parseInt(Math.random() * 100)).toString() // mock a id
               this.editForm.adminId = (parseInt(Math.random() * 100)).toString() // mock a adminId
               const para = Object.assign({}, this.editForm)
-              console.log(para)
+              // console.log(para)
 
               /*
               para.birth =

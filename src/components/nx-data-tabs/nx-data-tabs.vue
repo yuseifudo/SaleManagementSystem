@@ -23,6 +23,7 @@
 
 <script>
 import nxCountUp from '@/components/nx-count-up/index.vue'
+import { getHomeTc } from '@/api/homeTable'
 export default {
   components: {
     nxCountUp
@@ -30,15 +31,24 @@ export default {
   name: 'nx-data-tabs',
   data() {
     return {
-      span: this.homeTc.span || 6,
-      data: this.homeTc.data || []
+      homeTc:{},
+      span: '',
+      data: ''
     }
   },
-  props: {
-    homeTc: {
-      type: Object,
-      default: () => {}
-    }
+  mounted() {
+    this.getHomeTc();
+  },
+  methods: {
+    // 获取首页套餐数据
+    getHomeTc() {
+      getHomeTc().then(res => {
+        this.homeTc = res.data.homeTc
+        this.span=this.homeTc.span || 6
+        this.data=this.homeTc.data || []
+        // console.log(this.homeTc.data)
+      })
+    },
   }
 }
 </script>

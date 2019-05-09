@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function getHomeTc(params) {
+export function fetchData(params) { // 显示套餐销售额
   return request({
-    url: '/home/taocan',
+    url: '/SaleResultChart/data',
     method: 'get',
     params: params
   })

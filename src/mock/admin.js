@@ -38,7 +38,7 @@ export default {
   },
   createAdmin: config => {
     const { id,adminId,name,loginName, age, sex,tel,email } = param2Obj(config.url)
-    console.log('66')
+    // console.log('66')
     List.push({
       id: id,
       adminId: adminId,
@@ -59,7 +59,7 @@ export default {
   deleteAdmin: config => {
     const { id } = param2Obj(config.url)
     List = List.filter(a => a.id !== id)
-    console.log(List)
+    // console.log(List)
     return {
       code: 0,
       data: {

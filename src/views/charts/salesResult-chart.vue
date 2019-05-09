@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import { fetchData } from '@/api/DiscountFigure'
+  import { fetchData } from '@/api/SaleResultChart.js'
 
   export default {
     data() {

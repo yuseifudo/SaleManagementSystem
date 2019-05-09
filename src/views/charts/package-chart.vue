@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import { fetchSales } from '@/api/columnar.js'
+  import { fetchSales } from '@/api/PackageChart.js'
 export default {
     data() {
       return {

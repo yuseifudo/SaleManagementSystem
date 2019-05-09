@@ -12,9 +12,9 @@
     </div>
 </template>
 <script>
-  import PackageChart from '@/views/charts/package-chart'
+  import PackageChart from '@/views/charts/package-chart.vue'
   import PackageCompareChart from '@/views/charts/package-compare-chart'
-  import SaleResultChart from '@/views/charts/salesResult-chart'
+  import SaleResultChart from '@/views/charts/salesResult-chart.vue'
     export default {
         data() {
             return {msg: 'vue 模板页'}

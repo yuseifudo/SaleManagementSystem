@@ -10,11 +10,10 @@ import salereportAPI from './salereport'
 import monreportAPI from './monreport'
 import salesmanAPI from './salesman'
 import homeAPI from './home'
-import homeTcAPI from './homeTc'
-import pieChartAPI from './pieCharts.js'
-import DiscountFigureAPI from './DiscountFigure'
-import columnarAPI from './columnar'
-import commissionAPI from './commission'
+import PackageCompareChartAPI from './PackageCompareChart'
+import SaleResultChartAPI from './SaleResultChart'
+import PackageChartAPI from './PackageChart'
+import commissionPublishAPI from './commissionPublish'
 import taocanListAPI from './taocanList'
 import homeEchartAPI from './homechart'
 
@@ -30,15 +29,15 @@ Mock.mock(/\/user\/info\.*/, 'get', loginAPI.getUserInfo)
 
 // 图表相关(陈铠彬)
 
-Mock.mock(/\/piecharts\/list/, 'get', pieChartAPI.getSales)
-Mock.mock(/\/DiscountFigure\/data/, 'get', DiscountFigureAPI.getSales)
-Mock.mock(/\/columnar\/list/, 'get', columnarAPI.getSales)
+Mock.mock(/\/PackageCompareChart\/list/, 'get', PackageCompareChartAPI.getSales)
+Mock.mock(/\/SaleResultChart\/data/, 'get', SaleResultChartAPI.getSales)
+Mock.mock(/\/PackageChart\/list/, 'get', PackageChartAPI.getSales)
 // 佣金(陈铠彬)
-Mock.mock(/\/commission\/listpage/, 'get', commissionAPI.getUserList)
-Mock.mock(/\/commission\/remove/, 'get', commissionAPI.deleteUser)
-Mock.mock(/\/commission\/batchremove/, 'get', commissionAPI.batchremove)
-Mock.mock(/\/commission\/add/, 'get', commissionAPI.createUser)
-Mock.mock(/\/commission\/edit/, 'get', commissionAPI.updateUser)
+Mock.mock(/\/commissionPublish\/listpage/, 'get', commissionPublishAPI.getUserList)
+Mock.mock(/\/commissionPublish\/remove/, 'get', commissionPublishAPI.deleteUser)
+Mock.mock(/\/commissionPublish\/batchremove/, 'get', commissionPublishAPI.batchremove)
+Mock.mock(/\/commissionPublish\/add/, 'get', commissionPublishAPI.createUser)
+Mock.mock(/\/commissionPublish\/edit/, 'get', commissionPublishAPI.updateUser)
 
 // 文章相关
 Mock.mock(/\/article\/list/, 'get', articleAPI.getList)
@@ -118,7 +117,8 @@ Mock.mock(/\/salesman\/pie/, 'get', salesmanAPI.getPieInfo)
  *日期：2019/5/7
  */
 Mock.mock(/\/home\/data/, 'get', homeAPI.getHomeData)
-Mock.mock(/\/home\/taocan/, 'get', homeTcAPI.getHomeTc)
+Mock.mock(/\/home\/sale/, 'get', homeAPI.getHomeSaleData)
+Mock.mock(/\/home\/taocan/, 'get', homeAPI.getHomeTc)
 Mock.mock(/\/home\/lchartdata/, 'get', homeEchartAPI.getLchartData)
 Mock.mock(/\/home\/rchartdata/, 'get', homeEchartAPI.getRchartData)
 

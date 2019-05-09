@@ -65,7 +65,7 @@ export const constantRouterMap = [
   {
     path: '/dataManage',
     component: Layout,
-    // redirect: '/dataManage/DiscountFigure',
+    // redirect: '/dataManage/SaleResultChart',
     name: 'dataManage',
     meta: {title: 'dataManage', icon: 'chart'},
     children: [{
@@ -127,7 +127,7 @@ export const constantRouterMap = [
   {
     path: '/dataMap',
     component: Layout,
-    // redirect: '/dataManage/DiscountFigure',
+    // redirect: '/dataManage/SaleResultChart',
     name: 'dataMap',
 
     meta: { title: 'dataMap', icon: 'chart' },
@@ -158,7 +158,7 @@ export const constantRouterMap = [
   {
     path: '/announcement',
     component: Layout,
-    // redirect: '/dataManage/DiscountFigure',
+    // redirect: '/dataManage/SaleResultChart',
     name: 'announcement',
     meta: {title: 'announcement', icon: 'chart'},
     children: [
@@ -186,7 +186,7 @@ export const constantRouterMap = [
   {
     path: '/commisionReward',
     component: Layout,
-    // redirect: '/dataManage/DiscountFigure',
+    // redirect: '/dataManage/SaleResultChart',
 
     name: 'commisionReward',
     meta: { title: 'commisionReward', icon: 'chart' },
@@ -212,7 +212,7 @@ export const constantRouterMap = [
   {
     path: '/report',
     component: Layout,
-    // redirect: '/dataManage/DiscountFigure',
+    // redirect: '/dataManage/SaleResultChart',
     name: 'report',
     meta: {title: 'report', icon: 'chart'},
     children: [

@@ -69,7 +69,7 @@ import {
   batchRemoveUse,
   editUse,
   addUse
-} from '@/api/commission.js'
+} from '@/api/commissionPublish.js'
 
 export default {
   data() {

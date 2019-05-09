@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import { fetchList } from '@/api/piecharts.js'
+  import { fetchList } from '@/api/packageCompareChart.js'
   export default {
     data() {
       return {

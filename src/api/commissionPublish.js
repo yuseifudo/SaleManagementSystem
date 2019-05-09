@@ -2,35 +2,35 @@ import request from '@/utils/request'
 
 export function getUserListPag(params) {
   return request({
-    url: '/commission/listpage',
+    url: '/commissionPublish/listpage',
     method: 'get',
     params: params
   })
 }
 export function removeUse(params) {
   return request({
-    url: '/commission/remove',
+    url: '/commissionPublish/remove',
     method: 'get',
     params: params
   })
 }
 export function batchRemoveUse(params) {
   return request({
-    url: '/commission/batchremove',
+    url: '/commissionPublish/batchremove',
     method: 'get',
     params: params
   })
 }
 export function editUse(params) {
   return request({
-    url: '/commission/edit',
+    url: '/commissionPublish/edit',
     method: 'get',
     params: params
   })
 }
 export function addUse(params) {
   return request({
-    url: '/commission/add',
+    url: '/commissionPublish/add',
     method: 'get',
     params: params
   })

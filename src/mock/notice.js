@@ -43,7 +43,7 @@ export default {
   },
   createNotice: config => {
     const { id,num, title, content, createDate } = param2Obj(config.url)
-    console.log('66')
+    // console.log('66')
     List.unshift({
       id: id,
       num:num,

@@ -16,9 +16,12 @@ export default {
     infoManage: 'InfoManagement',
     dataCharts: 'ChartsInfo',
     dataMap: 'MapInfo',
+    branchAddress:'branchAddress',//各地市分公司驻点
+    salesVolume:'salesVolume',//地区销售额
     announcement: 'Announcement',
     noticeTable:'NoticeTable',//公告信息
-    commissionReward: 'CommissionReward',
+    commisionReward: 'CommisionReward',//佣金奖励
+    CommisionRules:'CommisionRules',//佣金规则
     report: 'Report',
     salesman:'salesman',//销售人员
     packageManage: 'PackageManagement',

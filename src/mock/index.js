@@ -8,7 +8,7 @@ import adminAPI from './admin'
 import salesmanAPI from './salesman'
 import homeAPI from './home'
 import homeTcAPI from './homeTc'
-
+import taocanListAPI from './taocanList'
 // 设置全局延时 没有延时的话有时候会检测不到数据变化 建议保留
 Mock.setup({
   timeout: '300-600'
@@ -72,5 +72,12 @@ Mock.mock(/\/salesman\/edit/, 'get', salesmanAPI.updateSalesman)
 //首页相关
 Mock.mock(/\/home\/data/, 'get', homeAPI.getHomeData)
 Mock.mock(/\/home\/taocan/, 'get', homeTcAPI.getHomeTc)
+
+//功能：套餐佣金相关；作者：吴丽娟；日期：20190507
+Mock.mock(/\/taocanList\/list/, 'get', taocanListAPI.getTaocanList)
+Mock.mock(/\/taocanList\/remove/, 'get', taocanListAPI.deleteTaocan)
+Mock.mock(/\/taocanList\/batchremove/, 'get', taocanListAPI.batchremove)
+Mock.mock(/\/taocanList\/add/, 'get', taocanListAPI.createTaocan)
+Mock.mock(/\/taocanList\/edit/, 'get', taocanListAPI.updateTaocan)
 
 export default Mock

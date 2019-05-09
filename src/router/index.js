@@ -88,7 +88,7 @@ export const constantRouterMap = [
     meta: {title: 'infoManage', icon: 'chart'},
     children: [
       {
-        path: 'packageManage',
+        path: 'packageManage',// 套餐信息管理router设置
         name: 'packageManage',
         component: () => import('@/views/infoManage/packageManage.vue'),
         meta: {title: 'packageManage', icon: 'form'}

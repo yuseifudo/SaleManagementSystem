@@ -1,3 +1,8 @@
+<!--
+作者：王震
+时间：2019.05.06
+功能：奖励规则显示页面
+-->
 <template>
   <section class="app-container">
     <!--工具条-->
@@ -126,7 +131,6 @@
         getAwardListPage(para).then(res => {
           this.total = res.data.total
           this.awards = res.data.awards
-          console.log( this.awards)
         })
         if(this.filters.title==''&&this.filters.createDate==''){
           console.log("0000")
@@ -144,6 +148,9 @@
                 message: '删除成功',
                 type: 'success'
               })
+              if((this.awards.length-1)==0){
+                this.page = this.page - 1
+              }
               this.getAward()
             })
           })
@@ -176,8 +183,6 @@
                 const para = Object.assign({}, this.editForm)
                 //para是一个对象
                 para.content = para.content.replace(/(\r\n|\n|\r)/gm, "\\r")
-                // para.content= para.content.replace(/\s/gm, "&nbsp;")
-                console.log(para)
                 editAward(para).then(res => {
                   this.$message({
                     message: '编辑成功',
@@ -206,7 +211,6 @@
                 this.editForm.createDate=util.formatDate.format(new Date(), 'yyyy-MM-dd-hh:mm')
                 const para = Object.assign({}, this.editForm)
                 para.content = para.content.replace(/(\r\n|\n|\r)/gm, "\\r")
-                console.log(para)
                 addAward(para).then(res => {
                   this.$message({
                     message: '提交成功',
@@ -243,6 +247,10 @@
                 message: '删除成功',
                 type: 'success'
               })
+
+              if((this.awards.length-this.sels.length)==0 && this.page!=1){
+                  this.page = this.page-1
+              }
               this.getAward()
             })
           })

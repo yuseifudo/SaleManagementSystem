@@ -124,8 +124,6 @@
             }
           ]
         };
-
-
         mychart.on('updateAxisPointer', function (event) {
           var xAxisInfo = event.axesInfo[0];
           if (xAxisInfo) {

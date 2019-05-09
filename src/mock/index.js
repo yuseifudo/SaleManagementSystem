@@ -105,6 +105,7 @@ Mock.mock(/\/salesman\/pie/, 'get', salesmanAPI.getPieInfo)
  *日期：2019/5/7
  */
 Mock.mock(/\/home\/data/, 'get', homeAPI.getHomeData)
+Mock.mock(/\/home\/sale/, 'get', homeAPI.getHomeSaleData)
 Mock.mock(/\/home\/taocan/, 'get', homeTcAPI.getHomeTc)
 Mock.mock(/\/home\/lchartdata/, 'get', homeEchartAPI.getLchartData)
 Mock.mock(/\/home\/rchartdata/, 'get', homeEchartAPI.getRchartData)

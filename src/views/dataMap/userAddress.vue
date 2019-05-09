@@ -26,8 +26,8 @@
         this.chart = echarts.init(this.$refs.chart)
         let data = [
           {name: '福州市', value: 375005},
-          {name: '厦门市', value: 769547},
-          {name: '漳州市', value: 443186},
+          {name: '厦门市', value: 369547},
+          {name: '漳州市', value: 1443186},
           {name: '泉州市', value: 1036992},
           {name: '宁德市', value: 414540},
           {name: '三明市', value: 518068},

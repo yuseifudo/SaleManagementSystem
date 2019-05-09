@@ -164,7 +164,20 @@ export const constantRouterMap = [
     // redirect: '/dataManage/DiscountFigure',
     name: 'report',
     meta: {title: 'report', icon: 'chart'},
-    children: []
+    children: [
+      {
+        path: 'monreport',
+        name: 'monreport',
+        component: () => import('@/views/report/monreport'),
+        meta: {title: 'monreport', icon: 'monreport'}
+      },
+      {
+        path: 'salereport',
+        name: 'salereport',
+        component: () => import('@/views/report/salereport'),
+        meta: {title: 'salereport', icon: 'salereport'}
+      },
+    ]
   },
   // 图表
   {

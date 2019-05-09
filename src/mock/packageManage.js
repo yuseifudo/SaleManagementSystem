@@ -10,7 +10,7 @@ let packageInfo=Mock.mock({
   'data|3-10': [
     {
       'id|+1': 1000,//套餐id
-      name: '@ctitle',// 套餐名
+      'name|1':['腾讯王卡','蚂蚁宝卡','京东强卡','工行E卡','百度圣卡','滴滴橙卡','畅淘卡','百度女神卡','阿里鱼卡','网易白金卡','哔哩哔哩卡'],
       fee: '@integer(29, 400)',// 套餐资费
       description: '@cparagraph',// 套餐描述
       isFirstPush: false,// 是否首推
@@ -32,7 +32,6 @@ let packageInfo=Mock.mock({
 export default {
   getList: config =>{
     const {} = param2Obj(config.url);
-    //console.log(packageInfo)
     const dataList=packageInfo.data.filter(item=>{
       return item.isDelete==false
     })
@@ -58,7 +57,6 @@ export default {
     const dataItem=packageInfo.data.filter(item=>{
       return item.id===id;
     })
-    console.log(dataItem)
     return{
       code: 0,
       data:{
@@ -121,17 +119,16 @@ export default {
   updatePackageInfo:config=>{
     const{params}=param2Obj(config.url);
     let paraObj=JSON.parse(params);
-    const{id,name,fee,description,startTime,endTime,number}=paraObj;
+    console.log(paraObj)
+    const{id,name,fee,description,startTime,endTime}=paraObj;
     let time=util.formatDate.format(new Date(), 'yyyy-MM-dd')
     packageInfo.data.some(u=>{
       if (u.id===id){
         u.name=name;
         u.fee=fee;
         u.description=description;
-        u.isFirstPush=false,
         u.startTime=startTime;
         u.endTime=endTime;
-        u.number=number;
         u.updateUser='admin';
         u.updateTime=time.toString();
 

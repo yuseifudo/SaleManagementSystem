@@ -21,6 +21,8 @@ export default {
     awardTable:'AwardTable',//奖励规则
     commissionReward: 'CommissionReward',
     report: 'Report',
+    salereport: 'salereport',
+    monreport: 'monreport',
     salesman:'salesman',//销售人员
     packageManage: 'PackageManagement',
     AliIcons: 'AliIcons',

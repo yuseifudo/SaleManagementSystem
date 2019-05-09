@@ -49,6 +49,17 @@ Mock.mock(/\/notice\/batchremove/, 'get', noticeAPI.batchremove)
 Mock.mock(/\/notice\/add/, 'get', noticeAPI.createNotice)
 Mock.mock(/\/notice\/edit/, 'get', noticeAPI.updateNotice)
 
+/*
+* 作者：王震
+* 时间：2019.05.06
+* 功能：奖励相关/
+* */
+Mock.mock(/\/award\/listpage/, 'get', awardAPI.getAwardList)
+Mock.mock(/\/award\/remove/, 'get', awardAPI.deleteAward)
+Mock.mock(/\/award\/batchremove/, 'get', awardAPI.batchremove)
+Mock.mock(/\/award\/add/, 'get', awardAPI.createAward)
+Mock.mock(/\/award\/edit/, 'get', awardAPI.updateAward)
+
 
 //套餐管理相关
 Mock.mock(/\/packageManage\/list/,packageManageAPI.getList)

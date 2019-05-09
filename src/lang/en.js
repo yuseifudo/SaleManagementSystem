@@ -12,131 +12,137 @@ export default {
     Default: 'Default'
   },
   route: {
-    dataManage: 'DataManagement',
-    infoManage: 'InfoManagement',
-    dataCharts: 'ChartsInfo',
-    dataMap: 'MapInfo',
-    salesVolumeHeat:'salesVolumeHeat',//地区销量
-    branchAddress:'branchAddress',//各地市分公司驻点
-    userAddress:'userAddress',//各地市用户数
-    salesVolume:'salesVolume',//地区销售额
+    dashboard: 'Dashboard',
+    dataManage: 'DataManagement',// 数据管理
+    infoManage: 'InfoManagement',// 信息管理
+    dataCharts: 'DataCharts',// 图表
+    dataMap: 'DataMap',// 地图
+    salesVolumeHeat:'SalesVolumeHeat',//地区销量
+    branchAddress:'BranchAddress',//各地市分公司驻点
+    userAddress:'UserAddress',//各地市用户数
+    salesVolume:'SalesVolume',//地区销售额
     announcement: 'Announcement',
     noticeTable:'NoticeTable',//公告信息
     commisionReward: 'CommisionReward',//佣金奖励
     CommisionRules:'CommisionRules',//佣金规则
+    SalesCompareChart:'SalesCompareChart',//销售数据对比
+    commissionPublish:'CommissionPublish',//佣金发布
     awardTable:'AwardTable',//奖励规则
     commissionReward: 'CommissionReward',
     report: 'Report',
-    salereport: 'salereport',//销售利润分析图
+    salereport: 'Salereport',//销售利润分析图
     monreport: 'monreport',//月销售报表
-    salesman:'salesman',//销售人员
-    packageManage: 'PackageManagement',
-    AliIcons: 'AliIcons',
-    list: 'list',
-    Digitalanimation: 'Digitalanimation',
-    Rollingpositioning: 'Rollingpositioning',
-    PDF: 'PDF',
-    HightLightinViewer: 'HightLightinViewer',
-    contextmenu: 'contextmenu',
-    simple: 'simple',
-    divier: 'divier',
-    group: 'group',
-    submenu: 'submenu',
-    disabled: 'disabled',
-    customtrigger: 'custom-trigger',
-    form: 'form',
-    Tabs: 'Tabs',
-    Table: 'Table',
-    Icons: 'Icons',
-    treeChart: 'treeChart',
-    gaugeChart: 'gaugeChart',
-    candleChart: 'candleChart',
-    scatterChart: 'scatterChart',
-    heatmapChart: 'heatmapChart',
-    sankeyChart: 'sankeyChart',
-    barGraph: 'barGraph',
-    pieChart: 'pieChart',
-    ringChart: 'ringChart',
-    waterfallCharts: 'waterfallCharts',
-    funnelCharts: 'funnelCharts',
-    radarCharts: 'radarCharts',
-    vueActual: 'vueActual',
-    from: 'from',
-    BaseForm: 'BaseForm',
-    VueEditor: 'VueEditor',
-    Upload: 'Upload',
-    Components: 'Components',
-    dragKanban: 'dragKanban',
-    componentMixin: 'componentMixin',
-    markdown: 'markdown',
-    treeMen: 'treeMen',
-    backToTop: 'backToTop',
-    dashboard: 'dashboard',
-    DiscountFigure: 'DiscountFigure',
-    columnar: 'columnar',
-    treeMenu: 'treeMenu',
-    wel: 'wel',
-    Lockscreenpage: 'Lockscreenpage',
-    countenance: 'countenance',
-    clipboard: 'clipboard',
-    permission: 'Permission',
-    pagePermission: 'Page Permission',
-    directivePermission: 'Directive Permission',
-    complexTable: 'Complex Table',
-    treeTable: 'Tree Table',
-    errorPages: 'Error Pages',
-    page401: '401',
-    page404: '404',
-    thirdPartyWebsite: 'thirdPartyWebsite',
-    charts: 'Charts',
-    emoji: 'emoji',
-    test: 'test',
-    excel: 'Excel',
-    exportExcel: 'Export Excel',
-    selectExcel: 'Export Selected',
-    uploadExcel: 'Upload Excel',
-    zip: 'Zip',
-    exportZip: 'Export Zip',
-    i18n: 'i18n',
-    Errorlog: 'Errorlog',
-    svgicons: 'svgicons',
-    fontawesome: 'fontawesome',
-    pointMap: 'pointMap',
-    roadBookMap: 'roadBookMap',
-    cityLlistMap: 'cityLlistMap',
-    baidumap: 'baidumap',
-    gpsMap: 'gpsMap'
+    salesman:'Salesman',//销售人员
+    packageManage: 'PackageManagement',//套餐管理
+    infoChange: 'InfoChange',
+    ChangePassword: 'ChangePassword',
+    searchtable: 'SearchForSalesman',
+    // AliIcons: 'AliIcons',
+    // list: 'list',
+    // Digitalanimation: 'Digitalanimation',
+    // Rollingpositioning: 'Rollingpositioning',
+    // PDF: 'PDF',
+    // HightLightinViewer: 'HightLightinViewer',
+    // contextmenu: 'contextmenu',
+    // simple: 'simple',
+    // divier: 'divier',
+    // group: 'group',
+    // submenu: 'submenu',
+    // disabled: 'disabled',
+    // customtrigger: 'custom-trigger',
+    // form: 'form',
+    // Tabs: 'Tabs',
+    // Table: 'Table',
+    // Icons: 'Icons',
+    // treeChart: 'treeChart',
+    // gaugeChart: 'gaugeChart',
+    // candleChart: 'candleChart',
+    // scatterChart: 'scatterChart',
+    // heatmapChart: 'heatmapChart',
+    // sankeyChart: 'sankeyChart',
+    // barGraph: 'barGraph',
+    // pieChart: 'pieChart',
+    // ringChart: 'ringChart',
+    // waterfallCharts: 'waterfallCharts',
+    // funnelCharts: 'funnelCharts',
+    // radarCharts: 'radarCharts',
+    // vueActual: 'vueActual',
+    // from: 'from',
+    // BaseForm: 'BaseForm',
+    // VueEditor: 'VueEditor',
+    // Upload: 'Upload',
+    // Components: 'Components',
+    // dragKanban: 'dragKanban',
+    // componentMixin: 'componentMixin',
+    // markdown: 'markdown',
+    // treeMen: 'treeMen',
+    // backToTop: 'backToTop',
+    // dashboard: 'dashboard',
+    // DiscountFigure: 'DiscountFigure',
+    // columnar: 'columnar',
+    // treeMenu: 'treeMenu',
+    // wel: 'wel',
+    // Lockscreenpage: 'Lockscreenpage',
+    // countenance: 'countenance',
+    // clipboard: 'clipboard',
+    // permission: 'Permission',
+    // pagePermission: 'Page Permission',
+    // directivePermission: 'Directive Permission',
+    // complexTable: 'Complex Table',
+    // treeTable: 'Tree Table',
+    // errorPages: 'Error Pages',
+    // page401: '401',
+    // page404: '404',
+    // thirdPartyWebsite: 'thirdPartyWebsite',
+    // charts: 'Charts',
+    // emoji: 'emoji',
+    // test: 'test',
+    // excel: 'Excel',
+    // exportExcel: 'Export Excel',
+    // selectExcel: 'Export Selected',
+    // uploadExcel: 'Upload Excel',
+    // zip: 'Zip',
+    // exportZip: 'Export Zip',
+    // i18n: 'i18n',
+    // Errorlog: 'Errorlog',
+    // svgicons: 'svgicons',
+    // fontawesome: 'fontawesome',
+    // pointMap: 'pointMap',
+    // roadBookMap: 'roadBookMap',
+    // cityLlistMap: 'cityLlistMap',
+    // baidumap: 'baidumap',
+    // gpsMap: 'gpsMap'
   },
-  excel: {
-    export: 'Export',
-    selectedExport: 'Export selected items',
-    placeholder: 'Please enter the file name(default excel-list)'
-  },
-  zip: {
-    export: 'Export',
-    placeholder: 'Please enter the file name(default file)'
-  },
-  permission: {
-    roles: 'Your roles',
-    switchRoles: 'Switch roles'
-  },
-  components: {
-    documentation: 'documentation',
-    tinymceTips: 'tinymceTips',
-    dropzoneTips: 'dropzoneTips',
-    stickyTips: 'stickyTips',
-    backToTopTips1: 'backToTopTips1',
-    backToTopTips2: 'backToTopTips2',
-    imageUploadTips: 'imageUploadTips'
-  },
-  tagsView: {
-    close: 'Close',
-    closeOthers: 'Close Others',
-    closeAll: 'Close All'
-  },
-  errorLog: {
-    tips: 'tips',
-    description: 'description',
-    documentation: 'documentation'
-  }
+  // excel: {
+  //   export: 'Export',
+  //   selectedExport: 'Export selected items',
+  //   placeholder: 'Please enter the file name(default excel-list)'
+  // },
+  // zip: {
+  //   export: 'Export',
+  //   placeholder: 'Please enter the file name(default file)'
+  // },
+  // permission: {
+  //   roles: 'Your roles',
+  //   switchRoles: 'Switch roles'
+  // },
+  // components: {
+  //   documentation: 'documentation',
+  //   tinymceTips: 'tinymceTips',
+  //   dropzoneTips: 'dropzoneTips',
+  //   stickyTips: 'stickyTips',
+  //   backToTopTips1: 'backToTopTips1',
+  //   backToTopTips2: 'backToTopTips2',
+  //   imageUploadTips: 'imageUploadTips'
+  // },
+  // tagsView: {
+  //   close: 'Close',
+  //   closeOthers: 'Close Others',
+  //   closeAll: 'Close All'
+  // },
+  // errorLog: {
+  //   tips: 'tips',
+  //   description: 'description',
+  //   documentation: 'documentation'
+  // }
 }

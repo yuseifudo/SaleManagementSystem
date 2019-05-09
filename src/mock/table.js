@@ -12,8 +12,6 @@ for (let i = 0; i < count; i++) {
     'age|18-60': 1,
     birth: Mock.Random.date(),
     sex: Mock.Random.integer(0, 1),
-    title: Mock.Random.cparagraph(1),
-    content: Mock.Random.cparagraph(3, 8)
   }))
 }
 
@@ -37,7 +35,7 @@ export default {
     }
   },
   createUser: config => {
-    const { id, name, addr, age, birth, sex, title, content } = param2Obj(config.url)
+    const { id, name, addr, age, birth, sex} = param2Obj(config.url)
     List.push({
       id: id,
       name: name,
@@ -45,8 +43,6 @@ export default {
       age: age,
       birth: birth,
       sex: sex,
-      title: title,
-      content: content
     })
     return {
       code: 0,
@@ -77,7 +73,7 @@ export default {
     }
   },
   updateUser: config => {
-    const { id, name, addr, age, birth, sex, title, content} = param2Obj(config.url)
+    const { id, name, addr, age, birth, sex} = param2Obj(config.url)
     const sex_num = parseInt(sex)
     List.some(u => {
       if (u.id === id) {
@@ -86,8 +82,6 @@ export default {
         u.age = age
         u.birth = birth
         u.sex = sex_num
-        u.title = title
-        u.content = content
         return true
       }
     })

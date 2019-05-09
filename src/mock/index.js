@@ -16,6 +16,8 @@ import PackageChartAPI from './PackageChart'
 import commissionPublishAPI from './commissionPublish'
 import taocanListAPI from './taocanList'
 import homeEchartAPI from './homechart'
+import formAPI from './informationform'
+import searchtableAPI from './searchTable'
 import salesQuantityAPI from './salesQuantity'
 
 // 设置全局延时 没有延时的话有时候会检测不到数据变化 建议保留
@@ -77,13 +79,17 @@ Mock.mock(/\/award\/add/, 'get', awardAPI.createAward)
 Mock.mock(/\/award\/edit/, 'get', awardAPI.updateAward)
 
 
-// 套餐管理相关
-Mock.mock(/\/packageManage\/list/,packageManageAPI.getList)
-Mock.mock(/\/packageManage\/detail/,packageManageAPI.getItemDetail)
-Mock.mock(/\/packageManage\/create/,packageManageAPI.insertPackageInfo)
-Mock.mock(/\/packageManage\/delete/,packageManageAPI.deletePackageInfo)
-Mock.mock(/\/packageManage\/update/,packageManageAPI.updatePackageInfo)
-Mock.mock(/\/packageManage\/setFirstPush/,packageManageAPI.setFirstPush)
+/**
+ * 模块：套餐管理模块
+ * 作者：石龙成
+ * 日期：2019/5/9
+ */
+Mock.mock(/\/packageManage\/list/,packageManageAPI.getList)// mock获取列表请求
+Mock.mock(/\/packageManage\/detail/,packageManageAPI.getItemDetail)// mock获取详情列表请求
+Mock.mock(/\/packageManage\/create/,packageManageAPI.insertPackageInfo)// mock新增套餐信息请求
+Mock.mock(/\/packageManage\/delete/,packageManageAPI.deletePackageInfo)// mock删除某条套餐信息请求
+Mock.mock(/\/packageManage\/update/,packageManageAPI.updatePackageInfo)// mock更新套餐信息请求
+Mock.mock(/\/packageManage\/setFirstPush/,packageManageAPI.setFirstPush)// mock 设置首推套餐请求
 
 // 管理员相关
 /**
@@ -131,6 +137,14 @@ Mock.mock(/\/taocanList\/remove/, 'get', taocanListAPI.deleteTaocan)
 Mock.mock(/\/taocanList\/batchremove/, 'get', taocanListAPI.batchremove)
 Mock.mock(/\/taocanList\/add/, 'get', taocanListAPI.createTaocan)
 Mock.mock(/\/taocanList\/edit/, 'get', taocanListAPI.updateTaocan)
+
+/**
+ *功能：个人信息修改、销售人员信息查询
+ *作者：王从竹
+ *日期：2019/5/9
+ */
+Mock.mock(/\/user\/wcz/, 'get', formAPI.getUser)
+Mock.mock(/\/user\/searchtable/, 'get', searchtableAPI.getUsers)
 
 //功能：套餐销量热力图随机数据
 //作者：吴丽娟

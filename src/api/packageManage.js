@@ -1,52 +1,92 @@
 import request from '@/utils/request'
 
 /**
- * author:shilongcheng
- * date:2019-05-05
- * function:套餐管理request api
+ * 套餐管理request api
+ * @author shilongcheng
+ * @date 2019-05-05
+ *
  */
 
-export function fetchList(params) {// 显示全部信息
+/**
+ * 获取所有列表信息request api
+ * @author shilongcheng
+ * @date 2019-05-09
+ * @param params {JSON} 请求的参数
+ */
+export function fetchList(params) {
   return request({
-    url: '/packageManage/list',
-    method: 'get',
-    params: params
-  })
-}
-export function fetchPackageDetail(params) {// 查询
-  return request({
-    url: '/packageManage/detail',
-    method: 'get',
-    params: { params }
-  })
-}
-export function createPackageInfo(params) {// 增加
-  return request({
-    url: '/packageManage/create',
-    method: 'post',
-    params:{params}
-  })
-}
-export function deletePackageInfo(params) {// 删除
-  return request({
-    url: '/packageManage/delete',
-    method: 'get',
-    params: {params}
+    url: '/packageManage/list',// url请求
+    method: 'get', //请求方式
+    params: params //参数列表
   })
 }
 
-export function updatePackageInfo(params) {//修改
+/**
+ * 查询某个套餐详细信息 request api
+ * @author shilongcheng
+ * @date 2019-05-09
+ * @param params {JSON} 请求的参数
+ */
+export function fetchPackageDetail(params) {
   return request({
-    url: '/packageManage/update',
-    method: 'post',
-    params: {params}
+    url: '/packageManage/detail',// url请求
+    method: 'get',//请求方式
+    params: { params }//参数列表
   })
 }
 
-export function setFirstPush(params) {//设置首推
+/**
+ * 添加套餐列表信息 request api
+ * @author shilongcheng
+ * @date 2019-05-09
+ * @param params {JSON} 请求的参数
+ */
+export function createPackageInfo(params) {
   return request({
-    url: '/packageManage/setFirstPush',
-    method: 'post',
-    params:{params}
+    url: '/packageManage/create',// url请求
+    method: 'post',//请求方式
+    params:{params}//参数列表
+  })
+}
+
+/**
+ * 删除某个套餐信息request api
+ * @author shilongcheng
+ * @date 2019-05-09
+ * @param params {JSON} 请求的参数
+ */
+export function deletePackageInfo(params) {
+  return request({
+    url: '/packageManage/delete',// url请求
+    method: 'get',//请求方式
+    params: {params}//参数列表
+  })
+}
+
+/**
+ * 更新某个套餐信息 request api
+ * @author shilongcheng
+ * @date 2019-05-09
+ * @param params {JSON} 请求的参数
+ */
+export function updatePackageInfo(params) {
+  return request({
+    url: '/packageManage/update',// url请求
+    method: 'post',//请求方式
+    params: {params}//参数列表
+  })
+}
+
+/**
+ * 设置首推套餐 request api
+ * @author shilongcheng
+ * @date 2019-05-09
+ * @param params {JSON} 请求的参数
+ */
+export function setFirstPush(params) {
+  return request({
+    url: '/packageManage/setFirstPush',// url请求
+    method: 'post',//请求方式
+    params:{params}//参数列表
   })
 }

@@ -1,4 +1,5 @@
 <template>
+<!--  author:shilongcheng function:销售套餐数据以图表显示 date:2019-05-09-->
     <div id="packageChart" style="width: 100%;height:400px;">
 
     </div>
@@ -32,6 +33,9 @@
           })
         },
         methods:{
+          /**
+           * 从后台获取数据
+           */
           getPackageList(){
             fetchList().then((res)=>{
               if (res.code==0){
@@ -39,7 +43,7 @@
                 this.dataItems=[]
                 this.packageData=res.data;
                 this.chart = echarts.init(document.getElementById("packageChart"));
-
+                //进行表格数据的封装
                 for (let i=0;i<this.packageData.length;i++){
                   this.dataTitle.push(this.packageData[i].name)
                   this.dataItems.push({value:this.packageData[i].number,name:this.packageData[i].name})
@@ -100,6 +104,7 @@
           },
         },
         destroy(){
+          //pubsub服务订阅取消
           Pubsub.unsubscribe(deleted);
           Pubsub.unsubscribe(added);
           Pubsub.unsubscribe(updated);

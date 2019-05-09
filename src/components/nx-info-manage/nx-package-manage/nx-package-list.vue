@@ -2,13 +2,13 @@
 <!--  author:shilongcheng date:2019-05-07 function：套餐管理页面套餐列表的显示与操作-->
   <div class="data-card">
     <div class="edit-area">
-<!--      <el-button-group class="button-group">-->
+<!--      添加按钮-->
         <el-button type="primary" icon="el-icon-plus" class="add–button" @click="handleAdd">添加</el-button>
-<!--      </el-button-group>-->
     </div>
 
     <el-row :span="24">
       <el-col class="colItem" :span="item.span" v-for="(item,index) in packageLists" :key="item.id">
+<!--        如果是首推，则显示数据并且加上红色实线2像素的边框-->
         <div class="item" v-if="item.isFirstPush" style="border:2px solid red">
           <img :src="item.img" class="item-img" />
           <div class="item-text" :style="{color:item.color,backgroundColor:item.bgText}">
@@ -16,6 +16,7 @@
             <p>{{item.description}}</p>
           </div>
         </div>
+<!--        如果不是，则正常显示-->
         <div class="item" v-else>
           <img :src="item.img" class="item-img" />
           <div class="item-text" :style="{color:item.color,backgroundColor:item.bgText}">
@@ -24,22 +25,28 @@
           </div>
 
         </div>
+<!--        操作按钮 设置首推，查看详情，编辑套餐信息，删除套餐-->
         <div class="operate-button-group">
+<!--          通过一个el-button-group实现一个按钮组-->
           <el-button-group >
-            <el-tooltip  v-if="item.isFirstPush" effect="dark" content="该套餐为首推套餐" placement="bottom-start">
+<!--            如果是首推套餐则显示实心五心图标禁止点击 悬浮按钮提示首推套餐-->
+            <el-tooltip  v-if="item.isFirstPush" effect="dark" content="首推套餐" placement="bottom-start">
 
               <el-button size="medium"  disabled type="success" icon="el-icon-star-on"></el-button>
             </el-tooltip>
-
+<!--否则，显示空心五心按钮，悬浮按钮提示设置该套餐为首推套餐，可以点击，并且添加点击事件-->
             <el-tooltip  v-else effect="dark" content="设置该套餐为首推套餐" placement="bottom-start">
               <el-button size="medium"  type="warning" @click="FirstPushSet(item.id)" icon="el-icon-star-off"></el-button>
             </el-tooltip>
+<!--            显示详情，悬浮提示查看详情，添加点击事件-->
             <el-tooltip  effect="dark"  content="查看详情" placement="bottom-start">
               <el-button size="medium" @click="handleShowItem(item.id)" type="info" icon="el-icon-view"></el-button>
             </el-tooltip>
+<!--            编辑更新套餐，悬浮提示编辑套餐信息 添加点击事件-->
             <el-tooltip  effect="dark" content="编辑套餐信息" placement="bottom-start">
               <el-button size="medium" type="info" @click="handleEdit(item.id)" icon="el-icon-edit"></el-button>
             </el-tooltip>
+<!--            删除套餐，悬浮提示删除改套餐，添加点击事件-->
             <el-tooltip  effect="dark" content="删除该套餐" placement="bottom-start">
               <el-button size="medium" type="danger" @click="deleteItem(item.id)" icon="el-icon-delete"> </el-button>
             </el-tooltip>
@@ -48,9 +55,10 @@
         </div>
       </el-col>
     </el-row>
-<!--显示套餐详情dialog，默认隐藏-->
+<!--显示套餐详情dialog，默认隐藏，通过查看套餐详情图标，唤醒该dialog,数据显示内容与listItem绑定-->
     <el-dialog :title="listItem.name+'套餐相关信息'" :visible.sync="detailDialog" :close-on-click-modal="false">
       <el-form :model="listItem"  ref="listItem">
+<!--        每一行显示两个信息，设置为readonly-->
         <el-form-item>
           <el-col :span="12">
             <el-form-item label="套餐编码:" label-width="120px">
@@ -115,7 +123,7 @@
         </el-form-item>
       </el-form>
     </el-dialog>
-<!--    编辑新增套餐dialog-->
+<!--    编辑新增套餐dialog，默认隐藏，通过点击添加按钮或者编辑该套餐按钮，唤醒该dialog,title根据dialogStatus显示 编辑套餐 或者添加套餐-->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" :close-on-click-modal="false">
       <el-form :model="addForm" label-width="80px" :rules="addFormRules" ref="addForm">
         <el-form-item label="套餐名:" prop="name">
@@ -141,6 +149,7 @@
           <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4}" placeholder="请输入套餐的详细介绍" v-model="addForm.description"></el-input>
         </el-form-item>
         <el-form-item label="套餐图片:" label-width="100px">
+<!--          添加套餐图片区域-->
           <el-col :span="9">
             <el-form-item>
               <el-upload
@@ -174,6 +183,7 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
+<!--        根据dialogStatus显示添加按钮或者修改按钮-->
         <el-button v-if="dialogStatus=='add'" type="primary" @click="onsubmit">添加</el-button>
         <el-button v-else type="primary" @click="updateItem(addForm.id)">修改</el-button>
         <el-button @click.native="dialogFormVisible=false">取消</el-button>
@@ -200,18 +210,18 @@ export default {
   name: 'nx-package-list',
   data() {
     return {
-      listItem:{},
-      packageLists:{},
-      textMap: {
+      listItem:{},// 存放显示详情对话框中存放的数据
+      packageLists:{},// 存放从后台拿到的数据
+      textMap: {//根据添加或者编辑显示相关的提示信息参数
         update: '编辑套餐',
         add: '添加套餐'
       },
-      dialogStatus:'',
-      dialogFormVisible: false,
-      detailDialog:false,
+      dialogStatus:'',// 根据添加或者编辑显示相关的提示信息参数 显示相关信息的键值
+      dialogFormVisible: false,// 控制添加或者编辑的对话框的隐藏与显示
+      detailDialog:false,// 控制显示详情的对话框的隐藏与显示
       param:"",//表单要提交的参数
       src:"", //展示图片的地址
-      addForm:{
+      addForm:{// 与添加或者编辑对话框显示的数据
         id:0,
         name: '',
         fee: 1,
@@ -221,7 +231,7 @@ export default {
         file: [],
         img: ''
       },
-      addFormRules: {
+      addFormRules: {//添加或者编辑对话框的过滤规则
         name: [{ required: true, message: '请输入套餐名称', trigger: 'blur'}],
         fee: [{required:true,message: '套餐资费不能小于等于0',trigger: 'blur'}],
         description: [{ required: true, message: '请输入套餐详细描述', trigger: 'blur' }],
@@ -230,7 +240,7 @@ export default {
         ],
         endTime: [{ type: 'string', required: true, message: '请选择套餐的结束时间', trigger: 'change' }],
       },
-      startTime: {
+      startTime: {// 设置套餐开始时间只能选择大于当前日期并且小于结束日期
         disabledDate: time => {
           if (this.addForm.endTime) {
             // return !(
@@ -242,7 +252,7 @@ export default {
           }
         }
       },
-      endTime: {
+      endTime: {// 设置套餐结束时间只能选择大于当且日期并且大于套餐开始日期
         disabledDate: time => {
           if (this.addForm.startTime) {
             return time.getTime()<new Date(this.addForm.startTime).getTime()
@@ -261,11 +271,14 @@ export default {
   },
   created() {},
   mounted() {
-    this.getPackageList()
+    this.getPackageList()//当页面加载完毕从获取套餐列表
   },
   watch: {},
   computed: {},
   methods: {
+    /**
+     * 获取套餐列表，获取成功，存放数据，失败提示相关信息
+     */
     getPackageList(){
       fetchList().then((res)=>{
         if (res.code==0){
@@ -280,6 +293,14 @@ export default {
         }
       })
     },
+
+    /**
+     * 设置某个套餐为首推
+     * @param id {number} 套餐的id
+     * @author shilongcheng
+     * @date 2019-05-09
+     * @constructor
+     */
     FirstPushSet(id){
       this.$confirm('是否将改套餐设为首推?', '提示', {
         type: 'warning'
@@ -294,6 +315,12 @@ export default {
       })
         .catch(() => {})
     },
+    /**
+     * 删除某条套餐
+     * @author shilongcheng
+     * @date 2019-05-09
+     * @param id {number} 套餐的id
+     */
     deleteItem(id){
       this.$confirm('是否删除该套餐?', '提示', {
         type: 'warning'
@@ -303,7 +330,7 @@ export default {
           deletePackageInfo(para).then(res=>{
             if (res.code==0){
               this.packageLists=res.data.lists
-              PubSub.publish("deleted","item has been deleted");
+              PubSub.publish("deleted","item has been deleted");// 删除成功，使用Pubsub提示显示套餐销售数据图表更新数据
               this.$message({
                 message: '套餐信息删除成功',
                 type: 'success'
@@ -316,6 +343,9 @@ export default {
           })
         })
     },
+    /**
+     * 点击添加按钮显示页面，预加载数据
+     */
     handleAdd(){
       this.dialogStatus = 'add'
       this.dialogFormVisible = true
@@ -329,6 +359,10 @@ export default {
           img: ''
       }
     },
+    /**
+     * 点击编辑按钮，显示页面，预加载数据
+     * @param id {number} 套餐id
+     */
     handleEdit(id){
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
@@ -345,6 +379,11 @@ export default {
         }
       }
     },
+
+    /**
+     * 点击显示详情请求后台获得该条套餐信息显示数据
+     * @param id {number} 套餐id
+     */
     handleShowItem(id){
       const params={
         id:id
@@ -354,7 +393,7 @@ export default {
         if (res.code==0){
           this.listItem=res.data.item[0];
           if (this.listItem.isFirstPush){
-            this.listItem.isFirstPush='是'
+            this.listItem.isFirstPush='是'//对是否首推进行数据转义
           } else{
             this.listItem.isFirstPush='否'
           }
@@ -378,7 +417,10 @@ export default {
         })
 
     },
-    onsubmit(){// 添加套餐信息表单提交
+    /**
+     * 添加套餐信息表单提交
+     */
+    onsubmit(){
       this.$refs.addForm.validate((valid) => {
         if (valid){
           this.$confirm('是否添加该套餐?', '提示', {
@@ -407,7 +449,7 @@ export default {
                   this.addForm.endTime='';
                   this.param='';
                   this.src='';
-                  PubSub.publish("added","item has been added");
+                  PubSub.publish("added","item has been added");//发布信息提示表格显示进行数据刷新
                   //this.$refs.upload.submit();//文件上传
                 }
                 else{
@@ -436,7 +478,11 @@ export default {
       })
 
     },
-    updateItem(id){//更新套餐信息
+    /**
+     * 更新套餐信息
+     * @param id {number} 套餐id
+     */
+    updateItem(id){
       this.$refs.addForm.validate((valid) => {
         if (valid){
           this.$confirm('是否更新该套餐?', '提示', {
@@ -466,7 +512,7 @@ export default {
                   this.addForm.endTime='';
                   this.param='';
                   this.src='';
-                  PubSub.publish("updated","item has been updated");
+                  PubSub.publish("updated","item has been updated");//publish服务，提示表格显示区进行数据刷新
                   //this.$refs.upload.submit();//文件上传
                 }
                 else{
@@ -519,14 +565,12 @@ export default {
         return false;
       }
 
-      console.log(file);;
       //创建临时的路径来展示图片
       var windowURL = window.URL || window.webkitURL;
       this.src=windowURL.createObjectURL(file.raw);
       //重新写一个表单上传的方法
       this.param = new FormData();
       this.param.append('file', file.raw, file.name);
-      console.log(this.param);
       // return false;
     },
     handleRemove(file,filesList){
@@ -541,7 +585,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '../../styles/data-card.scss';
+  @import '../../../styles/data-card.scss';
   .edit-area{
     height: 70px;
   }

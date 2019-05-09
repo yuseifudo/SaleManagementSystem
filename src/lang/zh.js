@@ -21,7 +21,7 @@ export default {
     dataMap: '地图',
     branchAddress:'各地市分公司驻点',
     salesVolumeHeat:'地区销量热力图',
-    salesVolume:'地区销售额',
+    salesVolume:'近年销量对比',
     announcement: '公告',
     noticeTable:'公告信息',//公告信息
     commisionReward: '佣金奖励',

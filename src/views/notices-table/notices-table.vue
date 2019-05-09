@@ -171,7 +171,9 @@
               })
               // console.log(this.notices.length)
               if((this.notices.length-1)==0){
-                this.page = this.page-1
+                if(this.page!=1){
+                  this.page = this.page-1
+                }
               }
 
               this.getNotice()

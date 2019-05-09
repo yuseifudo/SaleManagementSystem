@@ -26,7 +26,7 @@
         },
       mounted(){
           let salesVolumeInfo=Mock.mock({
-            'data|12':[
+            'data|6':[
               {
                 salesVolumeNumber1:'@integer(50,100)',
                 salesVolumeNumber2:'@integer(50,100)',
@@ -49,7 +49,7 @@
           this.salesVolume3.push(this.salesVolumeList[i].salesVolumeNumber3)
           this.salesVolume4.push(this.salesVolumeList[i].salesVolumeNumber4)
         }
-        this.dataMap.push(['月份', '1', '2', '3', '4', '5', '6','7','8','9','10','11','12']);
+        this.dataMap.push(['年份', '2014', '2015', '2016', '2017', '2018', '2019']);
         this.dataMap.push(this.salesVolume1)
         this.dataMap.push(this.salesVolume2)
         this.dataMap.push(this.salesVolume3)

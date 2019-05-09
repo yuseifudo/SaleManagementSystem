@@ -36,24 +36,29 @@
     margin-bottom: 10px;" :row-class-name="tableRowClassName">
       <el-table-column type="selection" width="55">
       </el-table-column>
-      <el-table-column type="index" label='编号'  prop="id" width="55">
+      <el-table-column type="index" label='编号'  prop="id" width="55" align="center">
       </el-table-column>
-      <el-table-column type="text" label="套餐名称"  prop="name" width="100">
+      <el-table-column type="text" label="套餐名称"  prop="name" width="120" align="center">
       </el-table-column>
-      <el-table-column type="text" label="套餐类型" prop="taocantype.typeName" width="120">
+      <el-table-column type="text" label="套餐类型" prop="taocantype.typeName" width="110" align="center">
       </el-table-column>
-      <el-table-column type="num"  label="套餐价格(元)"   prop="price" sortable width="140">
+      <el-table-column type="num"  label="套餐价格(元)"   prop="price" sortable width="130" align="center">
       </el-table-column>
-      <el-table-column type="num"  label="佣金(元)"   prop="commision" sortable width="100">
-      </el-table-column>
-      <el-table-column type="text" label="月通话时长（分钟）" prop="time" sortable width="180">
-      </el-table-column>
-      <el-table-column type="text" label="月上网流量（MB）"  prop="flow" sortable>
-      </el-table-column>
-      </el-table-column>
-      <el-table-column label="操作" >
+      <el-table-column type="num"  label="佣金(元)"   prop="commision" sortable width="100" align="center">
         <template slot-scope="scope">
-          <el-button size="small" @click="handleUpdate(scope.$index, scope.row)">编辑</el-button>
+          <el-tag
+            :type="scope.row.commision >=   70 ? 'danger' : scope.row.commision <=40 ? 'success':'warning'"
+            disable-transitions>{{scope.row.commision}}</el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column type="text" label="月通话时长（分钟）" prop="time" sortable width="180" align="center">
+      </el-table-column>
+      <el-table-column type="text" label="月上网流量（MB）"  prop="flow" sortable align="center">
+      </el-table-column>
+      </el-table-column>
+      <el-table-column label="操作" align="center">
+        <template slot-scope="scope">
+          <el-button type="success" size="small" @click="handleUpdate(scope.$index, scope.row)">编辑</el-button>
           <el-button type="danger" size="small" @click="handleDel(scope.$index, scope.row)">删除</el-button>
         </template>
       </el-table-column>
@@ -70,7 +75,7 @@
 
     <!--编辑界面-->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" :close-on-click-modal="false">
-      <el-form :model="editForm" label-width="80px" :rules="rules" ref="editForm">
+      <el-form :model="editForm" label-width="100px" :rules="rules" ref="editForm">
         <el-form-item label="套餐名称" prop="name">
           <el-input v-model="editForm.name" auto-complete="off"></el-input>
         </el-form-item>

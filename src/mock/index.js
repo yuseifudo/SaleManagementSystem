@@ -10,7 +10,6 @@ import salereportAPI from './salereport'
 import monreportAPI from './monreport'
 import salesmanAPI from './salesman'
 import homeAPI from './home'
-import homeTcAPI from './homeTc'
 import taocanListAPI from './taocanList'
 import homeEchartAPI from './homechart'
 import salesQuantityAPI from './salesQuantity'
@@ -49,6 +48,17 @@ Mock.mock(/\/notice\/remove/, 'get', noticeAPI.deleteNotice)
 Mock.mock(/\/notice\/batchremove/, 'get', noticeAPI.batchremove)
 Mock.mock(/\/notice\/add/, 'get', noticeAPI.createNotice)
 Mock.mock(/\/notice\/edit/, 'get', noticeAPI.updateNotice)
+
+/*
+* 作者：王震
+* 时间：2019.05.06
+* 功能：奖励相关/
+* */
+Mock.mock(/\/award\/listpage/, 'get', awardAPI.getAwardList)
+Mock.mock(/\/award\/remove/, 'get', awardAPI.deleteAward)
+Mock.mock(/\/award\/batchremove/, 'get', awardAPI.batchremove)
+Mock.mock(/\/award\/add/, 'get', awardAPI.createAward)
+Mock.mock(/\/award\/edit/, 'get', awardAPI.updateAward)
 
 
 //套餐管理相关
@@ -91,7 +101,8 @@ Mock.mock(/\/salesman\/pie/, 'get', salesmanAPI.getPieInfo)
  *日期：2019/5/7
  */
 Mock.mock(/\/home\/data/, 'get', homeAPI.getHomeData)
-Mock.mock(/\/home\/taocan/, 'get', homeTcAPI.getHomeTc)
+Mock.mock(/\/home\/sale/, 'get', homeAPI.getHomeSaleData)
+Mock.mock(/\/home\/taocan/, 'get', homeAPI.getHomeTc)
 Mock.mock(/\/home\/lchartdata/, 'get', homeEchartAPI.getLchartData)
 Mock.mock(/\/home\/rchartdata/, 'get', homeEchartAPI.getRchartData)
 

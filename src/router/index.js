@@ -105,14 +105,14 @@ export const constantRouterMap = [
   {
     path: '/dataCharts',
     component: Layout,
-    // redirect: '/dataManage/DiscountFigure',
+    redirect: '/dataCharts/salesvolume',
     name: 'dataCharts',
     meta: {title: 'dataCharts', icon: 'chart'},
     children: [
       {
         path: 'salesvolume',
         name: 'salesvolume',
-        component: () => import('@/views/charts/salesVolume'),
+        component: () => import('@/views/dataCharts/salesVolume/salesVolume'),
         meta: {title: 'salesVolume', icon: 'discounting'}
       }
     ]
@@ -137,6 +137,12 @@ export const constantRouterMap = [
         name: 'branchAddress',
         component: () => import('@/views/dataMap/branchAddress'),
         meta: { title: 'branchAddress', icon: 'chart' }
+      },
+      {
+        path: 'userAddress',
+        name: 'userAddress',
+        component: () => import('@/views/dataMap/userAddress'),
+        meta: { title: 'userAddress', icon: 'chart' }
       }
     ]
 

@@ -15,28 +15,40 @@
 </template>
 
 <script>
+import { getHomeSaleData } from '@/api/homeTable'
 export default {
   name: 'nx-data-card',
   data() {
     return {
-      span: this.option.span || 6,
-      data: this.option.data || [],
-      colorText: this.option.colorText || '#fff',
-      bgText: this.option.bgText || '#2e323f',
-      borderColor: this.option.borderColor || '#2e323f'
+      option:{},
+      span: '',
+      data: '',
+      colorText: '',
+      bgText: '',
+      borderColor: ''
     }
   },
-  props: {
-    option: {
-      type: Object,
-      default: () => {}
-    }
+  mounted() {
+    this.getHomeSaleData();
   },
   created() {},
-  mounted() {},
+  methods: {
+    // 获取首页销售精英数据
+    getHomeSaleData() {
+      getHomeSaleData().then(res => {
+        this.option = res.data.homeSaleData
+        this.span=this.option.span || 6
+        this.data=this.option.data || []
+        this.colorText=this.option.colorText || '#fff'
+        this.bgText=this.option.bgText || '#2e323f'
+        this.borderColor=this.option.borderColor || '#2e323f'
+        // console.log(this.getHomeSaleData.data)
+      })
+    },
+  },
+  created() {},
   watch: {},
   computed: {},
-  methods: {}
 }
 </script>
 

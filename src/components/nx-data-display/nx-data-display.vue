@@ -14,6 +14,7 @@
 
 <script>
 import nxCountUp from '@/components/nx-count-up/index.vue'
+import { getHomeData } from '@/api/homeTable'
 export default {
   name: 'nx-data-display',
   components: {
@@ -21,18 +22,27 @@ export default {
   },
   data() {
     return {
-      span: this.homeData.span || 8,
-      color: this.homeData.color || 'rgb(63, 161, 255)',
-      data: this.homeData.data
+      homeData:{},
+      span: '',
+      color: '',
+      data: ''
     }
   },
-  props: {
-    homeData: {
-      type: Object,
-      default: () => {}
-    }
+  mounted() {
+    this.getHomeData();
   },
   created() {},
-  methods: {}
+  methods: {
+    // 获取首页数据
+    getHomeData() {
+      getHomeData().then(res => {
+        this.homeData = res.data.homeData
+        this.span=this.homeData.span || 8,
+        this.color=this.homeData.color || 'rgb(63, 161, 255)',
+        this.data=this.homeData.data
+        // console.log(this.homeData.data)
+      })
+    },
+  }
 }
 </script>

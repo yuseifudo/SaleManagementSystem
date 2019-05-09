@@ -1,3 +1,8 @@
+<!--
+作者：王震
+时间：2019.05.06
+功能：奖励规则显示页面
+-->
 <template>
   <section class="app-container">
     <!--工具条-->

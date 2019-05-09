@@ -23,12 +23,11 @@ export default {
     salesVolume:'SalesVolume',//地区销售额
     announcement: 'Announcement',
     noticeTable:'NoticeTable',//公告信息
-    commisionReward: 'CommisionReward',//佣金奖励
+    commision: 'Commision',//佣金奖励
     CommisionRules:'CommisionRules',//佣金规则
     SalesCompareChart:'SalesCompareChart',//销售数据对比
     commissionPublish:'CommissionPublish',//佣金发布
     awardTable:'AwardTable',//奖励规则
-    commissionReward: 'CommissionReward',
     report: 'Report',
     salereport: 'Salereport',//销售利润分析图
     monreport: 'monreport',//月销售报表

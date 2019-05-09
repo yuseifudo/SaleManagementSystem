@@ -18,6 +18,7 @@ export default {
     dataMap: 'MapInfo',
     salesVolumeHeat:'salesVolumeHeat',//地区销量
     branchAddress:'branchAddress',//各地市分公司驻点
+    userAddress:'userAddress',//各地市用户数
     salesVolume:'salesVolume',//地区销售额
     announcement: 'Announcement',
     noticeTable:'NoticeTable',//公告信息

@@ -8,6 +8,14 @@ export function getHomeData(params) {
   })
 }
 
+export function getHomeSaleData(params) {
+  return request({
+    url: '/home/sale',
+    method: 'get',
+    params: params
+  })
+}
+
 export function getLchartData(params) {
   return request({
     url: '/home/lchartdata',

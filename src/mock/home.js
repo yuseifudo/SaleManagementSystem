@@ -19,12 +19,33 @@ let List = Mock.mock({
   ]
 })
 
+let SaleList = Mock.mock({
+  span: 6,
+  borderColor: '#fff',
+  'data|4': [
+    {
+      name: '@cname',
+      src: Mock.Random.image('960x1394','#409EFF', '#FFF', 'png', 'SaleHero'),
+      text: '@cparagraph(3)'
+    }
+  ]
+})
+
 export default {
   getHomeData:()=>{
     return {
       code: 0,
       data: {
         homeData: List
+      }
+    }
+  },
+
+  getHomeSaleData:()=>{
+    return {
+      code: 0,
+      data: {
+        homeSaleData: SaleList
       }
     }
   }

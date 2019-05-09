@@ -8,7 +8,10 @@ import adminAPI from './admin'
 import salesmanAPI from './salesman'
 import homeAPI from './home'
 import homeTcAPI from './homeTc'
-
+import pieChartAPI from './pieCharts.js'
+import DiscountFigureAPI from './DiscountFigure'
+import columnarAPI from './columnar'
+import commissionAPI from './commission'
 // 设置全局延时 没有延时的话有时候会检测不到数据变化 建议保留
 Mock.setup({
   timeout: '300-600'
@@ -18,6 +21,18 @@ Mock.setup({
 Mock.mock(/\/user\/login/, 'post', loginAPI.loginByUsername)
 Mock.mock(/\/user\/logout/, 'post', loginAPI.logout)
 Mock.mock(/\/user\/info\.*/, 'get', loginAPI.getUserInfo)
+
+// 图表相关(陈铠彬)
+
+Mock.mock(/\/piecharts\/list/, 'get', pieChartAPI.getSales)
+Mock.mock(/\/DiscountFigure\/data/, 'get', DiscountFigureAPI.getSales)
+Mock.mock(/\/columnar\/list/, 'get', columnarAPI.getSales)
+// 佣金(陈铠彬)
+Mock.mock(/\/commission\/listpage/, 'get', commissionAPI.getUserList)
+Mock.mock(/\/commission\/remove/, 'get', commissionAPI.deleteUser)
+Mock.mock(/\/commission\/batchremove/, 'get', commissionAPI.batchremove)
+Mock.mock(/\/commission\/add/, 'get', commissionAPI.createUser)
+Mock.mock(/\/commission\/edit/, 'get', commissionAPI.updateUser)
 
 // 文章相关
 Mock.mock(/\/article\/list/, 'get', articleAPI.getList)
@@ -45,7 +60,7 @@ Mock.mock(/\/notice\/add/, 'get', noticeAPI.createNotice)
 Mock.mock(/\/notice\/edit/, 'get', noticeAPI.updateNotice)
 
 
-//套餐管理相关
+// 套餐管理相关
 Mock.mock(/\/packageManage\/list/,packageManageAPI.getList)
 Mock.mock(/\/packageManage\/detail/,packageManageAPI.getItemDetail)
 Mock.mock(/\/packageManage\/create/,packageManageAPI.insertPackageInfo)
@@ -53,7 +68,7 @@ Mock.mock(/\/packageManage\/delete/,packageManageAPI.deletePackageInfo)
 Mock.mock(/\/packageManage\/update/,packageManageAPI.updatePackageInfo)
 Mock.mock(/\/packageManage\/setFirstPush/,packageManageAPI.setFirstPush)
 
-//管理员相关
+// 管理员相关
 Mock.mock(/\/admin\/listpage/, 'get', adminAPI.getAdminList)
 Mock.mock(/\/admin\/remove/, 'get', adminAPI.deleteAdmin)
 Mock.mock(/\/admin\/batchremove/, 'get', adminAPI.batchremove)

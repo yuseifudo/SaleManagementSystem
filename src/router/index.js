@@ -108,7 +108,26 @@ export const constantRouterMap = [
     // redirect: '/dataManage/DiscountFigure',
     name: 'dataCharts',
     meta: {title: 'dataCharts', icon: 'chart'},
-    children: []
+    children: [
+      {
+        path: 'DiscountFigure',
+        name: 'DiscountFigure',
+        component: () => import('@/views/charts-ckb/DiscountFigure'),
+        meta: { title: 'DiscountFigure', icon: 'discounting' }
+      },
+      {
+        path: 'columnar',
+        name: 'columnar',
+        component: () => import('@/views/charts-ckb/columnar'),
+        meta: { title: 'columnar', icon: 'columnar' }
+      },
+      {
+        path: 'pieChart',
+        name: 'pieChart',
+        component: () => import('@/views/charts-ckb/pieChart'),
+        meta: {title: 'pieChart', icon: 'pieChart'}
+      }
+    ]
   },
   // 地图呈现数据
   {
@@ -120,6 +139,7 @@ export const constantRouterMap = [
     children: []
   },
   // 公告
+
   {
     path: '/announcement',
     component: Layout,
@@ -131,20 +151,39 @@ export const constantRouterMap = [
         path: 'notice-table',
         name: 'notice-table',
         component: () => import('@/views//notices-table/notices-table'),
-        meta: {title: 'noticeTable', icon: 'chart'}
+        meta: { title: 'noticeTable', icon: 'chart'}
       },
+      {
+        path: 'commission',
+        name: 'commission',
+        component: () => import('@/views/charts-ckb/commission'),
+        meta: { title: 'commission', icon: 'chart' }
+      }
 
     ]
   },
-  // 佣金奖励
-  {
-    path: '/commissionReward',
-    component: Layout,
-    // redirect: '/dataManage/DiscountFigure',
-    name: 'commissionReward',
-    meta: {title: 'commissionReward', icon: 'chart'},
-    children: []
-  },
+  // // 佣金奖励
+  // {
+  //   path: '/commissionReward',
+  //   component: Layout,
+  //   // redirect: '/dataManage/DiscountFigure',
+  //   name: 'commissionReward',
+  //   meta: {title: 'commissionReward', icon: 'chart'},
+  //   children: [
+  //     {
+  //       path: 'commission',
+  //       name: 'commission',
+  //       component: () => import('@/views/table/commission'),
+  //       meta: { title: 'commission' }
+  //     },
+  //     {
+  //       path: 'reward',
+  //       name: 'reward',
+  //       component: () => import('@/views/table/reward'),
+  //       meta: {title: 'reward'}
+  //     }
+  //   ]
+  // },
   // 报表
   {
     path: '/report',

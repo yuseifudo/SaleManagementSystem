@@ -127,7 +127,7 @@
         getNoticeListPage(para).then(res => {
           this.total = res.data.total
           this.notices = res.data.notices
-          console.log( this.notices)
+          console.log(this.notices)
         })
 
       },

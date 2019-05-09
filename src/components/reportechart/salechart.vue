@@ -18,10 +18,10 @@
       this.getSaleList();
     },
     methods:{
+      //获取月销售额列表
       getSaleList() {
         getSaleList().then(res => {
           var datas = res.data.lists
-          console.log(datas+'aaa')
           var obj = eval(datas);//转换为JSON对象
           for (var i = 0; i < obj.length; i++) {
             this.sale1Data.push(obj[i].sale1);
@@ -58,8 +58,13 @@
               }
             ],
             yAxis : [
+
               {
-                type : 'value'
+                name:'销售量/份',
+                type : 'value',
+                min: 0,
+                max: 150,
+                interval: 30,
               }
             ],
             series : [
@@ -69,8 +74,7 @@
                 data:this.sale1Data,
                 markPoint : {
                   data : [
-                    /*                {type : 'max', name: '最大值'},
-                                    {type : 'min', name: '最小值'}*/
+
                   ]
                 },
                 markLine : {
@@ -85,8 +89,6 @@
                 data:this.sale2Data,
                 markPoint : {
                   data : [
-                    /*               {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183},
-                                   {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}*/
                   ]
                 },
                 markLine : {
@@ -101,8 +103,6 @@
                 data:this.sale3Data,
                 markPoint : {
                   data : [
-                    /*                {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183},
-                                    {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}*/
                   ]
                 },
                 markLine : {
@@ -117,8 +117,6 @@
                 data:this.sale4Data,
                 markPoint : {
                   data : [
-                    /*                {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183},
-                                    {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}*/
                   ]
                 },
                 markLine : {

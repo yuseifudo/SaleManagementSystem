@@ -10,7 +10,6 @@ import salereportAPI from './salereport'
 import monreportAPI from './monreport'
 import salesmanAPI from './salesman'
 import homeAPI from './home'
-import homeTcAPI from './homeTc'
 import taocanListAPI from './taocanList'
 import homeEchartAPI from './homechart'
 
@@ -102,7 +101,7 @@ Mock.mock(/\/salesman\/pie/, 'get', salesmanAPI.getPieInfo)
  */
 Mock.mock(/\/home\/data/, 'get', homeAPI.getHomeData)
 Mock.mock(/\/home\/sale/, 'get', homeAPI.getHomeSaleData)
-Mock.mock(/\/home\/taocan/, 'get', homeTcAPI.getHomeTc)
+Mock.mock(/\/home\/taocan/, 'get', homeAPI.getHomeTc)
 Mock.mock(/\/home\/lchartdata/, 'get', homeEchartAPI.getLchartData)
 Mock.mock(/\/home\/rchartdata/, 'get', homeEchartAPI.getRchartData)
 

@@ -23,7 +23,7 @@
 
 <script>
 import nxCountUp from '@/components/nx-count-up/index.vue'
-import { getHomeTc } from '@/api/homeTcTable'
+import { getHomeTc } from '@/api/homeTable'
 export default {
   components: {
     nxCountUp
@@ -46,7 +46,7 @@ export default {
         this.homeTc = res.data.homeTc
         this.span=this.homeTc.span || 6
         this.data=this.homeTc.data || []
-        console.log(this.homeTc.data)
+        // console.log(this.homeTc.data)
       })
     },
   }

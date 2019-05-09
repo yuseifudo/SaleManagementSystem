@@ -28,12 +28,6 @@ export default {
       data: ''
     }
   },
-  /*props: {
-    homeData: {
-      type: Object,
-      default: () => {}
-    }
-  },*/
   mounted() {
     this.getHomeData();
   },

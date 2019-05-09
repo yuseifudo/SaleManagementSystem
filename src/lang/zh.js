@@ -28,6 +28,8 @@ export default {
     noticeTable:'公告信息',//公告信息
     commisionReward: '佣金奖励',
     commisionRules:'佣金规则',
+    SalesCompareChart:'销售数据对比图',
+    commissionPublish:'佣金发布',
     awardTable:'奖励规则',
     commissionReward: '佣金奖励',
     report: '报表',
@@ -36,6 +38,9 @@ export default {
     salesman:'营销人员列表',
     userinfo:'用户列表',
     packageManage: '套餐管理',
+    infoChange: '个人信息修改',
+    ChangePassword: '密码修改',
+    searchtable: '销售人员信息查询',
     // AliIcons: '阿里图标',
     // contextmenu: '右键菜单',
     // simple: '基础',

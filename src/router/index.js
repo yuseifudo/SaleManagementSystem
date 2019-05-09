@@ -73,9 +73,16 @@ export const constantRouterMap = [
       path: 'salesman',
       name: 'salesman',
       component: () => import('@/views/dataManage-table/salesman.vue'),
-      meta: {title: 'salesman', icon: 'form'}
+      meta: {title: 'salesman', icon: 'list'}
 
-    }
+    },
+      // 销售人员信息管理
+      {
+        path: 'searchtable',
+        name: 'searchtable',
+        component: () => import('@/views/dataManage-table/searchtable'),
+        meta: { title: 'searchtable', icon: 'peoples' }
+      }
 
     ]
   },
@@ -86,7 +93,7 @@ export const constantRouterMap = [
 
     redirect: '/infoManage/packageManage',
     name: 'infoManage',
-    meta: {title: 'infoManage', icon: 'chart'},
+    meta: {title: 'infoManage', icon: 'tree'},
     children: [
       {
         path: 'packageManage',// 套餐信息管理router设置
@@ -97,9 +104,24 @@ export const constantRouterMap = [
       {
         path: 'adminManage',
         name: 'AdminManage',
-        component: () => import('@/views/admin/AdminManage'),
-        meta: { title: 'AdminManage', icon: 'discounting' }
+        component: () => import('@/views/infoManage/AdminManage.vue'),
+        meta: { title: 'AdminManage', icon: 'people' }
+      },
+      // 个人信息修改
+      {
+        path: 'infoChange',
+        name: 'infoChange',
+        component: () => import('@/views/infoManage/infoChange'),
+        meta: { title: 'infoChange', icon: 'user  ' }
+      },
+      // 密码修改
+      {
+        path: 'ChangePassword',
+        name: 'ChangePassword',
+        component: () => import('@/views/infoManage/passwdChange'),
+        meta: { title: 'ChangePassword', icon: 'password'  }
       }
+
     ]
   },
   // 图表呈现数据
@@ -108,13 +130,19 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/dataCharts/salesvolume',
     name: 'dataCharts',
-    meta: {title: 'dataCharts', icon: 'chart'},
+    meta: {title: 'dataCharts', icon: 'columnar'},
     children: [
       {
         path: 'salesvolume',
         name: 'salesvolume',
         component: () => import('@/views/dataCharts/salesVolume/salesVolume'),
         meta: {title: 'salesVolume', icon: 'discounting'}
+      },
+      {
+        path: 'SalesCompareChart',
+        name: 'SalesCompareChart',
+        component: () => import('@/views/dataCharts/SalesCompareChart/SalesCompareChart'),
+        meta: { title: 'SalesCompareChart', icon: 'scatterChart' }
       }
     ]
   },
@@ -125,25 +153,25 @@ export const constantRouterMap = [
     // redirect: '/dataManage/DiscountFigure',
     name: 'dataMap',
 
-    meta: { title: 'dataMap', icon: 'chart' },
+    meta: { title: 'dataMap', icon: 'baidumap' },
     children: [
       {
         path: 'salesVolumeHeat',
         name: 'salesVolumeHeat',
         component: () => import('@/views/dataMap/salesVolumeHeat'),
-        meta: { title: 'salesVolumeHeat', icon: 'chart' }
+        meta: { title: 'salesVolumeHeat', icon: 'barGraph' }
       },
       {
         path: 'branchAddress',
         name: 'branchAddress',
         component: () => import('@/views/dataMap/branchAddress'),
-        meta: { title: 'branchAddress', icon: 'chart' }
+        meta: { title: 'branchAddress', icon: 'cityLlistMap' }
       },
       {
         path: 'userAddress',
         name: 'userAddress',
         component: () => import('@/views/dataMap/userAddress'),
-        meta: { title: 'userAddress', icon: 'chart' }
+        meta: { title: 'userAddress', icon: 'pointMap' }
       }
     ]
 
@@ -155,43 +183,52 @@ export const constantRouterMap = [
     component: Layout,
     // redirect: '/dataManage/DiscountFigure',
     name: 'announcement',
-    meta: {title: 'announcement', icon: 'chart'},
+    meta: {title: 'announcement', icon: 'right-mean'},
     children: [
       {
         path: 'notice-table',
         name: 'notice-table',
-        component: () => import('@/views/noticesTable/notices-table'),
-        meta: {title: 'noticeTable', icon: 'chart'}
+        component: () => import('@/views/notices-table/notices-table'),
+        meta: { title: 'noticeTable', icon: 'nested'}
       },
       {
         path: 'award-table',
         name: 'award-table',
-        component: () => import('@/views//award-table/award-table'),
-        meta: {title: 'awardTable', icon: 'chart'}
-      }
+        component: () => import('@/views/award-table/award-table'),
+        meta: {title: 'awardTable', icon: 'ringChart'}
+      },
+      {
+        path: 'commission-publish',
+        name: 'commission-publish',
+        component: () => import('@/views/notices-table/commission-rule/commission-publish.vue'),
+        meta: { title: 'commissionPublish', icon: 'gaugeChart' }
+      },
     ]
   },
   // 佣金奖励
   {
     path: '/commisionReward',
     component: Layout,
-    // redirect: '/dataManage/DiscountFigure',
+    // redirect: '/dataManage/SaleResultChart',
 
     name: 'commisionReward',
-    meta: { title: 'commisionReward', icon: 'chart' },
+    meta: { title: 'commisionReward', icon: 'money' },
     children: [
       {
         path: 'commisionRules',
         component: () => import('@/views/commisionReward/commisionRules'),
         name: 'commisionRules',
-        meta: { title: 'commisionRules', icon: 'commisionRules' }
+        meta: { title: 'commisionRules', icon: 'system' }
       },
-      {
-        path: 'report',
-        component: () => import('@/views/dashboard/dashboard'),
-        name: 'report',
-        meta: { title: 'report', icon: 'chart' }
-      }
+      // {
+      //   path: 'report',
+      //   component: () => import('@/views/dashboard/dashboard'),
+      //   name: 'report',
+      //   meta: { title: 'report', icon: 'chart' }
+      // },
+      // {
+      //   path:''
+      // }
     ]
   },
   // 报表
@@ -200,19 +237,19 @@ export const constantRouterMap = [
     component: Layout,
     // redirect: '/dataManage/DiscountFigure',
     name: 'report',
-    meta: {title: 'report', icon: 'chart'},
+    meta: {title: 'report', icon: 'guide'},
     children: [
       {
         path: 'monreport',
         name: 'monreport',
         component: () => import('@/views/report/monreport'),
-        meta: {title: 'monreport', icon: 'monreport'}
+        meta: {title: 'monreport', icon: 'heatmapChart'}
       },
       {
         path: 'salereport',
         name: 'salereport',
         component: () => import('@/views/report/salereport'),
-        meta: {title: 'salereport', icon: 'salereport'}
+        meta: {title: 'salereport', icon: 'treeChart'}
       },
     ]
   },

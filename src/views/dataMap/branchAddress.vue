@@ -1,3 +1,9 @@
+<!--
+功能：完成套餐详情展示以及套餐列表正删改
+日期：2019、05、02
+作者：吴丽娟
+-->
+
 <template>
   <div class="chart-container">
   <div ref="chart" style="width: 100%;height:100%;"></div>

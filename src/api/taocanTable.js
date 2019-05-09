@@ -1,3 +1,7 @@
+//功能：套餐佣金规则
+//作者：吴丽娟
+// 日期：2019/5/7
+
 import request from '@/utils/request'
 
 export function getTaocanList(params) {

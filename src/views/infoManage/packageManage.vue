@@ -13,8 +13,8 @@
     </div>
 </template>
 <script>
-  import nxPackageLists from '@/components/nx-info-manage/nx-package-manage/nx-package-list.vue'
-  import nxPackageCharts from '@/components/nx-info-manage/nx-package-manage/nx-package-charts.vue/'
+  import nxPackageLists from '@/components/nx-info-manage/nx-package-manage/nx-package-list'
+  import nxPackageCharts from '@/components/nx-info-manage/nx-package-manage/nx-package-charts'
     export default {
         data() {
             return {

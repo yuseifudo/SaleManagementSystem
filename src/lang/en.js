@@ -15,7 +15,7 @@ export default {
     dashboard: 'Dashboard',
     dataManage: 'DataManagement',// 数据管理
     infoManage: 'InfoManagement',// 信息管理
-    dataCharts: 'ChartsInfo',// 图表
+    dataCharts: 'DataCharts',// 图表
     dataMap: 'MapInfo',// 地图
     salesVolumeHeat:'SalesVolumeHeat',//地区销量
     branchAddress:'BranchAddress',//各地市分公司驻点
@@ -25,6 +25,8 @@ export default {
     noticeTable:'NoticeTable',//公告信息
     commisionReward: 'CommisionReward',//佣金奖励
     CommisionRules:'CommisionRules',//佣金规则
+    SalesCompareChart:'SalesCompareChart',//销售数据对比
+    commissionPublish:'CommissionPublish',//佣金发布
     awardTable:'AwardTable',//奖励规则
     commissionReward: 'CommissionReward',
     report: 'Report',
@@ -32,6 +34,9 @@ export default {
     monreport: 'monreport',
     salesman:'Salesman',//销售人员
     packageManage: 'PackageManagement',//套餐管理
+    infoChange: 'InfoChange',
+    ChangePassword: 'ChangePassword',
+    searchtable: 'SearchForSalesman',
     // AliIcons: 'AliIcons',
     // list: 'list',
     // Digitalanimation: 'Digitalanimation',

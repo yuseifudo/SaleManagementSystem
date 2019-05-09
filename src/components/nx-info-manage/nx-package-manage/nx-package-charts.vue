@@ -47,7 +47,6 @@
                 for (let i=0;i<this.packageData.length;i++){
                   this.dataTitle.push(this.packageData[i].name)
                   this.dataItems.push({value:this.packageData[i].number,name:this.packageData[i].name})
-                  console.log(this.packageData[i].number)
                 }
 
                 this.option = {

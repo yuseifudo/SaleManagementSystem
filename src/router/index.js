@@ -137,6 +137,12 @@ export const constantRouterMap = [
         name: 'branchAddress',
         component: () => import('@/views/dataMap/branchAddress'),
         meta: { title: 'branchAddress', icon: 'chart' }
+      },
+      {
+        path: 'userAddress',
+        name: 'userAddress',
+        component: () => import('@/views/dataMap/userAddress'),
+        meta: { title: 'userAddress', icon: 'chart' }
       }
     ]
 

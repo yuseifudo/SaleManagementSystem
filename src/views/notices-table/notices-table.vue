@@ -151,11 +151,11 @@
         getNoticeListPage(para).then(res => {
           this.total = res.data.total
           this.notices = res.data.notices
-          console.log(this.notices)
+          // console.log(this.notices)
         })
-        if(this.filters.title==''&&this.filters.createDate==''){
-          console.log("0000")
-        }
+        // if(this.filters.title==''&&this.filters.createDate==''){
+        //   console.log("0000")
+        // }
       },
       // 删除
       handleDel(index, row) {
@@ -169,6 +169,13 @@
                 message: '删除成功',
                 type: 'success'
               })
+              // console.log(this.notices.length)
+              if((this.notices.length-1)==0){
+                if(this.page!=1){
+                  this.page = this.page-1
+                }
+              }
+
               this.getNotice()
             })
           })
@@ -233,7 +240,7 @@
                 this.editForm.createDate = util.formatDate.format(new Date(), 'yyyy-MM-dd-hh:mm')
                 const para = Object.assign({}, this.editForm)
                 para.content = para.content.replace(/(\r\n|\n|\r)/gm, "\\r")
-                console.log(para)
+                // console.log(para)
                 addNotice(para).then(res => {
                   this.$message({
                     message: '提交成功',
@@ -251,6 +258,7 @@
           }
         })
         this.filters.title = ''
+        this.filters.createDate=''
         // this.getNotice()
       },
       // 全选单选多选
@@ -270,6 +278,15 @@
                 message: '删除成功',
                 type: 'success'
               })
+              // console.log(this.notices.length)
+              // console.log(this.para.length)
+              if((this.notices.length-this.sels.length)==0){
+                if(this.page!=1){
+                  this.page = this.page-1
+                }
+
+              }
+
               this.getNotice()
             })
           })

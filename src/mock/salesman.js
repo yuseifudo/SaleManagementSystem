@@ -25,13 +25,22 @@ for (let i = 0; i < count; i++) {
   }))
 }
 
+let Piedata=Mock.mock({
+  'data|4': [
+    {
+      number:'@integer(29, 400)',
+      'name|1':['腾讯王卡','蚂蚁宝卡','京东强卡','工行E卡','百度圣卡','滴滴橙卡','畅淘卡','百度女神卡']
+    }
+  ]
+})
+
 export default {
   getSalesmanList: config => {
     const { name, num, page = 1, limit = 20 } = param2Obj(config.url)
 
     const mockList = List.filter(salesman => {
       if (name && salesman.name.indexOf(name) === -1) return false
-      if (num && salesman.num != num) return false
+      if (num && salesman.num != num) return false12
 
       return true
     })
@@ -48,7 +57,7 @@ export default {
   },
   createSalesman: config => {
     const { id, num,name,sex,telephone,count,totals,commission } = param2Obj(config.url)
-    console.log('66')
+    // console.log(config.url)
     List.push({
       id: id,
       num:num,
@@ -108,5 +117,13 @@ export default {
         message: '编辑成功'
       }
     }
+  },
+  getPieInfo:() => {
+    return {
+      code: 0,
+      data: Piedata.data
+      // data:Piedata
+    }
   }
+
 }

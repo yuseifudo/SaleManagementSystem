@@ -65,7 +65,7 @@ export const constantRouterMap = [
   {
     path: '/dataManage',
     component: Layout,
-    // redirect: '/dataManage/DiscountFigure',
+    // redirect: '/dataManage/SaleResultChart',
     name: 'dataManage',
     meta: {title: 'dataManage', icon: 'chart'},
     children: [{
@@ -105,15 +105,21 @@ export const constantRouterMap = [
   {
     path: '/dataCharts',
     component: Layout,
-    // redirect: '/dataManage/DiscountFigure',
+    redirect: '/dataCharts/salesvolume',
     name: 'dataCharts',
     meta: {title: 'dataCharts', icon: 'chart'},
     children: [
       {
         path: 'salesvolume',
         name: 'salesvolume',
-        component: () => import('@/views/charts/salesVolume'),
+        component: () => import('@/views/dataCharts/salesVolume/salesVolume'),
         meta: {title: 'salesVolume', icon: 'discounting'}
+      },
+      {
+        path: 'charts-total',
+        name: 'charts-total',
+        component: () => import('@/views/dataCharts/charts-total/charts-total'),
+        meta: { title: 'chartsTotal', icon: 'discounting' }
       }
     ]
   },
@@ -121,42 +127,92 @@ export const constantRouterMap = [
   {
     path: '/dataMap',
     component: Layout,
-    // redirect: '/dataManage/DiscountFigure',
+    // redirect: '/dataManage/SaleResultChart',
     name: 'dataMap',
-    meta: {title: 'dataMap', icon: 'chart'},
-    children: []
+
+    meta: { title: 'dataMap', icon: 'chart' },
+    children: [
+      {
+        path: 'salesVolumeHeat',
+        name: 'salesVolumeHeat',
+        component: () => import('@/views/dataMap/salesVolumeHeat'),
+        meta: { title: 'salesVolumeHeat', icon: 'chart' }
+      },
+      {
+        path: 'branchAddress',
+        name: 'branchAddress',
+        component: () => import('@/views/dataMap/branchAddress'),
+        meta: { title: 'branchAddress', icon: 'chart' }
+      },
+      {
+        path: 'userAddress',
+        name: 'userAddress',
+        component: () => import('@/views/dataMap/userAddress'),
+        meta: { title: 'userAddress', icon: 'chart' }
+      }
+    ]
+
+
   },
   // 公告
   {
     path: '/announcement',
     component: Layout,
-    // redirect: '/dataManage/DiscountFigure',
+    // redirect: '/dataManage/SaleResultChart',
     name: 'announcement',
     meta: {title: 'announcement', icon: 'chart'},
     children: [
       {
         path: 'notice-table',
         name: 'notice-table',
-        component: () => import('@/views//notices-table/notices-table'),
-        meta: {title: 'noticeTable', icon: 'chart'}
+        component: () => import('@/views/notices-table/notices-table'),
+        meta: { title: 'noticeTable', icon: 'chart'}
       },
-
+      {
+        path: 'award-table',
+        name: 'award-table',
+        component: () => import('@/views/award-table/award-table'),
+        meta: {title: 'awardTable', icon: 'chart'}
+      },
+      {
+        path: 'commission-publish',
+        name: 'commission-publish',
+        component: () => import('@/views/notices-table/commission-rule/commission-publish'),
+        meta: { title: 'commissionPublish', icon: 'chart' }
+      },
     ]
   },
   // 佣金奖励
   {
-    path: '/commissionReward',
+    path: '/commisionReward',
     component: Layout,
-    // redirect: '/dataManage/DiscountFigure',
-    name: 'commissionReward',
-    meta: {title: 'commissionReward', icon: 'chart'},
-    children: []
+    // redirect: '/dataManage/SaleResultChart',
+
+    name: 'commisionReward',
+    meta: { title: 'commisionReward', icon: 'chart' },
+    children: [
+      {
+        path: 'commisionRules',
+        component: () => import('@/views/commisionReward/commisionRules'),
+        name: 'commisionRules',
+        meta: { title: 'commisionRules', icon: 'commisionRules' }
+      },
+      {
+        path: 'report',
+        component: () => import('@/views/dashboard/dashboard'),
+        name: 'report',
+        meta: { title: 'report', icon: 'chart' }
+      },
+      {
+        path:''
+      }
+    ]
   },
   // 报表
   {
     path: '/report',
     component: Layout,
-    // redirect: '/dataManage/DiscountFigure',
+    // redirect: '/dataManage/SaleResultChart',
     name: 'report',
     meta: {title: 'report', icon: 'chart'},
     children: [

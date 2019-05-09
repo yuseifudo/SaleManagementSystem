@@ -40,3 +40,10 @@ export function addSalesman(params) {
     params: params
   })
 }
+export function getPieInfo(params) {
+  return request({
+    url: '/salesman/pie',
+    method: 'get',
+    params: params
+  })
+}

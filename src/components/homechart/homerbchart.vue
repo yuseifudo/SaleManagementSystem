@@ -187,6 +187,15 @@
               trigger: 'item',
               formatter: "{a} <br/>{b}: {c} ({d}%)"
             },
+            toolbox: {
+              x:'left',
+              y:'top',
+              feature: {
+                dataView: {show: true, readOnly: false},
+                restore: {show: true},
+                saveAsImage: {show: true}
+              }
+            },
             legend: {
               x: 'right',
               y: 'center',

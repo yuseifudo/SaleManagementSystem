@@ -26,6 +26,7 @@ export default {
 
     const mockList = List.filter(notice => {
       if (title && notice.title.indexOf(title) === -1) return false
+
       if(createDate && notice.createDate.indexOf(createDate) === -1) return false
       return true
     })
@@ -42,7 +43,7 @@ export default {
   },
   createNotice: config => {
     const { id,num, title, content, createDate } = param2Obj(config.url)
-    console.log('66')
+    // console.log('66')
     List.unshift({
       id: id,
       num:num,

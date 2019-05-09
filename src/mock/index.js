@@ -10,8 +10,14 @@ import salereportAPI from './salereport'
 import monreportAPI from './monreport'
 import salesmanAPI from './salesman'
 import homeAPI from './home'
+import PackageCompareChartAPI from './PackageCompareChart'
+import SaleResultChartAPI from './SaleResultChart'
+import PackageChartAPI from './PackageChart'
+import commissionPublishAPI from './commissionPublish'
 import taocanListAPI from './taocanList'
 import homeEchartAPI from './homechart'
+import formAPI from './informationform'
+import searchtableAPI from './searchTable'
 import salesQuantityAPI from './salesQuantity'
 
 // 设置全局延时 没有延时的话有时候会检测不到数据变化 建议保留
@@ -23,6 +29,18 @@ Mock.setup({
 Mock.mock(/\/user\/login/, 'post', loginAPI.loginByUsername)
 Mock.mock(/\/user\/logout/, 'post', loginAPI.logout)
 Mock.mock(/\/user\/info\.*/, 'get', loginAPI.getUserInfo)
+
+// 图表相关(陈铠彬)
+
+Mock.mock(/\/PackageCompareChart\/list/, 'get', PackageCompareChartAPI.getSales)
+Mock.mock(/\/SaleResultChart\/data/, 'get', SaleResultChartAPI.getSales)
+Mock.mock(/\/PackageChart\/list/, 'get', PackageChartAPI.getSales)
+// 佣金(陈铠彬)
+Mock.mock(/\/commissionPublish\/listpage/, 'get', commissionPublishAPI.getUserList)
+Mock.mock(/\/commissionPublish\/remove/, 'get', commissionPublishAPI.deleteUser)
+Mock.mock(/\/commissionPublish\/batchremove/, 'get', commissionPublishAPI.batchremove)
+Mock.mock(/\/commissionPublish\/add/, 'get', commissionPublishAPI.createUser)
+Mock.mock(/\/commissionPublish\/edit/, 'get', commissionPublishAPI.updateUser)
 
 // 文章相关
 Mock.mock(/\/article\/list/, 'get', articleAPI.getList)
@@ -61,14 +79,19 @@ Mock.mock(/\/award\/add/, 'get', awardAPI.createAward)
 Mock.mock(/\/award\/edit/, 'get', awardAPI.updateAward)
 
 
-//套餐管理相关
-Mock.mock(/\/packageManage\/list/,packageManageAPI.getList)
-Mock.mock(/\/packageManage\/detail/,packageManageAPI.getItemDetail)
-Mock.mock(/\/packageManage\/create/,packageManageAPI.insertPackageInfo)
-Mock.mock(/\/packageManage\/delete/,packageManageAPI.deletePackageInfo)
-Mock.mock(/\/packageManage\/update/,packageManageAPI.updatePackageInfo)
-Mock.mock(/\/packageManage\/setFirstPush/,packageManageAPI.setFirstPush)
+/**
+ * 模块：套餐管理模块
+ * 作者：石龙成
+ * 日期：2019/5/9
+ */
+Mock.mock(/\/packageManage\/list/,packageManageAPI.getList)// mock获取列表请求
+Mock.mock(/\/packageManage\/detail/,packageManageAPI.getItemDetail)// mock获取详情列表请求
+Mock.mock(/\/packageManage\/create/,packageManageAPI.insertPackageInfo)// mock新增套餐信息请求
+Mock.mock(/\/packageManage\/delete/,packageManageAPI.deletePackageInfo)// mock删除某条套餐信息请求
+Mock.mock(/\/packageManage\/update/,packageManageAPI.updatePackageInfo)// mock更新套餐信息请求
+Mock.mock(/\/packageManage\/setFirstPush/,packageManageAPI.setFirstPush)// mock 设置首推套餐请求
 
+// 管理员相关
 /**
 *模块：管理员模块
 *作者：陈年友
@@ -115,6 +138,14 @@ Mock.mock(/\/taocanList\/remove/, 'get', taocanListAPI.deleteTaocan)
 Mock.mock(/\/taocanList\/batchremove/, 'get', taocanListAPI.batchremove)
 Mock.mock(/\/taocanList\/add/, 'get', taocanListAPI.createTaocan)
 Mock.mock(/\/taocanList\/edit/, 'get', taocanListAPI.updateTaocan)
+
+/**
+ *功能：个人信息修改、销售人员信息查询
+ *作者：王从竹
+ *日期：2019/5/9
+ */
+Mock.mock(/\/user\/wcz/, 'get', formAPI.getUser)
+Mock.mock(/\/user\/searchtable/, 'get', searchtableAPI.getUsers)
 
 //功能：套餐销量热力图随机数据
 //作者：吴丽娟

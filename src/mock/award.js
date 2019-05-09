@@ -22,10 +22,11 @@ for (let i = 0; i < count; i++) {
 
 export default {
   getAwardList: config => {
-    const { title, page = 1, limit = 10 } = param2Obj(config.url)
+    const { title, createDate, page = 1, limit = 5 } = param2Obj(config.url)
 
     const mockList = List.filter(award => {
       if (title && award.title.indexOf(title) === -1) return false
+      if(createDate && award.createDate.indexOf(createDate) === -1) return false
       return true
     })
 

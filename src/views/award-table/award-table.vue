@@ -7,6 +7,9 @@
           <el-input v-model="filters.title" placeholder="请输入奖励规则标题"></el-input>
         </el-form-item>
         <el-form-item>
+          <el-input v-model="filters.createDate" placeholder="日期查询"></el-input>
+        </el-form-item>
+        <el-form-item>
           <el-button type="primary" v-on:click="getAward" >查询奖励规则</el-button>
         </el-form-item>
         <el-form-item>
@@ -39,7 +42,7 @@
     <!--工具条-->
     <el-col :span="24" class="toolbar">
       <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">删除所选</el-button>
-      <el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="10" :total="total" style="float:right;">
+      <el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="5" :total="total" style="float:right;">
       </el-pagination>
     </el-col>
 
@@ -84,7 +87,8 @@
         },
         dialogFormVisible: false,
         filters: {
-          title: ''
+          title: '',
+          createDate:''
         },
         awards: [],
         total: 0,
@@ -116,14 +120,17 @@
       getAward() {
         const para = {
           page: this.page,
-          title: this.filters.title
+          title: this.filters.title,
+          createDate: this.filters.createDate
         }
         getAwardListPage(para).then(res => {
           this.total = res.data.total
           this.awards = res.data.awards
           console.log( this.awards)
         })
-
+        if(this.filters.title==''&&this.filters.createDate==''){
+          console.log("0000")
+        }
       },
       // 删除
       handleDel(index, row) {
@@ -155,7 +162,7 @@
         this.editForm = {
           id: '0',
           title: '',
-          content: ''
+          content: '',
 
         }
       },

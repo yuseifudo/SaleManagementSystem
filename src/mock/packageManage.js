@@ -16,7 +16,7 @@ let packageInfo=Mock.mock({
       isFirstPush: false,// 是否首推
       startTime: '@date("yyyy-MM-dd")',// 套餐开始时间
       endTime: '@date("yyyy-MM-dd")',// 套餐结束时间
-      number: '@integer(1,100)',// 套餐售出人数
+      number: '@integer(100,1000)',// 套餐售出人数
       updateUser: '@cname',// 套餐更新人
       updateTime: '@date("yyyy-MM-dd")',// 套餐更新时间
       span: 6,// 页面布局span
@@ -36,6 +36,13 @@ export default {
     const dataList=packageInfo.data.filter(item=>{
       return item.isDelete==false
     })
+    let maxIndex=0;
+    for(let i=0;i<dataList.length;i++){
+      if (dataList[i].number>dataList[maxIndex].number){
+        maxIndex=i;
+      }
+    }
+    dataList[maxIndex].isFirstPush=true;
     return{
       code: 0,
       data:dataList,

@@ -41,7 +41,7 @@
           getRchartData().then(res => {
             var rChartData = res.data.rChartData
             var obj = eval(rChartData);//转换为JSON对象
-            console.log(obj)
+            // console.log(obj)
             for (var i = 0; i < obj.length; i++) {
                 this.cardData.push(obj[i].data[0])
                 this.nameData.push(obj[i].data[0].name)

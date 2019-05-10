@@ -7,10 +7,34 @@
     <el-table id="out-table" :data="tempList" border :summary-method="getSummaries"  show-summary style="width: 100%">
     <el-table-column prop="id" label="ID" width="180"></el-table-column>
     <el-table-column prop="time" sortable label="时间"></el-table-column>
-    <el-table-column prop="amount1" sortable label="天王卡销售额（元）"></el-table-column>
-    <el-table-column prop="amount2" sortable label="帝王卡销售额（元）"></el-table-column>
-    <el-table-column prop="amount3" sortable label="大冰神卡销售额（元）"></el-table-column>
-    <el-table-column prop="amount4" sortable label="小冰神卡销售额（元）"></el-table-column>
+    <el-table-column align="center" prop="amount1" sortable label="天王卡销售额（元）">
+      <template slot-scope="scope">
+        <el-tag
+          :type="scope.row.amount1 >= 15000 ? 'danger' : scope.row.amount1 <=10000 ? 'success':'warning'"
+          disable-transitions>{{scope.row.amount1}}</el-tag>
+      </template>
+    </el-table-column>
+    <el-table-column align="center" prop="amount2" sortable label="帝王卡销售额（元）">
+      <template slot-scope="scope">
+        <el-tag
+          :type="scope.row.amount2>= 15000 ? 'danger' : scope.row.amount2 <=10000 ? 'success':'warning'"
+          disable-transitions>{{scope.row.amount2}}</el-tag>
+      </template>
+    </el-table-column>
+    <el-table-column align="center" prop="amount3" sortable label="大冰神卡销售额（元）">
+      <template slot-scope="scope">
+        <el-tag
+          :type="scope.row.amount3 >= 15000 ? 'danger' : scope.row.amount3 <=10000 ? 'success':'warning'"
+          disable-transitions>{{scope.row.amount3}}</el-tag>
+      </template>
+    </el-table-column>
+    <el-table-column align="center" prop="amount4" sortable label="小冰神卡销售额（元）">
+      <template slot-scope="scope">
+        <el-tag
+          :type="scope.row.amount4 >= 15000 ? 'danger' : scope.row.amount4 <=10000 ? 'success':'warning'"
+          disable-transitions>{{scope.row.amount4}}</el-tag>
+      </template>
+    </el-table-column>
   </el-table>
       <el-pagination
         @size-change="handleSizeChange"
@@ -124,6 +148,7 @@
     margin:5px 25px 5px ;
 
   }
+
   #title >span{
     font-size: 20px;
     color: #333;

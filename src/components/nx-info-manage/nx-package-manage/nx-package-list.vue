@@ -9,8 +9,14 @@
     <el-row :span="24">
       <el-col class="colItem" :span="item.span" v-for="(item,index) in packageLists" :key="item.id">
 <!--        如果是首推，则显示数据并且加上红色实线2像素的边框-->
-        <div class="item" v-if="item.isFirstPush" style="border:2px solid red">
+<!--        border:2px inset red-->
+        <div class="item" v-if="item.isFirstPush" style="box-shadow: 0 0 0 5px #05b5ed,0 0 0 7.5px lightBlue ,0 1px 2.5px 7.5px rgba(0,0,0,.6)">
           <img :src="item.img" class="item-img" />
+          <div style="position:absolute;width:40px;height:40px;z-indent:2;right:  5px;top: 5px;">
+            <i class="el-icon-star-on" style="color: red;width: 100%; font-size: 40px" ></i>
+          </div>
+
+
           <div class="item-text" :style="{color:item.color,backgroundColor:item.bgText}">
             <h3>{{item.name}}</h3>
             <p>{{item.description}}</p>
@@ -56,7 +62,7 @@
       </el-col>
     </el-row>
 <!--显示套餐详情dialog，默认隐藏，通过查看套餐详情图标，唤醒该dialog,数据显示内容与listItem绑定-->
-    <el-dialog :title="listItem.name+'套餐相关信息'" :visible.sync="detailDialog" :close-on-click-modal="false">
+    <el-dialog :title="listItem.name+'套餐相关信息'" :visible.sync="detailDialog" :close-on-click-modal="false" >
       <el-form :model="listItem"  ref="listItem">
 <!--        每一行显示两个信息，设置为readonly-->
         <el-form-item>
@@ -124,7 +130,7 @@
       </el-form>
     </el-dialog>
 <!--    编辑新增套餐dialog，默认隐藏，通过点击添加按钮或者编辑该套餐按钮，唤醒该dialog,title根据dialogStatus显示 编辑套餐 或者添加套餐-->
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" :close-on-click-modal="false">
+    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" :close-on-click-modal="false"  @close="callOf('addForm')">
       <el-form :model="addForm" label-width="80px" :rules="addFormRules" ref="addForm">
         <el-form-item label="套餐名:" prop="name">
           <el-input v-model="addForm.name" auto-complete="off" placeholder="请输入套餐名称" clearable></el-input>
@@ -283,6 +289,13 @@ export default {
       fetchList().then((res)=>{
         if (res.code==0){
           this.packageLists=res.data;
+          let maxIndex=0;
+          for(let i=0;i<this.packageLists.length;i++){
+            if (this.packageLists[i].number>this.packageLists[maxIndex].number){
+              maxIndex=i;
+            }
+          }// 获取销量最高的套餐并把它设为首推套餐
+          this.packageLists[maxIndex].isFirstPush=true;
         }
         else{
           this.$message({

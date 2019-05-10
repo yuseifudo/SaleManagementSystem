@@ -14,7 +14,8 @@ export const loadStyle = url => {
  * 设置浏览器头部标题
  */
 export const setTitle = function(title) {
-  title = title ? `${title}` : 'SaleManage'
-  window.document.title = title + '-SaleManage'
+  // title = title ? `${title}` : 'SaleManage'
+  // window.document.title = title + '-SaleManage'
+  window.document.title = '触点营销后台管理系统'
 }
 

@@ -17,20 +17,20 @@
 		</el-col>
 
 		<!--列表-->
-		<el-table :data="users" highlight-current-row @selection-change="selsChange" style="width: 100%;">
+		<el-table :data="users" highlight-current-row @selection-change="selsChange" style="width: 100%;" align="center">
 			<el-table-column type="selection" width="55">
 			</el-table-column>
 			<el-table-column type="index" width="60">
 			</el-table-column>
-      <el-table-column prop="title" label="标题" width="160">
+      <el-table-column prop="title" label="标题" width="160" align="center">
       </el-table-column>
-      <el-table-column prop="content" label="内容" width="450">
+      <el-table-column prop="content" label="内容" width="450" header-align="center">
 			</el-table-column>
-      <el-table-column prop="createDate" label="发布/更新时间" width="150" header-align="center" sortable>
+      <el-table-column prop="createDate" label="发布/更新时间" width="150" header-align="center" sortable align="center">
       </el-table-column>
-			<el-table-column label="操作" width="150">
+			<el-table-column label="操作" width="150" align="center">
 				<template slot-scope="scope">
-					<el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+					<el-button type="success" size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
 					<el-button type="danger" size="small" @click="handleDel(scope.$index, scope.row)">删除</el-button>
 				</template>
 			</el-table-column>

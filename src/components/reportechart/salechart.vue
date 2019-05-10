@@ -39,7 +39,7 @@
               trigger: 'axis'
             },
             legend: {
-              data:['套餐1','套餐2','套餐3','套餐4']
+              data:['天王卡','帝王卡','大冰神卡','小冰神卡']
             },
             toolbox: {
               show : true,
@@ -69,7 +69,7 @@
             ],
             series : [
               {
-                name:'套餐1',
+                name:'天王卡',
                 type:'bar',
                 data:this.sale1Data,
                 markPoint : {
@@ -84,7 +84,7 @@
                 }
               },
               {
-                name:'套餐2',
+                name:'帝王卡',
                 type:'bar',
                 data:this.sale2Data,
                 markPoint : {
@@ -98,7 +98,7 @@
                 }
               },
               {
-                name:'套餐3',
+                name:'大冰神卡',
                 type:'bar',
                 data:this.sale3Data,
                 markPoint : {
@@ -112,7 +112,7 @@
                 }
               },
               {
-                name:'套餐4',
+                name:'小冰神卡',
                 type:'bar',
                 data:this.sale4Data,
                 markPoint : {

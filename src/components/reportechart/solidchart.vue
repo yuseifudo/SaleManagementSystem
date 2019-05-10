@@ -46,7 +46,7 @@
           },
           legend: {
             right: 10,
-            data: ['套餐1', '套餐2','套餐3', '套餐4']
+            data: ['天王卡', '帝王卡','大冰神卡', '小冰神卡']
           },
           xAxis: {
           name:'销售额/万元',
@@ -66,7 +66,7 @@
             scale: true
           },
           series: [{
-            name: '套餐1',
+            name: '天王卡',
             data: data[0],
             type: 'scatter',
             symbolSize: function (data) {
@@ -96,7 +96,7 @@
               }
             }
           }, {
-            name: '套餐2',
+            name: '帝王卡',
             data: data[1],
             type: 'scatter',
             symbolSize: function (data) {
@@ -127,7 +127,7 @@
             }
           },
             {
-              name: '套餐3',
+              name: '大冰神卡',
               data: data[2],
               type: 'scatter',
               symbolSize: function (data) {
@@ -158,7 +158,7 @@
               }
             },
             {
-              name: '套餐4',
+              name: '小冰神卡',
               data: data[3],
               type: 'scatter',
               symbolSize: function (data) {

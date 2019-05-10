@@ -13,18 +13,18 @@
         sale3total:0,
         sale4total:0,
         data : [{
-          "name": "套餐1",
+          "name": "天王卡",
           "value": ''
           },
           {
-            "name": "套餐2",
+            "name": "帝王卡",
             "value": ''
           },
           {
-            "name": "套餐3",
+            "name": "大冰神卡",
             "value": ''
           }, {
-            "name": "套餐4",
+            "name": "小冰神卡",
             "value": ''
           },
         ],
@@ -61,7 +61,7 @@
             color: ['#d53a35', '#2f4554', '#61a0a8', '#d48265', "rgba(250,250,250,0.3)"],
             /*        backgroundColor: '#cdd0d5',*/
             title: {
-              text: '总销售额',
+              text: '总销售额(万元)',
               subtext: this.total,
               textStyle: {
                 color: 'black',

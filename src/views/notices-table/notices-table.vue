@@ -48,7 +48,7 @@
     <!--工具条-->
     <el-col :span="24" class="toolbar">
       <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">删除所选</el-button>
-      <el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="10" :total="total"
+      <el-pagination  background layout="total,prev, pager, next" @current-change="handleCurrentChange" :page-size="10" :total="total"
                      style="float:right;">
       </el-pagination>
     </el-col>
@@ -208,10 +208,7 @@
               .then(() => {
                 this.editForm.createDate = util.formatDate.format(new Date(), 'yyyy-MM-dd-hh:mm')
                 const para = Object.assign({}, this.editForm)
-                //para是一个对象
                 para.content = para.content.replace(/(\r\n|\n|\r|)/gm, "\\r")
-                // para.content= para.content.replace(/' '/gm, "&nbsp;")
-                console.log(para)
                 editNotice(para).then(res => {
                   this.$message({
                     message: '编辑成功',

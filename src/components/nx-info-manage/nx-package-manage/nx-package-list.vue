@@ -9,8 +9,14 @@
     <el-row :span="24">
       <el-col class="colItem" :span="item.span" v-for="(item,index) in packageLists" :key="item.id">
 <!--        如果是首推，则显示数据并且加上红色实线2像素的边框-->
-        <div class="item" v-if="item.isFirstPush" style="border:2px solid red">
+<!--        border:2px inset red-->
+        <div class="item" v-if="item.isFirstPush" style="box-shadow: 0 0 0 5px #05b5ed,0 0 0 7.5px lightBlue ,0 1px 2.5px 7.5px rgba(0,0,0,.6)">
           <img :src="item.img" class="item-img" />
+          <div style="position:absolute;width:40px;height:40px;z-indent:2;right:  5px;top: 5px;">
+            <i class="el-icon-star-on" style="color: red;width: 100%; font-size: 40px" ></i>
+          </div>
+
+
           <div class="item-text" :style="{color:item.color,backgroundColor:item.bgText}">
             <h3>{{item.name}}</h3>
             <p>{{item.description}}</p>
@@ -283,6 +289,13 @@ export default {
       fetchList().then((res)=>{
         if (res.code==0){
           this.packageLists=res.data;
+          let maxIndex=0;
+          for(let i=0;i<this.packageLists.length;i++){
+            if (this.packageLists[i].number>this.packageLists[maxIndex].number){
+              maxIndex=i;
+            }
+          }// 获取销量最高的套餐并把它设为首推套餐
+          this.packageLists[maxIndex].isFirstPush=true;
         }
         else{
           this.$message({

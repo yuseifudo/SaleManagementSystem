@@ -12,7 +12,8 @@ for (let i = 0; i < count; i++) {
     'age|18-60': 1,
     birth: Mock.Random.date(),
     sex: Mock.Random.integer(0, 1),
-    'grade|1':['大区销售经理','区域销售经理','销售主管','销售专员']
+    'grade': '@datetime'
+    // 'grade|1':['大区销售经理','区域销售经理','销售主管','销售专员']
   }))
 }
 

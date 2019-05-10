@@ -25,7 +25,7 @@ export default {
     FJsalesVolumeHeat:'福建省销量热力图',
     salesVolume:'近年销量对比',
     announcement: '公告',
-    noticeTable:'公告信息',//公告信息
+    noticeTable:'公告',//公告信息
     commision: '佣金',
     commisionRules:'佣金规则',
     SalesCompareChart:'销售数据对比图',

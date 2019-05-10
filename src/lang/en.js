@@ -22,7 +22,7 @@ export default {
     CYuserAddress:'CYUserAddress',//畅越计划用户分布
     salesVolume:'SalesVolume',//地区销售额
     announcement: 'Announcement',
-    noticeTable:'NoticeTable',//公告信息
+    noticeTable:'Notice',//公告信息
     commision: 'Commision',//佣金奖励
     CommisionRules:'CommisionRules',//佣金规则
     SalesCompareChart:'SalesCompareChart',//销售数据对比

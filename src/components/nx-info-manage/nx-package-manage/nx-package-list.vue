@@ -186,7 +186,7 @@
 <!--        根据dialogStatus显示添加按钮或者修改按钮-->
         <el-button v-if="dialogStatus=='add'" type="primary" @click="onsubmit">添加</el-button>
         <el-button v-else type="primary" @click="updateItem(addForm.id)">修改</el-button>
-        <el-button @click.native="dialogFormVisible=false">取消</el-button>
+        <el-button @click.native="callOf('addForm')">取消</el-button>
 
       </div>
     </el-dialog>
@@ -358,6 +358,12 @@ export default {
           file: [],
           img: ''
       }
+    },
+
+    //模态框取消方法，关闭后清除提示
+    callOf(form){
+      this.dialogFormVisible = false;
+      this.$refs[form].resetFields();
     },
     /**
      * 点击编辑按钮，显示页面，预加载数据

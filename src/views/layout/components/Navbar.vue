@@ -34,11 +34,11 @@
               系统首页
             </el-dropdown-item>
           </router-link>
-          <a target='_blank' href="https://github.com/mgbq/nx-admin/">
+          <router-link to="/infoManage/infoChange">
             <el-dropdown-item>
               修改密码
             </el-dropdown-item>
-          </a>
+          </router-link>
           <el-dropdown-item divided>
             <span @click="logout" style="display:block;">注销</span>
           </el-dropdown-item>

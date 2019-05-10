@@ -47,7 +47,7 @@ export const constantRouterMap = [
     name: '锁屏页',
     component: () => import('@/views/common/lock')
   },
-  // 报表
+  // 首页
   {
     path: '/dashboard',
     component: Layout,
@@ -60,6 +60,23 @@ export const constantRouterMap = [
         component: () => import('@/views/dashboard/dashboard'),
         meta: {title: 'dashboard', icon: 'dashboard'}
       }
+    ]
+  },
+  // 公告
+  {
+    path: '/announcement',
+    component: Layout,
+    // redirect: '/dataManage/DiscountFigure',
+    name: 'announcement',
+    meta: {title: 'announcement', icon: 'right-mean'},
+    children: [
+      {
+        path: 'notice-table',
+        name: 'notice-table',
+        component: () => import('@/views/notices-table/notices-table'),
+        meta: { title: 'noticeTable', icon: 'nested'}
+      },
+
     ]
   },
   // 数据管理
@@ -112,7 +129,7 @@ export const constantRouterMap = [
         path: 'infoChange',
         name: 'infoChange',
         component: () => import('@/views/infoManage/infoChange'),
-        meta: { title: 'infoChange', icon: 'user  ' }
+        meta: { title: 'infoChange', icon: 'user' }
       },
       // 密码修改
       {
@@ -177,60 +194,6 @@ export const constantRouterMap = [
 
 
   },
-  // 公告
-  {
-    path: '/announcement',
-    component: Layout,
-    // redirect: '/dataManage/DiscountFigure',
-    name: 'announcement',
-    meta: {title: 'announcement', icon: 'right-mean'},
-    children: [
-      {
-        path: 'notice-table',
-        name: 'notice-table',
-        component: () => import('@/views/notices-table/notices-table'),
-        meta: { title: 'noticeTable', icon: 'nested'}
-      },
-      {
-        path: 'award-table',
-        name: 'award-table',
-        component: () => import('@/views/award-table/award-table'),
-        meta: {title: 'awardTable', icon: 'ringChart'}
-      },
-      {
-        path: 'commission-publish',
-        name: 'commission-publish',
-        component: () => import('@/views/notices-table/commission-rule/commission-publish.vue'),
-        meta: { title: 'commissionPublish', icon: 'gaugeChart' }
-      },
-    ]
-  },
-  // 佣金奖励
-  {
-    path: '/commisionReward',
-    component: Layout,
-    // redirect: '/dataManage/SaleResultChart',
-
-    name: 'commisionReward',
-    meta: { title: 'commisionReward', icon: 'money' },
-    children: [
-      {
-        path: 'commisionRules',
-        component: () => import('@/views/commisionReward/commisionRules'),
-        name: 'commisionRules',
-        meta: { title: 'commisionRules', icon: 'system' }
-      },
-      // {
-      //   path: 'report',
-      //   component: () => import('@/views/dashboard/dashboard'),
-      //   name: 'report',
-      //   meta: { title: 'report', icon: 'chart' }
-      // },
-      // {
-      //   path:''
-      // }
-    ]
-  },
   // 报表
   {
     path: '/report',
@@ -253,6 +216,45 @@ export const constantRouterMap = [
       },
     ]
   },
+  // 佣金奖励
+  {
+    path: '/commisionReward',
+    component: Layout,
+    // redirect: '/dataManage/SaleResultChart',
+
+    name: 'commision',
+    meta: { title: 'commision', icon: 'money' },
+    children: [
+      {
+        path: 'commisionRules',
+        component: () => import('@/views/commisionReward/commisionRules'),
+        name: 'commisionRules',
+        meta: { title: 'commisionRules', icon: 'system' }
+      },
+      {
+        path: 'award-table',
+        name: 'award-table',
+        component: () => import('@/views/award-table/award-table'),
+        meta: {title: 'awardTable', icon: 'ringChart'}
+      },
+      {
+        path: 'commission-publish',
+        name: 'commission-publish',
+        component: () => import('@/views/notices-table/commission-rule/commission-publish.vue'),
+        meta: { title: 'commissionPublish', icon: 'gaugeChart' }
+      },
+      // {
+      //   path: 'report',
+      //   component: () => import('@/views/dashboard/dashboard'),
+      //   name: 'report',
+      //   meta: { title: 'report', icon: 'chart' }
+      // },
+      // {
+      //   path:''
+      // }
+    ]
+  },
+
   // // 图表
   // {
   //   path: '/charts',

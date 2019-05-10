@@ -12,5 +12,7 @@ export const getLchartData = params => { return axios.get(`${base}/home/lchartda
 
 export const getRchartData = params => { return axios.get(`${base}/home/rchartdata`, { params: params }) }
 
+export const getLbchartData = params => { return axios.get(`${base}/home/lbchartdata`, { params: params }) }
+
 
 

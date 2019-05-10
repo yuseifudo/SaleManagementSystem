@@ -20,16 +20,27 @@ export default {
   name: 'nx-data-card',
   data() {
     return {
-      option:{},
+      span: this.option.span || 6,
+      data: this.option.data || [],
+      colorText: this.option.colorText || '#fff',
+      bgText: this.option.bgText || '#2e323f',
+      borderColor: this.option.borderColor || '#2e323f'
+      /*option:{},
       span: '',
       data: '',
       colorText: '',
       bgText: '',
-      borderColor: ''
+      borderColor: ''*/
     }
   },
   mounted() {
-    this.getHomeSaleData();
+    // this.getHomeSaleData();
+  },
+  props:{
+    option: {
+      type: Object,
+      default: () => {}
+    }
   },
   created() {},
   methods: {

@@ -31,7 +31,7 @@
       </el-table-column>
       <el-table-column prop="num" label="编号" width="60" header-align="center">
       </el-table-column>
-      <el-table-column prop="title" label="公告标题" width="150" header-align="center">
+      <el-table-column prop="title" label="公告标题" width="150" align="center">
       </el-table-column>
       <el-table-column prop="content" label="公告内容" width="480" header-align="center">
       </el-table-column>
@@ -39,7 +39,7 @@
       </el-table-column>
       <el-table-column label="操作" width="180" header-align="center">
         <template slot-scope="scope">
-          <el-button size="small" @click="handleEdit(scope.$index, scope.row)">重新编辑</el-button>
+          <el-button type="success" size="small" @click="handleEdit(scope.$index, scope.row)">重新编辑</el-button>
           <el-button type="danger" size="small" @click="handleDel(scope.$index, scope.row)">删除</el-button>
         </template>
       </el-table-column>

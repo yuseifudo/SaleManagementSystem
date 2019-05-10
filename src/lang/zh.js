@@ -26,12 +26,11 @@ export default {
     salesVolume:'近年销量对比',
     announcement: '公告',
     noticeTable:'公告信息',//公告信息
-    commisionReward: '佣金奖励',
+    commision: '佣金',
     commisionRules:'佣金规则',
     SalesCompareChart:'销售数据对比图',
     commissionPublish:'佣金发布',
     awardTable:'奖励规则',
-    commissionReward: '佣金奖励',
     report: '报表',
     salereport: '销售利润分析图',
     monreport: '月销售报表',

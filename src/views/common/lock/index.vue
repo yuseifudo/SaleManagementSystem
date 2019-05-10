@@ -3,7 +3,7 @@
     <div class="lock-form animated bounceInDown">
       <div class="animated" :class="{'shake':passwdError,'bounceOut':pass}">
         <h3 class="text-white">{{name}}</h3>
-        <el-input  placeholder="请输入登录密码" type="password" class="input-with-select animated" v-model="passwd" @keyup.enter.native="handleLogin">
+        <el-input  placeholder="请输入解锁密码" type="password" class="input-with-select animated" v-model="passwd" @keyup.enter.native="handleLogin">
            <el-button slot="append" @click="handleLogin" style="padding-right:36px;"><svg-icon  class-name='international-icon' icon-class="deblocking"/></el-button>
           <el-button slot="append" @click="handleLogout"><svg-icon class-name='international-icon' icon-class="lockOut"/></el-button>
         </el-input>

@@ -56,7 +56,7 @@
       </el-col>
     </el-row>
 <!--显示套餐详情dialog，默认隐藏，通过查看套餐详情图标，唤醒该dialog,数据显示内容与listItem绑定-->
-    <el-dialog :title="listItem.name+'套餐相关信息'" :visible.sync="detailDialog" :close-on-click-modal="false">
+    <el-dialog :title="listItem.name+'套餐相关信息'" :visible.sync="detailDialog" :close-on-click-modal="false" >
       <el-form :model="listItem"  ref="listItem">
 <!--        每一行显示两个信息，设置为readonly-->
         <el-form-item>
@@ -124,7 +124,7 @@
       </el-form>
     </el-dialog>
 <!--    编辑新增套餐dialog，默认隐藏，通过点击添加按钮或者编辑该套餐按钮，唤醒该dialog,title根据dialogStatus显示 编辑套餐 或者添加套餐-->
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" :close-on-click-modal="false">
+    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" :close-on-click-modal="false"  @close="callOf('addForm')">
       <el-form :model="addForm" label-width="80px" :rules="addFormRules" ref="addForm">
         <el-form-item label="套餐名:" prop="name">
           <el-input v-model="addForm.name" auto-complete="off" placeholder="请输入套餐名称" clearable></el-input>

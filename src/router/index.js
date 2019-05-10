@@ -112,7 +112,7 @@ export const constantRouterMap = [
         path: 'infoChange',
         name: 'infoChange',
         component: () => import('@/views/infoManage/infoChange'),
-        meta: { title: 'infoChange', icon: 'user  ' }
+        meta: { title: 'infoChange', icon: 'user' }
       },
       // 密码修改
       {

@@ -34,14 +34,12 @@
 
           title: {
             text: '福建联通套餐地区销量 （2018）',
-            subtext: '福建联通套餐地区销量 （2018）',
-            sublink: 'www.163.com',
 
             left: 'center',
           },
           tooltip: {
             trigger: 'item',
-            formatter: '{b}<br/>{c} (p / km2)'
+            formatter: '{b}<br/>{c} (件)'
           },
           toolbox: {
             show: true,
@@ -70,7 +68,7 @@
               name: '福建联通套餐地区销量',
               type: 'map',
               mapType: '福建', // 自定义扩展图表类型
-              zoom:2,
+              zoom:1.1,
               roam: true,
               itemStyle:{
                 normal:{label:{show:true}},

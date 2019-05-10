@@ -11,6 +11,7 @@
 </template>
 <script>
   import echarts from 'echarts'
+  import '../../../node_modules/echarts/map/js/china'
   //import resize from '../../components/charts/mixins/resize'
   import '../../../node_modules/echarts/map/js/province/fujian'
 
@@ -24,300 +25,243 @@
       },
       mounted(){
         this.chart = echarts.init(this.$refs.chart)
-        let data = [
-          {name: '福州市', value: 575005},
-          {name: '厦门市', value: 369547},
-          {name: '漳州市', value: 843186},
-          {name: '泉州市', value: 736992},
-          {name: '宁德市', value: 414540},
-          {name: '三明市', value: 518068},
-          {name: '龙岩市', value: 314659},
-          {name: '南平市', value: 623807},
-          {name: '莆田市', value: 181504},
+
+        var name_title = "畅越计划用户分布（全国）"
+        var subname = '单位：万'
+        var nameColor = " rgb(55, 75, 113)"
+        var name_fontFamily = '等线'
+        var subname_fontSize = 15
+        var name_fontSize = 18
+        var mapName = 'china'
+        var data = [
+          {name:"北京",value:177},
+          {name:"天津",value:42},
+          {name:"河北",value:102},
+          {name:"山西",value:81},
+          {name:"内蒙古",value:47},
+          {name:"辽宁",value:67},
+          {name:"吉林",value:82},
+          {name:"黑龙江",value:66},
+          {name:"上海",value:24},
+          {name:"江苏",value:92},
+          {name:"浙江",value:114},
+          {name:"安徽",value:109},
+          {name:"福建",value:116},
+          {name:"江西",value:91},
+          {name:"山东",value:119},
+          {name:"河南",value:137},
+          {name:"湖北",value:116},
+          {name:"湖南",value:114},
+          {name:"重庆",value:91},
+          {name:"四川",value:125},
+          {name:"贵州",value:62},
+          {name:"云南",value:83},
+          {name:"西藏",value:9},
+          {name:"陕西",value:80},
+          {name:"甘肃",value:56},
+          {name:"青海",value:10},
+          {name:"宁夏",value:18},
+          {name:"新疆",value:67},
+          {name:"广东",value:123},
+          {name:"广西",value:59},
+          {name:"海南",value:14},
         ];
 
-        let geoCoordMap = {
-          "福州市": [119.306239, 26.075302],
-          "厦门市": [118.11022, 24.490474],
-          "龙岩市": [117.02978, 25.091603],
-          "泉州市": [118.589421, 24.908853],
-          "漳州市": [117.661801, 24.510897],
-          "南平市": [118.178459, 26.635627],
-          "宁德市": [119.527082, 26.65924],
-          "莆田市": [119.007558, 25.431011],
-          "三明市": [117.635001, 26.265444]
+        var geoCoordMap = {};
+        var toolTipData = [
+          {name:"北京",value:[{name:"畅越冰激凌",value:95},{name:"畅越低消",value:82}]},
+          {name:"天津",value:[{name:"畅越冰激凌",value:22},{name:"畅越低消",value:20}]},
+          {name:"河北",value:[{name:"畅越冰激凌",value:60},{name:"畅越低消",value:42}]},
+          {name:"山西",value:[{name:"畅越冰激凌",value:40},{name:"畅越低消",value:41}]},
+          {name:"内蒙古",value:[{name:"畅越冰激凌",value:23},{name:"畅越低消",value:24}]},
+          {name:"辽宁",value:[{name:"畅越冰激凌",value:39},{name:"畅越低消",value:28}]},
+          {name:"吉林",value:[{name:"畅越冰激凌",value:41},{name:"畅越低消",value:41}]},
+          {name:"黑龙江",value:[{name:"畅越冰激凌",value:35},{name:"畅越低消",value:31}]},
+          {name:"上海",value:[{name:"畅越冰激凌",value:12},{name:"畅越低消",value:12}]},
+          {name:"江苏",value:[{name:"畅越冰激凌",value:47},{name:"畅越低消",value:45}]},
+          {name:"浙江",value:[{name:"畅越冰激凌",value:57},{name:"畅越低消",value:57}]},
+          {name:"安徽",value:[{name:"畅越冰激凌",value:57},{name:"畅越低消",value:52}]},
+          {name:"福建",value:[{name:"畅越冰激凌",value:59},{name:"畅越低消",value:57}]},
+          {name:"江西",value:[{name:"畅越冰激凌",value:49},{name:"畅越低消",value:42}]},
+          {name:"山东",value:[{name:"畅越冰激凌",value:67},{name:"畅越低消",value:52}]},
+          {name:"河南",value:[{name:"畅越冰激凌",value:69},{name:"畅越低消",value:68}]},
+          {name:"湖北",value:[{name:"畅越冰激凌",value:60},{name:"畅越低消",value:56}]},
+          {name:"湖南",value:[{name:"畅越冰激凌",value:62},{name:"畅越低消",value:52}]},
+          {name:"重庆",value:[{name:"畅越冰激凌",value:47},{name:"畅越低消",value:44}]},
+          {name:"四川",value:[{name:"畅越冰激凌",value:65},{name:"畅越低消",value:60}]},
+          {name:"贵州",value:[{name:"畅越冰激凌",value:32},{name:"畅越低消",value:30}]},
+          {name:"云南",value:[{name:"畅越冰激凌",value:42},{name:"畅越低消",value:41}]},
+          {name:"西藏",value:[{name:"畅越冰激凌",value:5},{name:"畅越低消",value:4}]},
+          {name:"陕西",value:[{name:"畅越冰激凌",value:38},{name:"畅越低消",value:42}]},
+          {name:"甘肃",value:[{name:"畅越冰激凌",value:28},{name:"畅越低消",value:28}]},
+          {name:"青海",value:[{name:"畅越冰激凌",value:5},{name:"畅越低消",value:5}]},
+          {name:"宁夏",value:[{name:"畅越冰激凌",value:10},{name:"畅越低消",value:8}]},
+          {name:"新疆",value:[{name:"畅越冰激凌",value:36},{name:"畅越低消",value:31}]},
+          {name:"广东",value:[{name:"畅越冰激凌",value:63},{name:"畅越低消",value:60}]},
+          {name:"广西",value:[{name:"畅越冰激凌",value:29},{name:"畅越低消",value:30}]},
+          {name:"海南",value:[{name:"畅越冰激凌",value:8},{name:"畅越低消",value:6}]},
+        ];
 
-        };
+        /*获取地图数据*/
+        this.chart.showLoading();
+        var mapFeatures = echarts.getMap(mapName).geoJson.features;
+        this.chart.hideLoading();
+        mapFeatures.forEach(function(v) {
+          // 地区名称
+          var name = v.properties.name;
+          // 地区经纬度
+          geoCoordMap[name] = v.properties.cp;
 
-        let convertData = function(data) {
-          let res = [];
-          for (let i = 0; i < data.length; i++) {
-            let geoCoord = geoCoordMap[data[i].name];
+        });
+        console.log(data)
+        console.log(toolTipData)
+        var max = 480,
+          min = 9; // todo
+        var maxSize4Pin = 100,
+          minSize4Pin = 20;
+
+        var convertData = function(data) {
+          var res = [];
+          for (var i = 0; i < data.length; i++) {
+            var geoCoord = geoCoordMap[data[i].name];
             if (geoCoord) {
               res.push({
                 name: data[i].name,
-                value: geoCoord.concat(data[i].value)
+                value: geoCoord.concat(data[i].value),
               });
             }
           }
           return res;
-
         };
-        let convertedData = [
-          convertData(data),
-          convertData(data.sort(function(a, b) {
-            return b.value - a.value;
-          }).slice(0, 6))
-        ];
-        data.sort(function(a, b) {
-          return a.value - b.value;
-        })
-
-        //let selectedItems = [];
-        let categoryData = [];
-        let barData = [];
-//   let maxBar = 30;
-        let sum = 0;
-        let count = data.length;
-        for (let i = 0; i < data.length; i++) {
-          categoryData.push(data[i].name);
-          barData.push(data[i].value);
-          sum += data[i].value;
-        }
-        console.log(categoryData);
-        console.log(sum + "   " + count)
-
-        function renderBrushed(params) {
-          let mainSeries = params.batch[0].selected[0];
-
-          let selectedItems = [];
-          let categoryData = [];
-          let barData = [];
-          let maxBar = 30;
-          let sum = 0;
-          let count = 0;
-
-          for (let i = 0; i < mainSeries.dataIndex.length; i++) {
-            let rawIndex = mainSeries.dataIndex[i];
-            let dataItem = convertedData[0][rawIndex];
-            let pmValue = dataItem.value[2];
-
-            sum += pmValue;
-            count++;
-
-            selectedItems.push(dataItem);
-          }
-
-          selectedItems.sort(function(a, b) {
-            //   return b.value[2] - a.value[2];
-            return a.value - b.value;
-          });
-
-          for (let i = 0; i < Math.min(selectedItems.length, maxBar); i++) {
-            categoryData.push(selectedItems[i].name);
-            barData.push(selectedItems[i].value[2]);
-          }
-
-          this.setOption({
-            yAxis: {
-              data: categoryData
-            },
-            xAxis: {
-              axisLabel: {
-                show: !!count
-              }
-            },
-            title: {
-              id: 'statistic',
-              text: count ? '平均: ' + (sum / count).toFixed(4) : ''
-            },
-            series: {
-              id: 'bar',
-              //        sort:'descending',
-              data: barData
-            }
-          });
-        }
         let option = {
-          backgroundColor: '#37474f',
-          animation: true,
-          animationDuration: 1000,
-          animationEasing: 'cubicInOut',
-          animationDurationUpdate: 1000,
-          animationEasingUpdate: 'cubicInOut',
-          title: [{
-            text: '福建联通各地市用户人群分布情况',
-            link: 'http://pages.anjuke.com/expert/newexpert.html',
-            subtext: 'data from fujian',
-            sublink: 'http://pages.anjuke.com/expert/newexpert.html',
-            left: 'center',
+          title: {
+            text: name_title,
+            subtext: subname,
+            x: 'center',
             textStyle: {
-              color: '#fff'
+              color: nameColor,
+              fontFamily: name_fontFamily,
+              fontSize: name_fontSize
+            },
+            subtextStyle:{
+              fontSize:subname_fontSize,
+              fontFamily:name_fontFamily
             }
-          }, {
-            id: 'statistic',
-            text: count ? '用户人数: ' + parseInt((sum / count).toFixed(4)) : '',
-            right: 120,
-            top: 40,
-            width: 100,
-            textStyle: {
-              color: '#fff',
-              fontSize: 16
-            }
-          }],
-          toolbox: {
-            show: true,
-            orient: 'vertical',
-            left: 'left',
-            top: 'center',
-            feature: {
-              dataView: {readOnly: false},
-              restore: {},
-              saveAsImage: {}
-            },
-            iconStyle: {
-              normal: {
-                borderColor: '#fff'
-              },
-              emphasis: {
-                borderColor: '#b1e4ff'
-              }
-            },
-            feature: {
-              dataZoom: {},
-              brush: {
-                type: ['rect', 'polygon', 'clear']
-              },
-              saveAsImage: {
-                show: true
-              }
-            }
-          },
-          brush: {
-            outOfBrush: {
-              color: '#abc'
-            },
-            brushStyle: {
-              borderWidth: 1,
-              color: 'rgba(0,0,0,0.2)',
-              borderColor: 'rgba(0,0,0,0.5)',
-            },
-            seriesIndex: [0, 1],
-            throttleType: 'debounce',
-            throttleDelay: 300,
-            geoIndex: 0
-          },
-          geo: {
-            map: '福建',
-            left: '10',
-            right: '35%',
-             center: [117.635001, 26.265444],
-            zoom: 0.7,
-            label: {
-              emphasis: {
-                show: false
-              }
-            },
-            roam: true,
-
-            itemStyle: {
-              normal: {
-                borderColor: 'rgba(147, 235, 248, 1)',
-                borderWidth: 1,
-                areaColor: {
-                  type: 'radial',
-                  x: 0.5,
-                  y: 0.5,
-                  r: 0.8,
-                  colorStops: [{
-                    offset: 0,
-                    color: 'rgba(147, 235, 248, 0)' // 0% 处的颜色
-                  }, {
-                    offset: 1,
-                    color: 'rgba(147, 235, 248, .2)' // 100% 处的颜色
-                  }],
-                  globalCoord: false // 缺省为 false
-                },
-                shadowColor: 'rgba(128, 217, 248, 1)',
-                // shadowColor: 'rgba(255, 255, 255, 1)',
-                shadowOffsetX: -2,
-                shadowOffsetY: 2,
-                shadowBlur: 10
-              },
-              emphasis: {
-                areaColor: '#389BB7',
-                borderWidth: 0
-              }
-            },
           },
           tooltip: {
             trigger: 'item',
-            formatter:"{b}：{c}"
-          },
-          grid: {
-            right: 40,
-            top: 100,
-            bottom: 40,
-            width: '30%'
-          },
-          xAxis: {
-            type: 'value',
-            scale: true,
-            position: 'top',
-            boundaryGap: false,
-            splitLine: {
-              show: false
-            },
-            axisLine: {
-              show: false
-            },
-            axisTick: {
-              show: false
-            },
-            axisLabel: {
-              margin: 2,
-              textStyle: {
-                color: '#aaa'
+            formatter: function(params) {
+              if (typeof(params.value)[2] == "undefined") {
+                var toolTiphtml = ''
+                for(var i = 0;i<toolTipData.length;i++){
+                  if(params.name==toolTipData[i].name){
+                    toolTiphtml += toolTipData[i].name+':<br>'
+                    for(var j = 0;j<toolTipData[i].value.length;j++){
+                      toolTiphtml+=toolTipData[i].value[j].name+':'+toolTipData[i].value[j].value+"<br>"
+                    }
+                  }
+                }
+                console.log(toolTiphtml)
+                // console.log(convertData(data))
+                return toolTiphtml;
+              } else {
+                var toolTiphtml = ''
+                for(var i = 0;i<toolTipData.length;i++){
+                  if(params.name==toolTipData[i].name){
+                    toolTiphtml += toolTipData[i].name+':<br>'
+                    for(var j = 0;j<toolTipData[i].value.length;j++){
+                      toolTiphtml+=toolTipData[i].value[j].name+':'+toolTipData[i].value[j].value+"<br>"
+                    }
+                  }
+                }
+                console.log(toolTiphtml)
+                // console.log(convertData(data))
+                return toolTiphtml;
               }
-            },
+            }
           },
-          yAxis: {
-            type: 'category',
-            //  name: 'TOP 20',
-            nameGap: 16,
-            axisLine: {
+          legend: {
+              orient: 'vertical',
+              y: 'bottom',
+              x: 'right',
+              data: ['credit_pm2.5'],
+              textStyle: {
+                  color: '#fff'
+              }
+          },
+          visualMap: {
+            show: true,
+            min: 0,
+            max: 200,
+            left: 'left',
+            top: 'bottom',
+            text: ['高', '低'], // 文本，默认为数值文本
+            calculable: true,
+            seriesIndex: [1],
+            inRange: {
+              // color: ['#3B5077', '#031525'] // 蓝黑
+              // color: ['#ffc0cb', '#800080'] // 红紫
+              // color: ['#3C3B3F', '#605C3C'] // 黑绿
+              // color: ['#0f0c29', '#302b63', '#24243e'] // 黑紫黑
+              // color: ['#23074d', '#cc5333'] // 紫红
+              color: ['#00467F', '#A5CC82'] // 蓝绿
+              // color: ['#1488CC', '#2B32B2'] // 浅蓝
+              // color: ['#00467F', '#A5CC82'] // 蓝绿
+              // color: ['#00467F', '#A5CC82'] // 蓝绿
+              // color: ['#00467F', '#A5CC82'] // 蓝绿
+              // color: ['#00467F', '#A5CC82'] // 蓝绿
+
+            }
+          },
+          /*工具按钮组*/
+          toolbox: {
               show: true,
-              lineStyle: {
-                color: '#ddd'
+              orient: 'horizontal',
+              left: 'right',
+              top: 'top',
+              feature: {
+                  dataView: {
+                      readOnly: false
+                  },
+                  restore: {},
+                  saveAsImage: {}
+              }
+          },
+          geo: {
+            show: true,
+            map: mapName,
+            label: {
+              normal: {
+                show: false
+              },
+              emphasis: {
+                show: false,
               }
             },
-            axisTick: {
-              show: false,
-              lineStyle: {
-                color: '#ddd'
+            roam: true,
+            itemStyle: {
+              normal: {
+                areaColor: '#031525',
+                borderColor: '#3B5077',
+              },
+              emphasis: {
+                areaColor: '#2B91B7',
               }
-            },
-            axisLabel: {
-              interval: 0,
-              textStyle: {
-                color: '#ddd'
-              }
-            },
-            data: categoryData
+            }
           },
           series: [{
-
+            name: '散点',
             type: 'scatter',
             coordinateSystem: 'geo',
-            data: convertedData[0],
+            data: convertData(data),
             symbolSize: function(val) {
-              return Math.max(val[2] / 6000, 8);
+              return val[2] / 10;
             },
             label: {
               normal: {
                 formatter: '{b}',
                 position: 'right',
-                show: false
+                show: true
               },
               emphasis: {
                 show: true
@@ -325,51 +269,101 @@
             },
             itemStyle: {
               normal: {
-                color: '#dd5627',
-                position: 'right',
-                show: true
+                color: '#05C3F9'
               }
             }
-          }, {
-            //  name: 'Top 5',
-            type: 'effectScatter',
-            coordinateSystem: 'geo',
-            data: convertedData[0],
-            symbolSize: function(val) {
-              return Math.max(val[2] / 13000, 8);
+          },
+            {
+              type: 'map',
+              map: mapName,
+              geoIndex: 0,
+              aspectScale: 0.75, //长宽比
+              showLegendSymbol: false, // 存在legend时显示
+              label: {
+                normal: {
+                  show: true
+                },
+                emphasis: {
+                  show: false,
+                  textStyle: {
+                    color: '#fff'
+                  }
+                }
+              },
+              roam: true,
+              itemStyle: {
+                normal: {
+                  areaColor: '#031525',
+                  borderColor: '#3B5077',
+                },
+                emphasis: {
+                  areaColor: '#2B91B7'
+                }
+              },
+              animation: false,
+              data: data
             },
-            showEffectOn: 'render',
-            rippleEffect: {
-              brushType: 'stroke'
+            {
+              name: '点',
+              type: 'scatter',
+              coordinateSystem: 'geo',
+              symbol: 'pin', //气泡
+              symbolSize: function(val) {
+                var a = (maxSize4Pin - minSize4Pin) / (max - min);
+                var b = minSize4Pin - a * min;
+                b = maxSize4Pin - a * max;
+                return a * val[2] + b;
+              },
+              label: {
+                normal: {
+                  show: true,
+                  textStyle: {
+                    color: '#fff',
+                    fontSize: 9,
+                  }
+                }
+              },
+              itemStyle: {
+                normal: {
+                  color: '#F62157', //标志颜色
+                }
+              },
+              zlevel: 6,
+              data: convertData(data),
             },
-            hoverAnimation: true,
-            label: {
-              normal: {
-                formatter: '{b}',
-                position: 'right',
-                show: true
-              }
-            },
-            itemStyle: {
-              normal: {
-                color: '#f4e925',
-              }
-            },
-            zlevel: 1
-          }, {
-            id: 'bar',
-            zlevel: 2,
-            type: 'bar',
-            symbol: 'none',
-            barWidth : 20,
-            itemStyle: {
-              normal: {
-                color: '#dd5627'
-              }
+            {
+              name: 'Top 5',
+              type: 'effectScatter',
+              coordinateSystem: 'geo',
+              data: convertData(data.sort(function(a, b) {
+                return b.value - a.value;
+              }).slice(0, 5)),
+              symbolSize: function(val) {
+                return val[2] / 10;
+              },
+              showEffectOn: 'render',
+              rippleEffect: {
+                brushType: 'stroke'
+              },
+              hoverAnimation: true,
+              label: {
+                normal: {
+                  formatter: '{b}',
+                  position: 'right',
+                  show: true
+                }
+              },
+              itemStyle: {
+                normal: {
+                  color: 'yellow',
+                  shadowBlur: 10,
+                  shadowColor: 'yellow'
+                }
+              },
+              zlevel: 1
             },
 
-            data: data
-          }]
+          ]
         };
         this.chart.setOption(option)
       }

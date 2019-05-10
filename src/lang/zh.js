@@ -20,9 +20,9 @@ export default {
     AdminManage:'管理员信息',
     dataCharts: '图表',
     dataMap: '地图',
-    branchAddress:'各地市分公司驻点',
-    userAddress:'各地市用户数',
-    salesVolumeHeat:'地区销量热力图',
+    FJbranchAddress:'福建省地市分公司驻点',
+    CYuserAddress:'畅越计划用户分布',
+    FJsalesVolumeHeat:'福建省销量热力图',
     salesVolume:'近年销量对比',
     announcement: '公告',
     noticeTable:'公告信息',//公告信息

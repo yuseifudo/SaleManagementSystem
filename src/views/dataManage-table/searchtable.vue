@@ -18,7 +18,7 @@
         <!--<el-input v-model="filters.grade" placeholder="销售级别"></el-input>-->
         <!--</el-form-item>-->
 				<el-form-item>
-					<el-button type="primary" v-on:click="getUser">查询</el-button>
+					<el-button type="primary" v-on:click="getUsers">查询</el-button>
 				</el-form-item>
 			</el-form>
 		</el-col>
@@ -37,7 +37,7 @@
 			</el-table-column>
 			<el-table-column prop="addr" label="地址" min-width="190">
 			</el-table-column>
-      <el-table-column prop="grade" label="销售级别" sortable min-width="150">
+      <el-table-column prop="grade" label="入网时间" sortable min-width="150">
       </el-table-column>
 		</el-table>
 

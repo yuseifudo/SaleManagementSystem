@@ -54,12 +54,12 @@
 		<!--工具条-->
 		<el-col :span="24" class="toolbar">
 			<!--<el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>-->
-			<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">
+			<el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">
 			</el-pagination>
 		</el-col>
 
 		<!--编辑界面-->
-		<el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" :close-on-click-modal="false">
+		<el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" @close="callOf('editForm')">
 			<el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
 				<el-form-item label="姓名" prop="name" >
 					<el-input v-model="editForm.name" auto-complete="off" ></el-input>
@@ -84,7 +84,7 @@
 				</el-form-item>
 			</el-form>
 			<div slot="footer" class="dialog-footer">
-			 <el-button @click.native="dialogFormVisible=false">取消</el-button>
+			 <el-button @click="callof('editForm')">取消</el-button>
 			  <el-button v-if="dialogStatus=='create'" type="primary" @click="createData">添加</el-button>
         <el-button v-else type="primary" @click="updateData">修改</el-button>
 			</div>
@@ -143,6 +143,11 @@ export default {
     }
   },
   methods: {
+    //模态框取消方法，关闭后清除提示
+    callOf(editForm){
+      this.dialogFormVisible = false;
+      this.$refs[editForm].resetFields();
+    },
     // 性别显示转换
     formatSex: function(row, column) {
       return row.sex == 1 ? '男' : row.sex == 0 ? '女' : '未知'
@@ -174,6 +179,9 @@ export default {
               message: '删除成功',
               type: 'success'
             })
+            if((this.admins.length-1)==0){
+              this.page = this.page - 1
+            }
             this.getAdmins()
           })
         })
@@ -263,6 +271,7 @@ export default {
             })
         }
       })
+      this.filters.name=''
     },
     // 全选单选多选
     selsChange(sels) {
@@ -281,6 +290,9 @@ export default {
               message: '删除成功',
               type: 'success'
             })
+            if((this.admins.length-this.sels.length)==0 && this.page!=1){
+              this.page = this.page-1
+            }
             this.getAdmins()
           })
         })

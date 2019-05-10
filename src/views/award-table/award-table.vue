@@ -59,13 +59,13 @@
         <el-form-item label="奖励规则标题" prop="title">
           <el-input v-model="editForm.title" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="奖励规则内容">
+        <el-form-item label="奖励规则内容" prop="content">
           <el-input type="textarea" v-model="editForm.content"auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
 
       <div slot="footer" class="dialog-footer">
-        <el-button @click.native="dialogFormVisible=false">取消</el-button>
+        <el-button @click="callOf('editForm')">取消</el-button>
         <el-button v-if="dialogStatus=='create'" type="primary" @click="createData">确认发布</el-button>
         <el-button v-else type="primary" @click="updateData">确认修改</el-button>
       </div>
@@ -100,7 +100,12 @@
         page: 1,
         sels: [], // 列表选中列
         editFormRules: {
-          name: [{ required: true, message: '请输入姓名', trigger: 'blur' }]
+          title: [
+            { required: true, message: '请输入公告标题', trigger: 'blur'}
+          ],
+          content: [
+            { required: true, message: '请输入公告内容', trigger: 'blur'}
+          ]
         },
         // 编辑界面数据
         editForm: {
@@ -117,6 +122,11 @@
       }
     },
     methods: {
+      //模态框取消方法，关闭后清除提示
+      callOf(editForm){
+        this.dialogFormVisible = false;
+        this.$refs[editForm].resetFields();
+      },
       handleCurrentChange(val) {
         this.page = val
         this.getAward()

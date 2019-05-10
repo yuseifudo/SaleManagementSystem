@@ -92,7 +92,7 @@ export const constantRouterMap = [
     component: Layout,
 
     redirect: '/infoManage/packageManage',
-    name: 'infoManage',
+    name: '信息管理',
     meta: {title: 'infoManage', icon: 'tree'},
     children: [
       {
@@ -112,7 +112,7 @@ export const constantRouterMap = [
         path: 'infoChange',
         name: 'infoChange',
         component: () => import('@/views/infoManage/infoChange'),
-        meta: { title: 'infoChange', icon: 'user  ' }
+        meta: { title: 'infoChange', icon: 'user' }
       },
       // 密码修改
       {

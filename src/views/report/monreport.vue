@@ -5,8 +5,8 @@
       <el-button id='button' type="primary" @click="exportExcel">导出<i class="el-icon-upload el-icon--right"></i></el-button>
     </div>
     <el-table id="out-table" :data="tempList" border :summary-method="getSummaries"  show-summary style="width: 100%">
-    <el-table-column prop="id" label="ID" width="180"></el-table-column>
-    <el-table-column prop="time" sortable label="时间"></el-table-column>
+    <el-table-column prop="id" label="编号" width="150" align="center"></el-table-column>
+    <el-table-column prop="time" sortable label="日期" align="center"></el-table-column>
     <el-table-column align="center" prop="amount1" sortable label="天王卡销售额（元）">
       <template slot-scope="scope">
         <el-tag

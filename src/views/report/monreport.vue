@@ -1,12 +1,16 @@
 <template>
   <div class="block">
-  <el-table :data="tempList" border :summary-method="getSummaries"  show-summary style="width: 100%">
+    <div id="title">
+      <span>福州营业厅月销售报表</span>
+      <el-button id='button' type="primary" @click="exportExcel">导出<i class="el-icon-upload el-icon--right"></i></el-button>
+    </div>
+    <el-table id="out-table" :data="tempList" border :summary-method="getSummaries"  show-summary style="width: 100%">
     <el-table-column prop="id" label="ID" width="180"></el-table-column>
     <el-table-column prop="time" sortable label="时间"></el-table-column>
-    <el-table-column prop="amount1" sortable label="套餐1销售额（元）"></el-table-column>
-    <el-table-column prop="amount2" sortable label="套餐2销售额（元）"></el-table-column>
-    <el-table-column prop="amount3" sortable label="套餐3销售额（元）"></el-table-column>
-    <el-table-column prop="amount4" sortable label="套餐4销售额（元）"></el-table-column>
+    <el-table-column prop="amount1" sortable label="天王卡销售额（元）"></el-table-column>
+    <el-table-column prop="amount2" sortable label="帝王卡销售额（元）"></el-table-column>
+    <el-table-column prop="amount3" sortable label="大冰神卡销售额（元）"></el-table-column>
+    <el-table-column prop="amount4" sortable label="小冰神卡销售额（元）"></el-table-column>
   </el-table>
       <el-pagination
         @size-change="handleSizeChange"
@@ -25,6 +29,8 @@
 
 <script>
   import {getUserList} from '@/api/monreportTable'
+  import FileSaver from 'file-saver'
+  import XLSX from 'xlsx'
   export default {
     data() {
       return {
@@ -40,6 +46,18 @@
       this.getUsers()
     },
     methods: {
+
+      exportExcel () {
+        /* generate workbook object from table */
+        var wb = XLSX.utils.table_to_book(document.querySelector('#out-table'))
+        /* get binary string as output */
+        var wbout = XLSX.write(wb, { bookType: 'xlsx', bookSST: true, type: 'array' })
+        try {
+          FileSaver.saveAs(new Blob([wbout], { type: 'application/octet-stream' }), '福州营业厅月销售报表.xlsx')
+        } catch (e) { if (typeof console !== 'undefined') console.log(e, wbout) }
+        return wbout
+      },
+
       // 获取用户列表
       getUsers() {
         getUserList().then(res => {
@@ -97,3 +115,20 @@
     }
   };
 </script>
+<style>
+  #title{
+  text-align: center;
+  }
+  #button{
+    float: right;
+    margin:5px 25px 5px ;
+
+  }
+  #title >span{
+    font-size: 20px;
+    color: #333;
+    line-height: 40px;
+    font-weight: 700;
+  }
+
+</style>

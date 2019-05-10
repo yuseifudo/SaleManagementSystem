@@ -39,7 +39,7 @@ export default {
     packageManage: '套餐管理',
     infoChange: '个人信息修改',
     ChangePassword: '密码修改',
-    searchtable: '销售人员信息查询',
+    searchtable: '用户信息查询',
     // AliIcons: '阿里图标',
     // contextmenu: '右键菜单',
     // simple: '基础',

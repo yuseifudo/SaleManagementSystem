@@ -40,7 +40,7 @@ export default {
 
     const mockList = List.filter(salesman => {
       if (name && salesman.name.indexOf(name) === -1) return false
-      if (num && salesman.num != num) return false12
+      if (num && salesman.num != num) return false
 
       return true
     })

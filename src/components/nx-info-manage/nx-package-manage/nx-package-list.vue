@@ -244,7 +244,7 @@ export default {
         startTime: [
           { type: 'string', required: true, message: '请选择套餐的开始时间', trigger: 'blur' }
         ],
-        endTime: [{ type: 'string', required: true, message: '请选择套餐的结束时间', trigger: 'change' }],
+        endTime: [{ type: 'string', required: true, message: '请选择套餐的结束时间', trigger: 'blur' }],
       },
       startTime: {// 设置套餐开始时间只能选择大于当前日期并且小于结束日期
         disabledDate: time => {

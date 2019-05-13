@@ -73,7 +73,7 @@
     <!--工具条-->
     <el-col :span="24" class="toolbar">
 
-    <el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">
+    <el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="10" :total="total" style="float:right;">
     </el-pagination>
     </el-col>
 
@@ -161,7 +161,7 @@
       </div>
     </el-dialog>
     <!--编辑界面和新增加界面-->
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" :close-on-click-modal="false">
+    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" @close="callOf('editForm')">
     <el-form :model="editForm" label-width="100px" :rules="editFormRules" ref="editForm" style="padding-left: 50px">
     <el-form-item label="姓名" prop="name" style="width: 600px">
       <el-input v-model="editForm.name" auto-complete="off"></el-input>

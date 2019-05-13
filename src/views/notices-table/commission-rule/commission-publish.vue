@@ -44,17 +44,17 @@
 		</el-col>
 
 		<!--编辑界面-->
-		<el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" :close-on-click-modal="false">
-			<el-form :model="editForm" label-width="80px"  ref="editForm">
+		<el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" @close="callOf('editForm')">
+			<el-form :model="editForm" label-width="80px"  :rules="editFormRules" ref="editForm">
 				<el-form-item label="标题" prop="title">
 					<el-input v-model="editForm.title" ></el-input>
 				</el-form-item>
-				<el-form-item label="内容">
+				<el-form-item label="内容" prop="content">
 					<el-input type="textarea" v-model="editForm.content"></el-input>
 				</el-form-item>
 			</el-form>
 			<div slot="footer" class="dialog-footer">
-			 <el-button @click.native="dialogFormVisible=false">取消</el-button>
+			 <el-button @click="callOf('editForm')">取消</el-button>
 			  <el-button v-if="dialogStatus=='create'" type="primary" @click="createData">添加</el-button>
         <el-button v-else type="primary" @click="updateData">修改</el-button>
 			</div>
@@ -88,6 +88,11 @@ export default {
       total: 0,
       page: 1,
       sels: [], // 列表选中列
+      editFormRules: {
+        title: [{ required: true, message: '请输入标题', trigger: 'blur' }],
+        content: [{ required: true, message: '请输入内容', trigger: 'blur' }]
+      },
+      //编辑页面数据
       editForm: {
         id: '0',
         title: '',
@@ -98,6 +103,10 @@ export default {
     }
   },
   methods: {
+    callOf(editForm){
+      this.dialogFormVisible = false;
+      this.$refs[editForm].resetFields();
+    },
 
     handleCurrentChange(val) {
       this.page = val
@@ -127,6 +136,9 @@ export default {
               message: '删除成功',
               type: 'success'
             })
+            if((this.users.length-1)==0){
+              this.page = this.page - 1
+            }
             this.getUsers()
           })
         })
@@ -218,6 +230,9 @@ export default {
               message: '删除成功',
               type: 'success'
             })
+            if((this.users.length-this.sels.length)==0 && this.page!=1){
+              this.page = this.page-1
+            }
             this.getUsers()
           })
         })

@@ -47,25 +47,25 @@
     <!--工具条-->
     <el-col :span="24" class="toolbar">
       <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">删除所选</el-button>
-      <el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="5" :total="total" style="float:right;">
+      <el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="5" :total="total" style="float:right;">
       </el-pagination>
     </el-col>
 
     <!--编辑界面-->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible"
-               :close-on-click-modal="false" center>
+               @close="callOf('editForm')" center>
 
       <el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
         <el-form-item label="奖励规则标题" prop="title">
           <el-input v-model="editForm.title" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="奖励规则内容">
+        <el-form-item label="奖励规则内容" prop="content">
           <el-input type="textarea" v-model="editForm.content"auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
 
       <div slot="footer" class="dialog-footer">
-        <el-button @click.native="dialogFormVisible=false">取消</el-button>
+        <el-button @click="callOf('editForm')">取消</el-button>
         <el-button v-if="dialogStatus=='create'" type="primary" @click="createData">确认发布</el-button>
         <el-button v-else type="primary" @click="updateData">确认修改</el-button>
       </div>
@@ -100,7 +100,8 @@
         page: 1,
         sels: [], // 列表选中列
         editFormRules: {
-          name: [{ required: true, message: '请输入姓名', trigger: 'blur' }]
+          title: [{ required: true, message: '请输入奖励规则标题', trigger: 'blur' }],
+          content: [{ required: true, message: '请输入奖励规则内容', trigger: 'blur' }]
         },
         // 编辑界面数据
         editForm: {
@@ -117,6 +118,11 @@
       }
     },
     methods: {
+      //模态框取消方法，关闭后清除提示
+      callOf(editForm){
+        this.dialogFormVisible = false;
+        this.$refs[editForm].resetFields();
+      },
       handleCurrentChange(val) {
         this.page = val
         this.getAward()

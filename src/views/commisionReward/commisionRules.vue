@@ -74,7 +74,7 @@
     </el-col>
 
     <!--编辑界面-->
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" :close-on-click-modal="false">
+    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" @close="callOf('editForm')">
       <el-form :model="editForm" label-width="100px" :rules="rules" ref="editForm">
         <el-form-item label="套餐名称" prop="name">
           <el-input v-model="editForm.name" auto-complete="off"></el-input>
@@ -101,7 +101,7 @@
 
       <!--编辑界面按钮-->
       <div slot="footer" class="dialog-footer">
-        <el-button @click.native="dialogFormVisible=false">取消</el-button>
+        <el-button @click="callOf('editForm')">取消</el-button>
         <el-button v-if="dialogStatus=='create'" type="primary" @click="createData">添加</el-button>
         <el-button v-else type="primary" @click="updateData">修改</el-button>
       </div>
@@ -162,7 +162,11 @@
     },
 
     methods: {
-
+//模态框取消方法，关闭后清除提示
+      callOf(editForm){
+        this.dialogFormVisible = false;
+        this.$refs[editForm].resetFields();
+      },
       // 获取套餐列表
       getTaocans() {
         const para = {
@@ -314,6 +318,9 @@
                 message: '删除成功',
                 type: 'success'
               })
+              if((this.list.length-1)==0){
+                this.currentPage = this.currentPage - 1
+              }
               this.getTaocans()
             })
           })
@@ -334,6 +341,9 @@
                 message: '删除成功',
                 type: 'success'
               })
+              if((this.list.length-this.sels.length)==0 && this.currentPage!=1){
+                this.currentPage = this.currentPage-1
+              }
               this.getTaocans()
             })
           })

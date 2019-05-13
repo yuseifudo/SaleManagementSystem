@@ -156,7 +156,7 @@
             }
           }, {
             id: 'statistic',
-            text: count ? '套餐销量(件): ' + parseInt(sum.toFixed(4)) : '',
+            text: count ? '营销人员总数: ' + parseInt(sum.toFixed(4)) : '',
             right: 120,
             top: 40,
             width: 100,

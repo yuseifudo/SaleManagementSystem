@@ -2,7 +2,7 @@ import Mock from 'mockjs'
 import { param2Obj } from '@/utils'
 
 let List = []
-const count = 50
+const count = 60
 
 for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
@@ -13,16 +13,18 @@ for (let i = 0; i < count; i++) {
     sex: Mock.Random.integer(0, 1),
     'age|22-50': 30,
     tel:Mock.mock(/^1[3875][1-9]\d{8}/),
-    email: Mock.mock('@email')
+    email: Mock.mock('@email'),
+    'role|1': [{id:1,roleName:'普通管理员'},{id:2,roleName:'超级管理员'},{id:3,roleName:'网格管理员'},{id:4,roleName:'市分管理员'},{id:5,roleName:'省分管理员'},{id:6,roleName:'集团管理员'}]
   }))
 }
 
 export default {
   getAdminList: config => {
-    const { name, page = 1, limit = 20 } = param2Obj(config.url)
-
+    const { name,loginName,tel, page = 1, limit = 20 } = param2Obj(config.url)
     const mockList = List.filter(admin => {
       if (name && admin.name.indexOf(name) === -1) return false
+      if (loginName && admin.loginName.indexOf(loginName) === -1) return false
+      if (tel && admin.tel.indexOf(tel) === -1) return false
       return true
     })
 
@@ -37,7 +39,8 @@ export default {
     }
   },
   createAdmin: config => {
-    const { id,adminId,name,loginName, age, sex,tel,email } = param2Obj(config.url)
+    const { id,adminId,name,loginName, age, sex,tel,email,role } = param2Obj(config.url)
+    const roles=[{id:1,roleName:'普通管理员'},{id:2,roleName:'超级管理员'},{id:3,roleName:'网格管理员'},{id:4,roleName:'市分管理员'},{id:5,roleName:'省分管理员'},{id:6,roleName:'集团管理员'}]
     // console.log('66')
     List.push({
       id: id,
@@ -47,7 +50,8 @@ export default {
       age: age,
       sex: sex,
       tel:tel,
-      email:email
+      email:email,
+      role:roles[role-1]
     })
     return {
       code: 0,
@@ -79,7 +83,8 @@ export default {
     }
   },
   updateAdmin: config => {
-    const { id, adminId, name, loginName, age, sex, tel, email } = param2Obj(config.url)
+    const { id, adminId, name, loginName, age, sex, tel, email,role } = param2Obj(config.url)
+    const roles=[{id:1,roleName:'普通管理员'},{id:2,roleName:'超级管理员'},{id:3,roleName:'网格管理员'},{id:4,roleName:'市分管理员'},{id:5,roleName:'省分管理员'},{id:6,roleName:'集团管理员'}]
     const sex_num = parseInt(sex)
     List.some(a => {
       if (a.id === id) {
@@ -90,6 +95,7 @@ export default {
         a.sex = sex_num
         a.tel = tel
         a.email = email
+        a.role=roles[role-1]
         return true
       }
     })

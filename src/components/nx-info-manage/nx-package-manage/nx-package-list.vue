@@ -289,13 +289,13 @@ export default {
       fetchList().then((res)=>{
         if (res.code==0){
           this.packageLists=res.data;
-          let maxIndex=0;
-          for(let i=0;i<this.packageLists.length;i++){
-            if (this.packageLists[i].number>this.packageLists[maxIndex].number){
-              maxIndex=i;
-            }
-          }// 获取销量最高的套餐并把它设为首推套餐
-          this.packageLists[maxIndex].isFirstPush=true;
+          // let maxIndex=0;
+          // for(let i=0;i<this.packageLists.length;i++){
+          //   if (this.packageLists[i].number>this.packageLists[maxIndex].number){
+          //     maxIndex=i;
+          //   }
+          // }// 获取销量最高的套餐并把它设为首推套餐
+          // this.packageLists[maxIndex].isFirstPush=true;
         }
         else{
           this.$message({

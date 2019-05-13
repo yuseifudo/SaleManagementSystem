@@ -27,7 +27,7 @@
     </div>
     <div class="item">
       <h4>销售精英</h4>
-      <nx-data-card :option="easyDataOption"></nx-data-card>
+      <nx-data-card></nx-data-card>
     </div>
     <!--<div class="item">
       <h4>带数字的展示</h4>
@@ -67,7 +67,7 @@ export default {
   },
   data() {
     return {
-      easyDataOption: {
+     /* easyDataOption: {
         span: 6,
         borderColor: '#fff',
         data: [
@@ -92,7 +92,7 @@ export default {
             text: '2000年11月8日出生于重庆，中国内地男歌手、演员、主持人，TFBOYS成员。2011年底成为TF家族练习生，2013年8月6日以组合形式出道。2015年14岁开始独立作词作曲，2016年单曲《因为遇见你》播放量破3亿、微博转发破4亿，获第9届城市至尊音乐榜年度听众最爱新人。'
           }
         ]
-      },
+      },*/
     }
   },
   created() {},

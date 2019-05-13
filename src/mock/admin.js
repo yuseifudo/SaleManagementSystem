@@ -40,7 +40,7 @@ export default {
   },
   createAdmin: config => {
     const { id,adminId,name,loginName, age, sex,tel,email,role } = param2Obj(config.url)
-    const roles=[{id:1,roleName:'普通管理员'},{id:2,roleName:'超级管理员'},{id:3,roleName:'网格管理员'},{id:4,roleName:'市分管理员'},{id:5,roleName:'省分管理员'},{id:6,roleName:'集团管理员'}]
+    const roles=[{id:1,roleName:'网格管理员'},{id:2,roleName:'市分管理员'},{id:3,roleName:'省分管理员'},{id:4,roleName:'集团管理员'},{id:5,roleName:'超级管理员'}]
     // console.log('66')
     List.push({
       id: id,

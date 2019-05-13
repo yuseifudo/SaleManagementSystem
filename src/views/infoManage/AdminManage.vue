@@ -59,7 +59,13 @@
 			</el-table-column>
 			<el-table-column prop="email" label="邮箱" min-width="160" align="center">
 			</el-table-column>
-      <el-table-column prop="role.roleName" label="角色" min-width="130" align="center">
+      <el-table-column prop="role.roleName" label="角色" min-width="130" align="center"  :filters="[{ text: '网格管理员', value: '网格管理员' }, { text: '市分管理员', value: '市分管理员' },{ text: '省分管理员', value: '省分管理员' },{ text: '集团管理员', value: '集团管理员' },{ text: '超级管理员', value: '省超级管理员' }]"
+                       :filter-method="filterTag">
+        <template slot-scope="scope">
+          <el-tag
+            :type="scope.row.role.roleName === '超级管理员' ? 'danger' : scope.row.role.roleName === '网格管理员' ? 'success' : scope.row.role.roleName === '网格管理员' ? 'info' : scope.row.role.roleName === '省分管理员' ? '':'warning'"
+            disable-transitions>{{scope.row.role.roleName}}</el-tag>
+        </template>
       </el-table-column>
 			<el-table-column label="操作" width="150" align="center">
 				<template slot-scope="scope">
@@ -339,8 +345,11 @@ export default {
         return role.id === vId;//筛选出匹配数据
       });
       this.roleId=obj.id
-      console.log(obj.roleName);//我这边的name就是对应label的
+      console.log(obj.roleName);//roleName就是对应label的值
       console.log(obj.id);
+    },
+    filterTag(value, row) {
+      return row.role.roleName === value;
     }
   },
   mounted() {

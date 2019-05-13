@@ -244,7 +244,7 @@ export default {
         startTime: [
           { type: 'string', required: true, message: '请选择套餐的开始时间', trigger: 'blur' }
         ],
-        endTime: [{ type: 'string', required: true, message: '请选择套餐的结束时间', trigger: 'change' }],
+        endTime: [{ type: 'string', required: true, message: '请选择套餐的结束时间', trigger: 'blur' }],
       },
       startTime: {// 设置套餐开始时间只能选择大于当前日期并且小于结束日期
         disabledDate: time => {
@@ -289,13 +289,13 @@ export default {
       fetchList().then((res)=>{
         if (res.code==0){
           this.packageLists=res.data;
-          let maxIndex=0;
-          for(let i=0;i<this.packageLists.length;i++){
-            if (this.packageLists[i].number>this.packageLists[maxIndex].number){
-              maxIndex=i;
-            }
-          }// 获取销量最高的套餐并把它设为首推套餐
-          this.packageLists[maxIndex].isFirstPush=true;
+          // let maxIndex=0;
+          // for(let i=0;i<this.packageLists.length;i++){
+          //   if (this.packageLists[i].number>this.packageLists[maxIndex].number){
+          //     maxIndex=i;
+          //   }
+          // }// 获取销量最高的套餐并把它设为首推套餐
+          // this.packageLists[maxIndex].isFirstPush=true;
         }
         else{
           this.$message({

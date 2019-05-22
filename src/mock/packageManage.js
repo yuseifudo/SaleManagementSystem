@@ -49,13 +49,6 @@ export default {
     const dataList=packageInfo.data.filter(item=>{
       return item.isDelete==false
     })// 筛选出未被删除的套餐列表
-    let maxIndex=0;
-    for(let i=0;i<dataList.length;i++){
-      if (dataList[i].number>dataList[maxIndex].number){
-        maxIndex=i;
-      }
-    }// 获取销量最高的套餐并把它设为首推套餐
-    dataList[maxIndex].isFirstPush=true;
     return{
       code: 0,// 状态码
       data:dataList,// 返回数据
@@ -112,7 +105,7 @@ export default {
       updateTime: time.toString(),
       span: 6,// 页面布局span
       borderColor: '#fff', //页面布局边框颜色
-      img: Mock.Random.image('960x1394','#ffcc33', '#FFF', 'png', 'Test'),// 图片地址
+      img: Mock.Random.image('960x1394','#409EFF', '#FFF', 'png', 'Test'),// 图片地址
       isDelete: false,
       color: '#fff',
       bgText: '#2e323f'

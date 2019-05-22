@@ -1,16 +1,32 @@
 <!--
-    功能：
-    作者：
-    日期：
+    功能：管理员模块
+    作者：陈年友
+    日期：2019/04/30
 -->
 <template>
 	<section class="app-container">
 		<!--工具条-->
 		<el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
 			<el-form :inline="true" :model="filters" @submit.native.prevent>
-				<el-form-item>
-					<el-input v-model="filters.name" placeholder="姓名"></el-input>
-				</el-form-item>
+        <el-form-item>
+          <el-input v-model="filters.name" placeholder="姓名"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-input v-model="filters.loginName" placeholder="登录名"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-input v-model="filters.tel" placeholder="联系电话"></el-input>
+        </el-form-item>
+        <!--<el-form-item>
+          <el-select @change="selectGet" v-model="editForm.role" placeholder="请选择">
+            <el-option
+              v-for="role in roles"
+              :key="role.id"
+              :label="role.roleName"
+              :value="role.id">
+            </el-option>
+          </el-select>
+        </el-form-item>-->
 				<el-form-item>
 					<el-button type="primary" v-on:click="getAdmins">查询</el-button>
 				</el-form-item>
@@ -31,18 +47,26 @@
 			</el-table-column>-->
 			<el-table-column prop="adminId" label="编号" width="80" align="center" sortable>
 			</el-table-column>
-      <el-table-column prop="name" label="姓名" width="120" align="center">
+      <el-table-column prop="name" label="姓名" width="100" align="center">
 			</el-table-column>
-      <el-table-column prop="loginName" label="登录名" width="120" align="center">
+      <el-table-column prop="loginName" label="登录名" width="80" align="center">
       </el-table-column>
-			<el-table-column prop="sex" label="性别" width="120" :formatter="formatSex" align="center">
+			<el-table-column prop="sex" label="性别" width="100" :formatter="formatSex" align="center">
 			</el-table-column>
-			<el-table-column prop="age" label="年龄" width="120" align="center" sortable>
+			<el-table-column prop="age" label="年龄" width="100" align="center" sortable>
 			</el-table-column>
 			<el-table-column prop="tel" label="联系电话" width="120" align="center">
 			</el-table-column>
 			<el-table-column prop="email" label="邮箱" min-width="160" align="center">
 			</el-table-column>
+      <el-table-column prop="role.roleName" label="角色" min-width="130" align="center"  :filters="[{ text: '网格管理员', value: '网格管理员' }, { text: '市分管理员', value: '市分管理员' },{ text: '省分管理员', value: '省分管理员' },{ text: '集团管理员', value: '集团管理员' },{ text: '超级管理员', value: '省超级管理员' }]"
+                       :filter-method="filterTag">
+        <template slot-scope="scope">
+          <el-tag
+            :type="scope.row.role.roleName === '超级管理员' ? 'danger' : scope.row.role.roleName === '网格管理员' ? 'success' : scope.row.role.roleName === '网格管理员' ? 'info' : scope.row.role.roleName === '省分管理员' ? '':'warning'"
+            disable-transitions>{{scope.row.role.roleName}}</el-tag>
+        </template>
+      </el-table-column>
 			<el-table-column label="操作" width="150" align="center">
 				<template slot-scope="scope">
 					<el-button type="success" size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
@@ -54,12 +78,12 @@
 		<!--工具条-->
 		<el-col :span="24" class="toolbar">
 			<!--<el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>-->
-			<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">
+			<el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">
 			</el-pagination>
 		</el-col>
 
 		<!--编辑界面-->
-		<el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" :close-on-click-modal="false">
+		<el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" @close="callOf('editForm')">
 			<el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
 				<el-form-item label="姓名" prop="name" >
 					<el-input v-model="editForm.name" auto-complete="off" ></el-input>
@@ -82,9 +106,14 @@
 				<el-form-item label="邮箱" >
 					<el-input type="textarea" v-model="editForm.email"></el-input>
 				</el-form-item>
+        <el-form-item label="角色" >
+          <el-select v-model="editForm.role"  placeholder="请选择" >
+            <el-option v-for="role in roles" :key="role.id" :label="role.roleName" :value="role.id"></el-option>
+          </el-select>
+        </el-form-item>
 			</el-form>
 			<div slot="footer" class="dialog-footer">
-			 <el-button @click.native="dialogFormVisible=false">取消</el-button>
+			 <el-button @click="callof('editForm')">取消</el-button>
 			  <el-button v-if="dialogStatus=='create'" type="primary" @click="createData">添加</el-button>
         <el-button v-else type="primary" @click="updateData">修改</el-button>
 			</div>
@@ -93,7 +122,6 @@
 </template>
 
 <script>
-// import util from '@/utils/table.js'
 import {
   getAdminListPage,
   removeAdmin,
@@ -106,6 +134,8 @@ import {
 export default {
   data() {
     return {
+      roleId:'',
+      roles:[{id:1,roleName:'普通管理员'},{id:2,roleName:'超级管理员'},{id:3,roleName:'网格管理员'},{id:4,roleName:'市分管理员'},{id:5,roleName:'省分管理员'},{id:6,roleName:'集团管理员'}],
       dialogStatus: '',
       textMap: {
         update: '编辑',
@@ -113,7 +143,11 @@ export default {
       },
       dialogFormVisible: false,
       filters: {
-        name: ''
+        role:'',
+        adminId:'',
+        name: '',
+        loginName: '',
+        tel:''
       },
       admins: [],
       total: 0,
@@ -132,7 +166,8 @@ export default {
         sex: 1,
         age: 0,
         tel: '',
-        email: ''
+        email: '',
+        role:''
       },
 
       addFormVisible: false, // 新增界面是否显示
@@ -143,6 +178,11 @@ export default {
     }
   },
   methods: {
+    //模态框取消方法，关闭后清除提示
+    callOf(editForm){
+      this.dialogFormVisible = false;
+      this.$refs[editForm].resetFields();
+    },
     // 性别显示转换
     formatSex: function(row, column) {
       return row.sex == 1 ? '男' : row.sex == 0 ? '女' : '未知'
@@ -155,7 +195,11 @@ export default {
     getAdmins() {
       const para = {
         page: this.page,
-        name: this.filters.name
+        adminId: this.filters.adminId,
+        name: this.filters.name,
+        loginName: this.filters.loginName,
+        tel: this.filters.tel,
+        role:''
       }
       getAdminListPage(para).then(res => {
         this.total = res.data.total
@@ -174,6 +218,9 @@ export default {
               message: '删除成功',
               type: 'success'
             })
+            if((this.admins.length-1)==0){
+              this.page = this.page - 1
+            }
             this.getAdmins()
           })
         })
@@ -184,6 +231,7 @@ export default {
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
       this.editForm = Object.assign({}, row)
+      this.editForm.role=this.editForm.role.id
     },
     // 显示新增界面
     handleAdd() {
@@ -197,7 +245,8 @@ export default {
         sex: 1,
         age: 0,
         tel: '',
-        email: ''
+        email: '',
+        role:''
       }
     },
     // 编辑
@@ -215,7 +264,7 @@ export default {
                   */
               editAdmin(para).then(res => {
                 this.$message({
-                  message: '提交成功',
+                  message: '修改成功',
                   type: 'success'
                 })
                 this.$refs['editForm'].resetFields()
@@ -249,7 +298,7 @@ export default {
                   */
               addAdmin(para).then(res => {
                 this.$message({
-                  message: '提交成功',
+                  message: '添加成功',
                   type: 'success'
                 })
                 this.$refs['editForm'].resetFields()
@@ -263,6 +312,7 @@ export default {
             })
         }
       })
+      this.filters.name=''
     },
     // 全选单选多选
     selsChange(sels) {
@@ -281,10 +331,25 @@ export default {
               message: '删除成功',
               type: 'success'
             })
+            if((this.admins.length-this.sels.length)==0 && this.page!=1){
+              this.page = this.page-1
+            }
             this.getAdmins()
           })
         })
         .catch(() => {})
+    },
+    selectGet(vId){
+      let obj = {};
+      obj = this.roles.find((role)=>{//roles
+        return role.id === vId;//筛选出匹配数据
+      });
+      this.roleId=obj.id
+      console.log(obj.roleName);//roleName就是对应label的值
+      console.log(obj.id);
+    },
+    filterTag(value, row) {
+      return row.role.roleName === value;
     }
   },
   mounted() {

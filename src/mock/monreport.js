@@ -9,10 +9,10 @@ for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
     id: '@increment',
     time: Mock.Random.date('yyyy-MM'),
-    'amount1|100-20000': 100,
-    'amount2|100-20000': 100,
-    'amount3|100-20000': 100,
-    'amount4|100-20000': 100
+    'amount1|1000-20000': 100,
+    'amount2|1000-20000': 100,
+    'amount3|1000-20000': 100,
+    'amount4|1000-20000': 100
   }))
 }
 

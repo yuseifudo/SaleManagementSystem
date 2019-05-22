@@ -47,13 +47,13 @@
     <!--工具条-->
     <el-col :span="24" class="toolbar">
       <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">删除所选</el-button>
-      <el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="5" :total="total" style="float:right;">
+      <el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="5" :total="total" style="float:right;">
       </el-pagination>
     </el-col>
 
     <!--编辑界面-->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible"
-               :close-on-click-modal="false" center>
+               @close="callOf('editForm')" center>
 
       <el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
         <el-form-item label="奖励规则标题" prop="title">
@@ -100,12 +100,10 @@
         page: 1,
         sels: [], // 列表选中列
         editFormRules: {
-          title: [
-            { required: true, message: '请输入公告标题', trigger: 'blur'}
-          ],
-          content: [
-            { required: true, message: '请输入公告内容', trigger: 'blur'}
-          ]
+
+          title: [{ required: true, message: '请输入奖励规则标题', trigger: 'blur' }],
+          content: [{ required: true, message: '请输入奖励规则内容', trigger: 'blur' }]
+
         },
         // 编辑界面数据
         editForm: {

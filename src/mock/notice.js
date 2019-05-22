@@ -5,15 +5,15 @@
 *
 * */
 import Mock from 'mockjs'
-import { param2Obj } from '@/utils'
+import {param2Obj} from '@/utils'
 
 let List = []
-const count =30
+const count = 30
 
 for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
     id: Mock.Random.guid(),
-    num:Mock.mock('@increment()'),
+    num: Mock.mock('@increment()'),
     title: Mock.Random.ctitle(),
     content: Mock.mock('@cparagraph'),
     createDate: Mock.mock('@datetime("yyyy-MM-dd-HH:mm")')
@@ -22,12 +22,13 @@ for (let i = 0; i < count; i++) {
 
 export default {
   getNoticeList: config => {
-    const { title,createDate,page = 1, limit = 10 } = param2Obj(config.url)
+    console.log("config" + config)
+    const {noticeTitle, updateTime, page = 1, limit = 10} = param2Obj(config.url)
 
     const mockList = List.filter(notice => {
-      if (title && notice.title.indexOf(title) === -1) return false
-
-      if(createDate && notice.createDate.indexOf(createDate) === -1) return false
+      // console.log("List"+List)
+      if (noticeTitle && notice.noticeTitle.indexOf(noticeTitle) === -1) return false
+      if (updateTime && notice.updateTime.indexOf(updateTime) === -1) return false
       return true
     })
 
@@ -37,19 +38,19 @@ export default {
       code: 0,
       data: {
         total: mockList.length,
-        notices: pageList
+        items: pageList
       }
     }
+
   },
   createNotice: config => {
-    const { id,num, title, content, createDate } = param2Obj(config.url)
+    const {id, num, title, content, createDate} = param2Obj(config.url)
     // console.log('66')
     List.unshift({
-      id: id,
-      num:num,
-      title: title,
-      content: content,
-      createDate: createDate,
+      noticeId: noticeId,
+      noticeTitle: noticeTitle,
+      noticeContent: noticeContent,
+      updateTime: updateTime,
     })
     return {
       code: 0,
@@ -59,8 +60,8 @@ export default {
     }
   },
   deleteNotice: config => {
-    const { id } = param2Obj(config.url)
-    List = List.filter(u => u.id !== id)
+    const {noticeId} = param2Obj(config.url)
+    List = List.filter(u => u.noticeId !== noticeId)
     return {
       code: 0,
       data: {
@@ -69,7 +70,7 @@ export default {
     }
   },
   batchremove: config => {
-    let { ids } = param2Obj(config.url)
+    let {ids} = param2Obj(config.url)
     ids = ids.split(',')
     List = List.filter(u => !ids.includes(u.id))
     return {
@@ -80,13 +81,12 @@ export default {
     }
   },
   updateNotice: config => {
-    const { id,num, title, content, createDate} = param2Obj(config.url)
+    const {noticeId, noticeTitle, noticeContent, updateTime} = param2Obj(config.url)
     List.some(u => {
-      if (u.id === id) {
-        u.num=num
-        u.title = title
-        u.content = content.replace(/\n/g,"<br/>")
-        u.createDate = createDate
+      if (u.noticeId === noticeId) {
+        u.noticeTitle = noticeTitle
+        u.noticeContent = noticeContent.replace(/\n/g, "<br/>")
+        u.updateTime = updateTime
         return true
       }
     })

@@ -173,23 +173,24 @@ export const constantRouterMap = [
     meta: { title: 'dataMap', icon: 'baidumap' },
     children: [
       {
+        path: 'userAddress',
+        name: 'userAddress',
+        component: () => import('@/views/dataMap/userAddress'),
+        meta: { title: 'CYuserAddress', icon: 'pointMap' }
+      },
+      {
         path: 'salesVolumeHeat',
         name: 'salesVolumeHeat',
         component: () => import('@/views/dataMap/salesVolumeHeat'),
-        meta: { title: 'salesVolumeHeat', icon: 'barGraph' }
+        meta: { title: 'FJsalesVolumeHeat', icon: 'barGraph' }
       },
       {
         path: 'branchAddress',
         name: 'branchAddress',
         component: () => import('@/views/dataMap/branchAddress'),
-        meta: { title: 'branchAddress', icon: 'cityLlistMap' }
+        meta: { title: 'FJbranchAddress', icon: 'cityLlistMap' }
       },
-      {
-        path: 'userAddress',
-        name: 'userAddress',
-        component: () => import('@/views/dataMap/userAddress'),
-        meta: { title: 'userAddress', icon: 'pointMap' }
-      }
+
     ]
 
 

@@ -8,14 +8,14 @@ import request from '@/utils/request'
 
 export function getNoticeListPage(params) {
   return request({
-    url: '/notice/listpage',
+    url: 'http://localhost:8080/notice/list',
     method: 'get',
     params: params
   })
 }
 export function removeNotice(params) {
   return request({
-    url: '/notice/remove',
+    url: 'http://localhost:8080/notice/remove',
     method: 'get',
     params: params
   })

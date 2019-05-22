@@ -61,8 +61,8 @@ Mock.mock(/\/user\/edit/, 'get', tableAPI.updateUser)
 * 时间：2019.05.06
 * 功能：公告相关/
 * */
-Mock.mock(/\/notice\/listpage/, 'get', noticeAPI.getNoticeList)
-Mock.mock(/\/notice\/remove/, 'get', noticeAPI.deleteNotice)
+//Mock.mock(/\/notice\/listpage/, 'get', noticeAPI.getNoticeList)
+//Mock.mock(/\/notice\/remove/, 'get', noticeAPI.deleteNotice)
 Mock.mock(/\/notice\/batchremove/, 'get', noticeAPI.batchremove)
 Mock.mock(/\/notice\/add/, 'get', noticeAPI.createNotice)
 Mock.mock(/\/notice\/edit/, 'get', noticeAPI.updateNotice)

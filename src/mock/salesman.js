@@ -36,11 +36,11 @@ let Piedata=Mock.mock({
 
 export default {
   getSalesmanList: config => {
-    const { name, num, page = 1, limit = 20 } = param2Obj(config.url)
+    const { name, num, page = 1, limit = 10 } = param2Obj(config.url)
 
     const mockList = List.filter(salesman => {
       if (name && salesman.name.indexOf(name) === -1) return false
-      if (num && salesman.num != num) return false12
+      if (num && salesman.num != num) return false
 
       return true
     })

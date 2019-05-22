@@ -20,28 +20,28 @@ export default {
   name: 'nx-data-card',
   data() {
     return {
-      span: this.option.span || 6,
+      /*span: this.option.span || 6,
       data: this.option.data || [],
       colorText: this.option.colorText || '#fff',
       bgText: this.option.bgText || '#2e323f',
-      borderColor: this.option.borderColor || '#2e323f'
-      /*option:{},
+      borderColor: this.option.borderColor || '#2e323f'*/
+      option:{},
       span: '',
       data: '',
       colorText: '',
       bgText: '',
-      borderColor: ''*/
+      borderColor: ''
     }
   },
   mounted() {
-    // this.getHomeSaleData();
+    this.getHomeSaleData();
   },
-  props:{
+  /*props:{
     option: {
       type: Object,
       default: () => {}
     }
-  },
+  },*/
   created() {},
   methods: {
     // 获取首页销售精英数据

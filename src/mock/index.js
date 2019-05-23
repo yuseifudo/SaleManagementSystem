@@ -97,7 +97,7 @@ Mock.mock(/\/packageManage\/setFirstPush/,packageManageAPI.setFirstPush)// mock 
 *作者：陈年友
 *日期：2019/5/5
 */
-Mock.mock(/\/admin\/listpage/, 'get', adminAPI.getAdminList)
+// Mock.mock(/\/admin\/listpage/, 'get', adminAPI.getAdminList)
 Mock.mock(/\/admin\/remove/, 'get', adminAPI.deleteAdmin)
 Mock.mock(/\/admin\/batchremove/, 'get', adminAPI.batchremove)
 Mock.mock(/\/admin\/add/, 'get', adminAPI.createAdmin)

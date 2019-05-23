@@ -9,7 +9,10 @@
 		<el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
 			<el-form :inline="true" :model="filters" @submit.native.prevent>
         <el-form-item>
-          <el-input v-model="filters.name" placeholder="姓名"></el-input>
+          <el-input v-model="filters.managerId" placeholder="编号"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-input v-model="filters.managerName" placeholder="姓名"></el-input>
         </el-form-item>
         <el-form-item>
           <el-input v-model="filters.loginName" placeholder="登录名"></el-input>
@@ -45,27 +48,28 @@
 			</el-table-column>
 			<!--<el-table-column type="index" width="60">
 			</el-table-column>-->
-			<el-table-column prop="adminId" label="编号" width="80" align="center" sortable>
+			<el-table-column prop="managerId" label="编号" width="100" align="center" sortable>
 			</el-table-column>
-      <el-table-column prop="name" label="姓名" width="100" align="center">
+      <el-table-column prop="managerName" label="姓名" width="120" align="center">
 			</el-table-column>
-      <el-table-column prop="loginName" label="登录名" width="80" align="center">
+      <el-table-column prop="loginName" label="登录名" width="120" align="center">
       </el-table-column>
-			<el-table-column prop="sex" label="性别" width="100" :formatter="formatSex" align="center">
+			<el-table-column prop="managerSex" label="性别" width="100" :formatter="formatmanagerSex" align="center">
 			</el-table-column>
-			<el-table-column prop="age" label="年龄" width="100" align="center" sortable>
+			<!--<el-table-column prop="age" label="年龄" width="100" align="center" sortable>
+			</el-table-column>-->
+			<el-table-column prop="managerTel" label="联系电话" width="130" align="center">
 			</el-table-column>
-			<el-table-column prop="tel" label="联系电话" width="120" align="center">
+			<el-table-column prop="managerEmail" label="邮箱" min-width="160" align="center">
 			</el-table-column>
-			<el-table-column prop="email" label="邮箱" min-width="160" align="center">
-			</el-table-column>
-      <el-table-column prop="role.roleName" label="角色" min-width="130" align="center"  :filters="[{ text: '网格管理员', value: '网格管理员' }, { text: '市分管理员', value: '市分管理员' },{ text: '省分管理员', value: '省分管理员' },{ text: '集团管理员', value: '集团管理员' },{ text: '超级管理员', value: '省超级管理员' }]"
-                       :filter-method="filterTag">
+      <!--<el-table-column prop="role" label="角色" width="130" :formatter="formatRole" align="center">
+      </el-table-column>-->
+      <!--<el-table-column prop="role" label="角色" min-width="130" align="center" :formatter="formatRole">
         <template slot-scope="scope">
           <el-tag
-            :type="scope.row.role.roleName === '超级管理员' ? 'danger' : scope.row.role.roleName === '网格管理员' ? 'success' : scope.row.role.roleName === '网格管理员' ? 'info' : scope.row.role.roleName === '省分管理员' ? '':'warning'"
-            disable-transitions>{{scope.row.role.roleName}}</el-tag>
-        </template>
+            :type="scope.row.role === 0 ? 'danger' : scope.row.role === 1 ? 'success' : scope.row.role === 2 ? 'info' : scope.row.role === 3 ? '':'warning'"
+            disable-transitions >{{scope.row.role}}</el-tag>
+        </template>-->
       </el-table-column>
 			<el-table-column label="操作" width="150" align="center">
 				<template slot-scope="scope">
@@ -78,39 +82,39 @@
 		<!--工具条-->
 		<el-col :span="24" class="toolbar">
 			<!--<el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>-->
-			<el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">
+			<el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="5" :total="total" style="float:right;">
 			</el-pagination>
 		</el-col>
 
 		<!--编辑界面-->
 		<el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" @close="callOf('editForm')">
 			<el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
-				<el-form-item label="姓名" prop="name" >
-					<el-input v-model="editForm.name" auto-complete="off" ></el-input>
+				<el-form-item label="姓名" prop="managerName" >
+					<el-input v-model="editForm.managerName" auto-complete="off" ></el-input>
 				</el-form-item>
         <el-form-item label="登录名" prop="loginName">
           <el-input v-model="editForm.loginName" auto-complete="off" ></el-input>
         </el-form-item>
 				<el-form-item label="性别">
-					<el-radio-group v-model="editForm.sex">
-						<el-radio class="radio" :label=1>男</el-radio>
-						<el-radio class="radio" :label=0>女</el-radio>
+					<el-radio-group v-model="editForm.managerSex">
+						<el-radio class="radio" :label=0>男</el-radio>
+						<el-radio class="radio" :label=1>女</el-radio>
 					</el-radio-group>
 				</el-form-item>
-				<el-form-item label="年龄">
+				<!--<el-form-item label="年龄">
 					<el-input-number v-model="editForm.age" :min="0" :max="150"></el-input-number>
-				</el-form-item>
+				</el-form-item>-->
         <el-form-item label="联系方式" >
-          <el-input v-model="editForm.tel"></el-input>
+          <el-input v-model="editForm.managerTel"></el-input>
         </el-form-item>
 				<el-form-item label="邮箱" >
-					<el-input type="textarea" v-model="editForm.email"></el-input>
+					<el-input type="textarea" v-model="editForm.managerEmail"></el-input>
 				</el-form-item>
-        <el-form-item label="角色" >
-          <el-select v-model="editForm.role"  placeholder="请选择" >
-            <el-option v-for="role in roles" :key="role.id" :label="role.roleName" :value="role.id"></el-option>
-          </el-select>
-        </el-form-item>
+        <!--<el-form-item label="角色" >-->
+          <!--<el-select v-model="editForm.role"  placeholder="请选择" >-->
+            <!--<el-option v-for="role in roles" :key="role.id" :label="role.roleName" :value="role.id"></el-option>-->
+          <!--</el-select>-->
+        <!--</el-form-item>-->
 			</el-form>
 			<div slot="footer" class="dialog-footer">
 			 <el-button @click="callof('editForm')">取消</el-button>
@@ -143,36 +147,34 @@ export default {
       },
       dialogFormVisible: false,
       filters: {
-        role:'',
-        adminId:'',
-        name: '',
+        managerId:'',
+        managerName: '',
         loginName: '',
-        tel:''
+        managerTel:''
       },
       admins: [],
       total: 0,
       page: 1,
       sels: [], // 列表选中列
       editFormRules: {
-        name: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
+        managerName: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
         loginName: [{ required: true, message: '请输入登录名', trigger: 'blur' }]
       },
       // 编辑界面数据
       editForm: {
         id: '0',
-        adminId:'',
-        name: '',
+        managerId:'',
+        managerName: '',
         loginName: '',
-        sex: 1,
         age: 0,
-        tel: '',
-        email: '',
-        role:''
+        managerTel: '',
+        managerEmail: '',
+        managerSex: 1
       },
 
       addFormVisible: false, // 新增界面是否显示
       addFormRules: {
-        name: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
+        managerName: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
         loginName: [{ required: true, message: '请输入登录名', trigger: 'blur' }]
       }
     }
@@ -184,8 +186,12 @@ export default {
       this.$refs[editForm].resetFields();
     },
     // 性别显示转换
-    formatSex: function(row, column) {
-      return row.sex == 1 ? '男' : row.sex == 0 ? '女' : '未知'
+    formatmanagerSex: function(row, column) {
+      return row.managerSex == 0 ? '男' : row.managerSex == 1 ? '女' : '未知'
+    },
+    // 角色显示转换
+    formatRole: function(row, column) {
+      return row.role == 0 ? '超级管理员' : row.role == 1 ? '省级管理员' : row.role == 2 ? '市级管理员' : '网格管理员'
     },
     handleCurrentChange(val) {
       this.page = val
@@ -195,15 +201,15 @@ export default {
     getAdmins() {
       const para = {
         page: this.page,
-        adminId: this.filters.adminId,
-        name: this.filters.name,
+        managerId: this.filters.managerId,
+        managerName: this.filters.managerName,
         loginName: this.filters.loginName,
-        tel: this.filters.tel,
-        role:''
+        managerTel: this.filters.managerTel,
       }
       getAdminListPage(para).then(res => {
+        console.log(res);
         this.total = res.data.total
-        this.admins = res.data.admins
+        this.admins = res.data.list
       })
     },
     // 删除
@@ -212,7 +218,7 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          const para = { id: row.id }
+          const para = { managerId: row.managerId}
           removeAdmin(para).then(res => {
             this.$message({
               message: '删除成功',
@@ -231,7 +237,6 @@ export default {
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
       this.editForm = Object.assign({}, row)
-      this.editForm.role=this.editForm.role.id
     },
     // 显示新增界面
     handleAdd() {
@@ -239,14 +244,13 @@ export default {
       this.dialogFormVisible = true
       this.editForm = {
         id: '0',
-        adminId:'',
-        name: '',
+        managerId:'',
+        managerName: '',
         loginName: '',
-        sex: 1,
-        age: 0,
-        tel: '',
-        email: '',
-        role:''
+        managerSex: 0,
+        // age: 0,
+        managerTel: '',
+        managerEmail: '',
       }
     },
     // 编辑
@@ -286,7 +290,7 @@ export default {
           this.$confirm('确认提交吗？', '提示', {})
             .then(() => {
               this.editForm.id = (parseInt(Math.random() * 100)).toString() // mock a id
-              this.editForm.adminId = (parseInt(Math.random() * 100)).toString() // mock a adminId
+              this.editForm.managerId = (parseInt(Math.random() * 100)).toString() // mock a managerId
               const para = Object.assign({}, this.editForm)
               // console.log(para)
 
@@ -312,7 +316,7 @@ export default {
             })
         }
       })
-      this.filters.name=''
+      this.filters.managerName=''
     },
     // 全选单选多选
     selsChange(sels) {
@@ -320,12 +324,12 @@ export default {
     },
     // 批量删除
     batchRemove() {
-      var ids = this.sels.map(item => item.id).toString()
+      var list = this.sels.map(list => list.managerId).toString()
       this.$confirm('确认删除选中记录吗？', '提示', {
         type: 'warning'
       })
         .then(() => {
-          const para = { ids: ids }
+          const para = { list: list }
           batchRemoveAdmin(para).then(res => {
             this.$message({
               message: '删除成功',
@@ -349,7 +353,7 @@ export default {
       console.log(obj.id);
     },
     filterTag(value, row) {
-      return row.role.roleName === value;
+      return row.role === value;
     }
   },
   mounted() {

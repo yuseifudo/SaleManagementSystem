@@ -8,23 +8,24 @@ for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
     id:  Mock.Random.guid(),
     adminId:Mock.mock('@increment'),
-    name: Mock.Random.cname(),
+    managerName: Mock.Random.cname(),
     loginName:Mock.mock('@word(4,6)'),
-    sex: Mock.Random.integer(0, 1),
+    managerSex: Mock.Random.integer(0, 1),
     'age|22-50': 30,
-    tel:Mock.mock(/^1[3875][1-9]\d{8}/),
-    email: Mock.mock('@email'),
+    managerTel:Mock.mock(/^1[3875][1-9]\d{8}/),
+    managerEmail: Mock.mock('@email'),
     'role|1': [{id:1,roleName:'普通管理员'},{id:2,roleName:'超级管理员'},{id:3,roleName:'网格管理员'},{id:4,roleName:'市分管理员'},{id:5,roleName:'省分管理员'},{id:6,roleName:'集团管理员'}]
   }))
 }
 
 export default {
   getAdminList: config => {
-    const { name,loginName,tel, page = 1, limit = 20 } = param2Obj(config.url)
+    console.log(config);
+    const { managerName,loginName,managerTel, page = 1, limit = 20 } = param2Obj(config.url)
     const mockList = List.filter(admin => {
-      if (name && admin.name.indexOf(name) === -1) return false
+      if (managerName && admin.managerName.indexOf(managerName) === -1) return false
       if (loginName && admin.loginName.indexOf(loginName) === -1) return false
-      if (tel && admin.tel.indexOf(tel) === -1) return false
+      if (managerTel && admin.managerTel.indexOf(managerTel) === -1) return false
       return true
     })
 
@@ -34,23 +35,23 @@ export default {
       code: 0,
       data: {
         total: mockList.length,
-        admins: pageList
+        items: pageList
       }
     }
   },
   createAdmin: config => {
-    const { id,adminId,name,loginName, age, sex,tel,email,role } = param2Obj(config.url)
+    const { id,adminId,managerName,loginName, age, managerSex,managerTel,managerEmail,role } = param2Obj(config.url)
     const roles=[{id:1,roleName:'网格管理员'},{id:2,roleName:'市分管理员'},{id:3,roleName:'省分管理员'},{id:4,roleName:'集团管理员'},{id:5,roleName:'超级管理员'}]
     // console.log('66')
     List.push({
       id: id,
       adminId: adminId,
-      name: name,
+      managerName: managerName,
       loginName: loginName,
       age: age,
-      sex: sex,
-      tel:tel,
-      email:email,
+      managerSex: managerSex,
+      managerTel:managerTel,
+      managerEmail:managerEmail,
       role:roles[role-1]
     })
     return {
@@ -61,8 +62,8 @@ export default {
     }
   },
   deleteAdmin: config => {
-    const { id } = param2Obj(config.url)
-    List = List.filter(a => a.id !== id)
+    const { managerId } = param2Obj(config.url)
+    List = List.filter(a => a.managerId !== managerId)
     // console.log(List)
     return {
       code: 0,
@@ -72,9 +73,9 @@ export default {
     }
   },
   batchremove: config => {
-    let { ids } = param2Obj(config.url)
-    ids = ids.split(',')
-    List = List.filter(a=> !ids.includes(a.id))
+    let { list } = param2Obj(config.url)
+    list = list.split(',')
+    List = List.filter(a=> !list.includes(a.managerId))
     return {
       code: 0,
       data: {
@@ -83,19 +84,15 @@ export default {
     }
   },
   updateAdmin: config => {
-    const { id, adminId, name, loginName, age, sex, tel, email,role } = param2Obj(config.url)
-    const roles=[{id:1,roleName:'普通管理员'},{id:2,roleName:'超级管理员'},{id:3,roleName:'网格管理员'},{id:4,roleName:'市分管理员'},{id:5,roleName:'省分管理员'},{id:6,roleName:'集团管理员'}]
-    const sex_num = parseInt(sex)
+    const { managerId, managerName, loginName, managerSex, managerTel, managerEmail} = param2Obj(config.url)
+    const managerSex_num = parseInt(managerSex)
     List.some(a => {
-      if (a.id === id) {
-        a.adminId=adminId
-        a.name = name
+      if (a.managerId === managerId) {
+        a.managerName = managerName
         a.loginName = loginName
-        a.age = age
-        a.sex = sex_num
-        a.tel = tel
-        a.email = email
-        a.role=roles[role-1]
+        a.managerSex = managerSex_num
+        a.managerTel = managerTel
+        a.managerEmail = managerEmail
         return true
       }
     })

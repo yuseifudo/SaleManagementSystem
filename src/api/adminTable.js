@@ -2,36 +2,36 @@ import request from '@/utils/request'
 
 export function getAdminListPage(params) {
   return request({
-    url: '/admin/listpage',
+    url: 'http://localhost:8080/manager/list',
     method: 'get',
     params: params
   })
 }
 export function removeAdmin(params) {
   return request({
-    url: '/admin/remove',
-    method: 'get',
+    url: 'http://localhost:8080/manager/delete',
+    method: 'delete',
     params: params
   })
 }
 export function batchRemoveAdmin(params) {
   return request({
-    url: '/admin/batchremove',
-    method: 'get',
+    url: 'http://localhost:8080/manager/deleteAll',
+    method: 'delete',
     params: params
   })
 }
 export function editAdmin(params) {
   return request({
-    url: '/admin/edit',
-    method: 'get',
-    params: params
+    url: 'http://localhost:8080/manager/update',
+    method: 'put',
+    data: params
   })
 }
 export function addAdmin(params) {
   return request({
-    url: '/admin/add',
-    method: 'get',
-    params: params
+    url: 'http://localhost:8080/manager/add',
+    method: 'post',
+    data: params
   })
 }

@@ -22,13 +22,13 @@ for (let i = 0; i < count; i++) {
 
 export default {
   getNoticeList: config => {
-    console.log("config" + config)
-    const {noticeTitle, updateTime, page = 1, limit = 10} = param2Obj(config.url)
+    // console.log("config" + config)
+    const {page,limit,noticeTitle, updateTime} = param2Obj(config.url)
 
     const mockList = List.filter(notice => {
       // console.log("List"+List)
-      if (noticeTitle && notice.noticeTitle.indexOf(noticeTitle) === -1) return false
-      if (updateTime && notice.updateTime.indexOf(updateTime) === -1) return false
+      if (noticeTitle && notice.noticeTitle.indexOf(noticeTitle)<0) return false
+      if (updateTime && notice.updateTime.indexOf(updateTime)<0) return false
       return true
     })
 
@@ -44,7 +44,7 @@ export default {
 
   },
   createNotice: config => {
-    const {id, num, title, content, createDate} = param2Obj(config.url)
+    const {noticeId,noticeTitle, noticeContent, updateTime} = param2Obj(config.url)
     // console.log('66')
     List.unshift({
       noticeId: noticeId,

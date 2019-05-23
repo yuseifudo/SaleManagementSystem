@@ -63,9 +63,9 @@ Mock.mock(/\/user\/edit/, 'get', tableAPI.updateUser)
 * */
 //Mock.mock(/\/notice\/listpage/, 'get', noticeAPI.getNoticeList)
 //Mock.mock(/\/notice\/remove/, 'get', noticeAPI.deleteNotice)
-Mock.mock(/\/notice\/batchremove/, 'get', noticeAPI.batchremove)
-Mock.mock(/\/notice\/add/, 'get', noticeAPI.createNotice)
-Mock.mock(/\/notice\/edit/, 'get', noticeAPI.updateNotice)
+//Mock.mock(/\/notice\/batchremove/, 'get', noticeAPI.batchremove)
+//Mock.mock(/\/notice\/add/, 'get', noticeAPI.createNotice)
+//Mock.mock(/\/notice\/edit/, 'get', noticeAPI.updateNotice)
 
 /*
 * 作者：王震

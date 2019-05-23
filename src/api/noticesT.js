@@ -16,28 +16,28 @@ export function getNoticeListPage(params) {
 export function removeNotice(params) {
   return request({
     url: 'http://localhost:8080/notice/remove',
-    method: 'get',
+    method: 'delete',
     params: params
   })
 }
 export function batchRemoveNotice(params) {
   return request({
-    url: '/notice/batchremove',
-    method: 'get',
+    url: 'http://localhost:8080/notice/batchremove',
+    method: 'delete',
     params: params
   })
 }
 export function editNotice(params) {
   return request({
-    url: '/notice/edit',
-    method: 'get',
+    url: 'http://localhost:8080/notice/edit',
+    method: 'put',
     params: params
   })
 }
 export function addNotice(params) {
   return request({
-    url: '/notice/add',
-    method: 'get',
-    params: params
+    url: 'http://localhost:8080/notice/add',
+    method: 'post',
+    data: params
   })
 }

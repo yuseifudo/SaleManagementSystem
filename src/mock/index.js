@@ -104,7 +104,7 @@ Mock.mock(/\/admin\/add/, 'get', adminAPI.createAdmin)
 Mock.mock(/\/admin\/edit/, 'get', adminAPI.updateAdmin)
 
 //报表相关
-Mock.mock(/\/user\/list/, 'get', monreportAPI.getUserList)
+//Mock.mock(/\/user\/list/, 'get', monreportAPI.getUserList)
 Mock.mock(/\/sale\/list/, 'get', salereportAPI.getSaleList)
 
 //功能：销售人员相关

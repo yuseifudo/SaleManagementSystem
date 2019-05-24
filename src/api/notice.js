@@ -8,7 +8,7 @@ import axios from 'axios'
 
 const base = ''
 
-export const getNoticeList = params => { return axios.get(`${base}/notice/list`, { params: params }) }
+export const getNoticeList = params => { return axios.get(`http://localhost:8080/notice/list`, { params: params }) }
 
 export const getNoticeListPage = params => { return axios.get(`${base}/notice/listpage`, { params: params }) }
 

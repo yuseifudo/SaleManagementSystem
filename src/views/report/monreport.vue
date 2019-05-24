@@ -5,34 +5,27 @@
       <el-button id='button' type="primary" @click="exportExcel">导出<i class="el-icon-upload el-icon--right"></i></el-button>
     </div>
     <el-table id="out-table" :data="tempList" border :summary-method="getSummaries"  show-summary style="width: 100%">
-    <el-table-column prop="id" label="编号" width="150" align="center"></el-table-column>
-    <el-table-column prop="time" sortable label="日期" align="center"></el-table-column>
-    <el-table-column align="center" prop="amount1" sortable label="天王卡销售额（元）">
+    <el-table-column prop="saleMonthId" label="编号" width="150" align="center"></el-table-column>
+    <el-table-column prop="saleMonth" sortable label="日期" align="center"></el-table-column>
+    <el-table-column align="center" prop="saleVolume" sortable label="月销售额">
       <template slot-scope="scope">
         <el-tag
-          :type="scope.row.amount1 >= 15000 ? 'danger' : scope.row.amount1 <=10000 ? 'success':'warning'"
-          disable-transitions>{{scope.row.amount1}}</el-tag>
+          :type="scope.row.saleVolume >= 15000 ? 'danger' : scope.row.saleVolume <=10000 ? 'success':'warning'"
+          disable-transitions>{{scope.row.saleVolume}}</el-tag>
       </template>
     </el-table-column>
-    <el-table-column align="center" prop="amount2" sortable label="帝王卡销售额（元）">
+    <el-table-column align="center" prop="saleCount" sortable label="月销售量">
       <template slot-scope="scope">
         <el-tag
-          :type="scope.row.amount2>= 15000 ? 'danger' : scope.row.amount2 <=10000 ? 'success':'warning'"
-          disable-transitions>{{scope.row.amount2}}</el-tag>
+          :type="scope.row.saleCount>= 15000 ? 'danger' : scope.row.saleCount <=10000 ? 'success':'warning'"
+          disable-transitions>{{scope.row.saleCount}}</el-tag>
       </template>
     </el-table-column>
-    <el-table-column align="center" prop="amount3" sortable label="大冰神卡销售额（元）">
+    <el-table-column align="center" prop="monthDifference" sortable label="较上月销售差额">
       <template slot-scope="scope">
         <el-tag
-          :type="scope.row.amount3 >= 15000 ? 'danger' : scope.row.amount3 <=10000 ? 'success':'warning'"
-          disable-transitions>{{scope.row.amount3}}</el-tag>
-      </template>
-    </el-table-column>
-    <el-table-column align="center" prop="amount4" sortable label="小冰神卡销售额（元）">
-      <template slot-scope="scope">
-        <el-tag
-          :type="scope.row.amount4 >= 15000 ? 'danger' : scope.row.amount4 <=10000 ? 'success':'warning'"
-          disable-transitions>{{scope.row.amount4}}</el-tag>
+          :type="scope.row.monthDifference >= 15000 ? 'danger' : scope.row.monthDifference <=10000 ? 'success':'warning'"
+          disable-transitions>{{scope.row.monthDifference}}</el-tag>
       </template>
     </el-table-column>
   </el-table>
@@ -85,7 +78,8 @@
       // 获取用户列表
       getUsers() {
         getUserList().then(res => {
-          this.users = res.data.lists
+          this.users = res.data.items
+          console.log(this.user)
           this.currentChangePage(this.users,1)
         })
       },

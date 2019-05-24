@@ -420,7 +420,7 @@ export default {
         .then(res=>{
         if (res.code==0){
           this.listItem=res.data.item[0];
-          if (this.listItem.isFirstPush){
+          if (this.listItem.isFirstPush==1){
             this.listItem.isFirstPush='是'//对是否首推进行数据转义
           } else{
             this.listItem.isFirstPush='否'
@@ -659,6 +659,7 @@ export default {
         message: '已删除原有图片',
         duration: 6000
       });
+      this.addForm.fileList[0].url=''
     },
     //文件上传成功的钩子函数
     handleSuccess(res, file) {

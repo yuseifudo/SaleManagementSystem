@@ -87,9 +87,9 @@ Mock.mock(/\/award\/edit/, 'get', awardAPI.updateAward)
 // Mock.mock(/\/packageManage\/list/,packageManageAPI.getList)// mock获取列表请求
 // Mock.mock(/\/packageManage\/detail/,packageManageAPI.getItemDetail)// mock获取详情列表请求
 // Mock.mock(/\/packageManage\/create/,packageManageAPI.insertPackageInfo)// mock新增套餐信息请求
-Mock.mock(/\/packageManage\/delete/,packageManageAPI.deletePackageInfo)// mock删除某条套餐信息请求
+// Mock.mock(/\/packageManage\/delete/,packageManageAPI.deletePackageInfo)// mock删除某条套餐信息请求
 // Mock.mock(/\/packageManage\/update/,packageManageAPI.updatePackageInfo)// mock更新套餐信息请求
-Mock.mock(/\/packageManage\/setFirstPush/,packageManageAPI.setFirstPush)// mock 设置首推套餐请求
+// Mock.mock(/\/packageManage\/setFirstPush/,packageManageAPI.setFirstPush)// mock 设置首推套餐请求
 
 // 管理员相关
 /**

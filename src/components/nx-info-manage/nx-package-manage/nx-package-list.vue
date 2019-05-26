@@ -116,7 +116,7 @@
         <el-form-item>
           <el-col :span="12">
             <el-form-item label="套餐销售数量:" label-width="120px">
-              <el-input v-model="listItem.number"  readonly></el-input>
+              <el-input v-model="listItem.salesCount"  readonly></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
@@ -293,13 +293,24 @@ export default {
   watch: {},
   computed: {},
   methods: {
+    transIsFirstPush(){
+      for (let item of this.packageLists){
+        if (item.isFirstPush==1){
+          item.isFirstPush=true;
+        }else{
+          item.isFirstPush=false;
+        }
+      }
+    },
     /**
      * 获取套餐列表，获取成功，存放数据，失败提示相关信息
      */
+
     getPackageList(){
       fetchList().then((res)=>{
         if (res.code==0){
           this.packageLists=res.data;
+          this.transIsFirstPush();
         }
         else{
           this.$message({
@@ -326,7 +337,14 @@ export default {
         const para={id:id}
         setFirstPush(para).then((res)=>{
           if (res.code==0){
-            this.packageLists=res.data;
+            this.getPackageList()
+
+          }
+          else{
+            this.$message({
+              message: res.msg,
+              type: 'error'
+            })
           }
         })
       })
@@ -346,7 +364,7 @@ export default {
           const para={id:id}
           deletePackageInfo(para).then(res=>{
             if (res.code==0){
-              this.packageLists=res.data.lists
+              this.getPackageList()
               PubSub.publish("deleted","item has been deleted");// 删除成功，使用Pubsub提示显示套餐销售数据图表更新数据
               this.$message({
                 message: '套餐信息删除成功',
@@ -354,8 +372,10 @@ export default {
               })
             }
             else{
-              message: res.data.message
-              type: 'error'
+              this.$message({
+                message: res.msg,
+                type: 'error'
+              })
             }
           })
         })
@@ -418,19 +438,25 @@ export default {
       }
       fetchPackageDetail(params)
         .then(res=>{
+          console.log(res)
         if (res.code==0){
-          this.listItem=res.data.item[0];
+          this.listItem=res.data;
           if (this.listItem.isFirstPush==1){
             this.listItem.isFirstPush='是'//对是否首推进行数据转义
           } else{
             this.listItem.isFirstPush='否'
           }
-
+          this.listItem.endTime=util.formatDate.format(new Date(res.data.endTime), 'yyyy-MM-dd hh:mm:ss')
+          this.listItem.startTime=util.formatDate.format(new Date(res.data.startTime), 'yyyy-MM-dd hh:mm:ss')
+          this.listItem.updateTime=util.formatDate.format(new Date(res.data.updateTime),'yyyy-MM-dd hh:mm:ss')
+          if (this.listItem.salesCount==0) {
+            this.listItem.salesCount=(this.listItem.salesCount || 0) + "";
+          }
           this.detailDialog=true
 
         } else{
           this.$message({
-            message: res.data.message,
+            message: res.msg,
             type: 'error'
           })
           return;
@@ -483,7 +509,7 @@ export default {
             //this.$refs.upload.submit();//文件上传
           } else {
             this.$message({
-              message: res.data.message,
+              message: res.msg,
               type: 'error'
             })
             return;
@@ -541,8 +567,6 @@ export default {
               message: '修改套餐信息成功',
               type: 'success'
             })
-            console.log("---------------")
-            console.log(res);
             for(let item of this.packageLists)
             {
               if (item.productId==this.addForm.productId){
@@ -579,7 +603,7 @@ export default {
         })
         .catch(() => {
           this.$message({
-            message: '添加套餐信息失败',
+            message: '更新套餐信息失败',
             type: 'error'
           })
           return;
@@ -624,19 +648,20 @@ export default {
     //文件上传前的前的钩子函数
     //参数是上传的文件，若返回false，或返回Primary且被reject，则停止上传
     beforeUpload(file) {
+      console.log(file)
       const isJPG = file.type === 'image/jpeg';
       const isGIF = file.type === 'image/gif';
       const isPNG = file.type === 'image/png';
       const isBMP = file.type === 'image/bmp';
-      const isLt2M = file.size / 1024 / 1024 < 2;
+      const isLt10M = file.size / 1024 / 1024 < 10;
 
       if (!isJPG && !isGIF && !isPNG && !isBMP) {
         this.$message.error('上传图片必须是JPG/GIF/PNG/BMP 格式!');
       }
-      if (!isLt2M) {
-        this.$message.error('上传图片大小不能超过 2MB!');
+      if (!isLt10M) {
+        this.$message.error('上传图片大小不能超过 10MB!');
       }
-      return (isJPG || isBMP || isGIF || isPNG) && isLt2M;
+      return (isJPG || isBMP || isGIF || isPNG) && isLt10M;
     },
     //上传的文件个数超出设定时触发的函数
     onExceed(files, fileList) {

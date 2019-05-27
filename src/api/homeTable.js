@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getHomeData(params) {
   return request({
-    url: '/home/data',
+    url: 'http://localhost:8080/dashboard/moneyList',
     method: 'get',
     params: params
   })
@@ -10,7 +10,7 @@ export function getHomeData(params) {
 
 export function getHomeTc(params) {
   return request({
-    url: '/home/taocan',
+    url: 'http://localhost:8080/dashboard/productList',
     method: 'get',
     params: params
   })
@@ -18,7 +18,7 @@ export function getHomeTc(params) {
 
 export function getHomeSaleData(params) {
   return request({
-    url: '/home/sale',
+    url: 'http://localhost:8080/dashboard/saleManList',
     method: 'get',
     params: params
   })

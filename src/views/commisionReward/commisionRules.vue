@@ -352,7 +352,6 @@
     },
     mounted() {
       this.getTaocans()
-
     },
   }
 </script>

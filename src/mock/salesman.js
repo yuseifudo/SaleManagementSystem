@@ -18,17 +18,14 @@ for (let i = 0; i < count; i++) {
     'totals|4000-20000':1,
     'count|50-300': 1,
     'commission|2000-8000': 1,
-    'count1|20-150': 1,
-    'count2|20-150': 1,
-    'count3|20-150': 1,
-    'count4|20-150': 1,
+
   }))
 }
 
 let Piedata=Mock.mock({
   'data|4': [
     {
-      number:'@integer(29, 400)',
+      number:'@integer(1, 20)',
       'name|1':['腾讯王卡','蚂蚁宝卡','京东强卡','工行E卡','百度圣卡','滴滴橙卡','畅淘卡','百度女神卡']
     }
   ]

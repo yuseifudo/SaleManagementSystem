@@ -26,9 +26,9 @@ Mock.setup({
 })
 
 // 登录相关
-Mock.mock(/\/user\/login/, 'post', loginAPI.loginByUsername)
-Mock.mock(/\/user\/logout/, 'post', loginAPI.logout)
-Mock.mock(/\/user\/info\.*/, 'get', loginAPI.getUserInfo)
+// Mock.mock(/\/user\/login/, 'post', loginAPI.loginByUsername)
+// Mock.mock(/\/user\/logout/, 'post', loginAPI.logout)
+// Mock.mock(/\/user\/info\.*/, 'get', loginAPI.getUserInfo)
 
 // 图表相关(陈铠彬)
 

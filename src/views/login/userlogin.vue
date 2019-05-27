@@ -97,8 +97,8 @@
           if (valid) {
             this.$store.dispatch('Login', this.loginForm).then(res => {
               console.log(res)
-              console.log('111111111111111111')
-              this.$router.push({ path: '/dashboard/dashboard' })
+              this.$router.push({path: '/dashboard/dashboard'})
+              // this.$router.push({ path: '/dashboard/dashboard'||  '/'})
             })
           }
           /*if (valid) {

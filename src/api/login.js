@@ -21,15 +21,16 @@ export function login(params) {
 
 export function getInfo(token) {
   return request({
-    url: '/user/info',
+    url: 'http://localhost:8080/manager/info',
     method: 'get',
     params: { token }
   })
 }
 
-export function logout() {
+export function logout(token) {
   return request({
-    url: '/user/logout',
-    method: 'post'
+    url: 'http://localhost:8080/manager/logout',
+    method: 'post',
+    params:{token}
   })
 }

@@ -17,6 +17,7 @@ service.interceptors.request.use(config => {
   return config
 }, error => {
   // Do something with request error
+  console.log(1)
   console.log(error) // for debug
   Promise.reject(error)
 })
@@ -28,6 +29,7 @@ service.interceptors.response.use(
   * code为非20000是抛错 可结合自己业务进行修改
   */
     const res = response.data
+    console.log(response)
     if (res.code !== 0) {
       Message({
         message: res.message,
@@ -54,6 +56,7 @@ service.interceptors.response.use(
   },
   error => {
     console.log('err' + error)// for debug
+    console.log(2)
     Message({
       message: error.message,
       type: 'error',

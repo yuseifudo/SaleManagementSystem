@@ -10,21 +10,21 @@
     <el-table-column align="center" prop="saleVolume" sortable label="月销售额">
       <template slot-scope="scope">
         <el-tag
-          :type="scope.row.saleVolume >= 15000 ? 'danger' : scope.row.saleVolume <=10000 ? 'success':'warning'"
+          :type="scope.row.saleVolume >= 30000 ? 'danger' : scope.row.saleVolume <=10000 ? 'success':'warning'"
           disable-transitions>{{scope.row.saleVolume}}</el-tag>
       </template>
     </el-table-column>
     <el-table-column align="center" prop="saleCount" sortable label="月销售量">
       <template slot-scope="scope">
         <el-tag
-          :type="scope.row.saleCount>= 15000 ? 'danger' : scope.row.saleCount <=10000 ? 'success':'warning'"
+          :type="scope.row.saleCount>= 300 ? 'danger' : scope.row.saleCount <=150 ? 'success':'warning'"
           disable-transitions>{{scope.row.saleCount}}</el-tag>
       </template>
     </el-table-column>
     <el-table-column align="center" prop="monthDifference" sortable label="较上月销售差额">
       <template slot-scope="scope">
         <el-tag
-          :type="scope.row.monthDifference >= 15000 ? 'danger' : scope.row.monthDifference <=10000 ? 'success':'warning'"
+          :type="scope.row.monthDifference >= 0 ? 'danger' :'success'"
           disable-transitions>{{scope.row.monthDifference}}</el-tag>
       </template>
     </el-table-column>

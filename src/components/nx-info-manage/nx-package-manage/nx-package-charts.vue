@@ -45,8 +45,8 @@
                 this.chart = echarts.init(document.getElementById("packageChart"));
                 //进行表格数据的封装
                 for (let i=0;i<this.packageData.length;i++){
-                  this.dataTitle.push(this.packageData[i].name)
-                  this.dataItems.push({value:this.packageData[i].number,name:this.packageData[i].name})
+                  this.dataTitle.push(this.packageData[i].productName)
+                  this.dataItems.push({value:this.packageData[i].salesCount,name:this.packageData[i].productName})
                 }
 
                 this.option = {

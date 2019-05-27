@@ -2,11 +2,11 @@ import axios from 'axios'
 
 const base = ''
 
-export const getHomeData = params => { return axios.get(`${base}/home/data`, { params: params }) }
+export const getHomeData = params => { return axios.get(`${base}/dashboard/moneyList`, { params: params }) }
 
-export const getHomeTc = params => { return axios.get(`${base}/home/taocan`, { params: params }) }
+export const getHomeTc = params => { return axios.get(`${base}/dashboard/productList`, { params: params }) }
 
-export const getHomeSaleData = params => { return axios.get(`${base}/home/sale`, { params: params }) }
+export const getHomeSaleData = params => { return axios.get(`${base}/dashboard/saleManList`, { params: params }) }
 
 export const getLchartData = params => { return axios.get(`${base}/home/lchartdata`, { params: params }) }
 

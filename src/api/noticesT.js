@@ -31,13 +31,13 @@ export function editNotice(params) {
   return request({
     url: 'http://localhost:8080/notice/edit',
     method: 'put',
-    params: params
+    params: {params}
   })
 }
 export function addNotice(params) {
   return request({
     url: 'http://localhost:8080/notice/add',
     method: 'post',
-    data: params
+    params: {params}
   })
 }

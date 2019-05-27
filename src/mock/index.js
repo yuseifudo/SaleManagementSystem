@@ -26,9 +26,9 @@ Mock.setup({
 })
 
 // 登录相关
-Mock.mock(/\/user\/login/, 'post', loginAPI.loginByUsername)
-Mock.mock(/\/user\/logout/, 'post', loginAPI.logout)
-Mock.mock(/\/user\/info\.*/, 'get', loginAPI.getUserInfo)
+// Mock.mock(/\/user\/login/, 'post', loginAPI.loginByUsername)
+// Mock.mock(/\/user\/logout/, 'post', loginAPI.logout)
+// Mock.mock(/\/user\/info\.*/, 'get', loginAPI.getUserInfo)
 
 // 图表相关(陈铠彬)
 
@@ -85,11 +85,11 @@ Mock.mock(/\/award\/edit/, 'get', awardAPI.updateAward)
  * 日期：2019/5/9
  */
 // Mock.mock(/\/packageManage\/list/,packageManageAPI.getList)// mock获取列表请求
-Mock.mock(/\/packageManage\/detail/,packageManageAPI.getItemDetail)// mock获取详情列表请求
+// Mock.mock(/\/packageManage\/detail/,packageManageAPI.getItemDetail)// mock获取详情列表请求
 // Mock.mock(/\/packageManage\/create/,packageManageAPI.insertPackageInfo)// mock新增套餐信息请求
-Mock.mock(/\/packageManage\/delete/,packageManageAPI.deletePackageInfo)// mock删除某条套餐信息请求
+// Mock.mock(/\/packageManage\/delete/,packageManageAPI.deletePackageInfo)// mock删除某条套餐信息请求
 // Mock.mock(/\/packageManage\/update/,packageManageAPI.updatePackageInfo)// mock更新套餐信息请求
-Mock.mock(/\/packageManage\/setFirstPush/,packageManageAPI.setFirstPush)// mock 设置首推套餐请求
+// Mock.mock(/\/packageManage\/setFirstPush/,packageManageAPI.setFirstPush)// mock 设置首推套餐请求
 
 // 管理员相关
 /**

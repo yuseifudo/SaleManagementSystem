@@ -5,7 +5,7 @@ import request from '@/utils/request'
 
 export function getUserList(params) {
   return request({
-    url: 'http://localhost:8080/user/list',
+    url: 'http://localhost:8080/MonthSale/list',
     method: 'get',
     params: params
   })

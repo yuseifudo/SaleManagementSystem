@@ -72,12 +72,15 @@ const user = {
     Login({ commit }, userInfo) {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
-        login(username, userInfo.password).then(response => {
+        const params={loginName:username,password:userInfo.password}
+        login(params).then(response => {
           const data = response
-          setToken(data.token)
-          commit('SET_TOKEN', data.token)
+          console.log(data);
+          /*setToken(data.token)
+          commit('SET_TOKEN', data.token)*/
           resolve()
         }).catch(error => {
+          console.log('asssssssssss')
           reject(error)
         })
       })

@@ -61,11 +61,11 @@ Mock.mock(/\/user\/edit/, 'get', tableAPI.updateUser)
 * 时间：2019.05.06
 * 功能：公告相关/
 * */
-Mock.mock(/\/notice\/listpage/, 'get', noticeAPI.getNoticeList)
-Mock.mock(/\/notice\/remove/, 'get', noticeAPI.deleteNotice)
-Mock.mock(/\/notice\/batchremove/, 'get', noticeAPI.batchremove)
-Mock.mock(/\/notice\/add/, 'get', noticeAPI.createNotice)
-Mock.mock(/\/notice\/edit/, 'get', noticeAPI.updateNotice)
+//Mock.mock(/\/notice\/listpage/, 'get', noticeAPI.getNoticeList)
+//Mock.mock(/\/notice\/remove/, 'get', noticeAPI.deleteNotice)
+//Mock.mock(/\/notice\/batchremove/, 'get', noticeAPI.batchremove)
+//Mock.mock(/\/notice\/add/, 'get', noticeAPI.createNotice)
+//Mock.mock(/\/notice\/edit/, 'get', noticeAPI.updateNotice)
 
 /*
 * 作者：王震
@@ -84,12 +84,12 @@ Mock.mock(/\/award\/edit/, 'get', awardAPI.updateAward)
  * 作者：石龙成
  * 日期：2019/5/9
  */
-Mock.mock(/\/packageManage\/list/,packageManageAPI.getList)// mock获取列表请求
-Mock.mock(/\/packageManage\/detail/,packageManageAPI.getItemDetail)// mock获取详情列表请求
-Mock.mock(/\/packageManage\/create/,packageManageAPI.insertPackageInfo)// mock新增套餐信息请求
-Mock.mock(/\/packageManage\/delete/,packageManageAPI.deletePackageInfo)// mock删除某条套餐信息请求
-Mock.mock(/\/packageManage\/update/,packageManageAPI.updatePackageInfo)// mock更新套餐信息请求
-Mock.mock(/\/packageManage\/setFirstPush/,packageManageAPI.setFirstPush)// mock 设置首推套餐请求
+// Mock.mock(/\/packageManage\/list/,packageManageAPI.getList)// mock获取列表请求
+// Mock.mock(/\/packageManage\/detail/,packageManageAPI.getItemDetail)// mock获取详情列表请求
+// Mock.mock(/\/packageManage\/create/,packageManageAPI.insertPackageInfo)// mock新增套餐信息请求
+// Mock.mock(/\/packageManage\/delete/,packageManageAPI.deletePackageInfo)// mock删除某条套餐信息请求
+// Mock.mock(/\/packageManage\/update/,packageManageAPI.updatePackageInfo)// mock更新套餐信息请求
+// Mock.mock(/\/packageManage\/setFirstPush/,packageManageAPI.setFirstPush)// mock 设置首推套餐请求
 
 // 管理员相关
 /**
@@ -104,7 +104,7 @@ Mock.mock(/\/admin\/add/, 'get', adminAPI.createAdmin)
 Mock.mock(/\/admin\/edit/, 'get', adminAPI.updateAdmin)
 
 //报表相关
-Mock.mock(/\/user\/list/, 'get', monreportAPI.getUserList)
+//Mock.mock(/\/user\/list/, 'get', monreportAPI.getUserList)
 Mock.mock(/\/sale\/list/, 'get', salereportAPI.getSaleList)
 
 //功能：销售人员相关

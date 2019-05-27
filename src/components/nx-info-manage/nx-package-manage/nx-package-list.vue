@@ -7,26 +7,26 @@
     </div>
 
     <el-row :span="24">
-      <el-col class="colItem" :span="item.span" v-for="(item,index) in packageLists" :key="item.id">
+      <el-col class="colItem" :span="cssStyle.span" v-for="(item,index) in packageLists" :key="item.productId">
 <!--        如果是首推，则显示数据并且加上红色实线2像素的边框-->
 <!--        border:2px inset red-->
         <div class="item" v-if="item.isFirstPush" style="box-shadow: 0 0 0 5px #05b5ed,0 0 0 7.5px lightBlue ,0 1px 2.5px 7.5px rgba(0,0,0,.6)">
-          <img :src="item.img" class="item-img" />
+          <img :src="item.imgUrl" class="item-img" />
           <div style="position:absolute;width:40px;height:40px;z-indent:2;right:  5px;top: 5px;">
             <i class="el-icon-star-on" style="color: red;width: 100%; font-size: 40px" ></i>
           </div>
 
 
-          <div class="item-text" :style="{color:item.color,backgroundColor:item.bgText}">
-            <h3>{{item.name}}</h3>
+          <div class="item-text" :style="{color:cssStyle.color,backgroundColor:cssStyle.bgText}">
+            <h3>{{item.productName}}</h3>
             <p>{{item.description}}</p>
           </div>
         </div>
 <!--        如果不是，则正常显示-->
         <div class="item" v-else>
-          <img :src="item.img" class="item-img" />
-          <div class="item-text" :style="{color:item.color,backgroundColor:item.bgText}">
-            <h3>{{item.name}}</h3>
+          <img :src="item.imgUrl" class="item-img" />
+          <div class="item-text" :style="{color:cssStyle.color,backgroundColor:cssStyle.bgText}">
+            <h3>{{item.productName}}</h3>
             <p>{{item.description}}</p>
           </div>
 
@@ -42,19 +42,19 @@
             </el-tooltip>
 <!--否则，显示空心五心按钮，悬浮按钮提示设置该套餐为首推套餐，可以点击，并且添加点击事件-->
             <el-tooltip  v-else effect="dark" content="设置该套餐为首推套餐" placement="bottom-start">
-              <el-button size="medium"  type="warning" @click="FirstPushSet(item.id)" icon="el-icon-star-off"></el-button>
+              <el-button size="medium"  type="warning" @click="FirstPushSet(item.productId)" icon="el-icon-star-off"></el-button>
             </el-tooltip>
 <!--            显示详情，悬浮提示查看详情，添加点击事件-->
             <el-tooltip  effect="dark"  content="查看详情" placement="bottom-start">
-              <el-button size="medium" @click="handleShowItem(item.id)" type="info" icon="el-icon-view"></el-button>
+              <el-button size="medium" @click="handleShowItem(item.productId)" type="info" icon="el-icon-view"></el-button>
             </el-tooltip>
 <!--            编辑更新套餐，悬浮提示编辑套餐信息 添加点击事件-->
             <el-tooltip  effect="dark" content="编辑套餐信息" placement="bottom-start">
-              <el-button size="medium" type="info" @click="handleEdit(item.id)" icon="el-icon-edit"></el-button>
+              <el-button size="medium" type="info" @click="handleEdit(item.productId)" icon="el-icon-edit"></el-button>
             </el-tooltip>
 <!--            删除套餐，悬浮提示删除改套餐，添加点击事件-->
             <el-tooltip  effect="dark" content="删除该套餐" placement="bottom-start">
-              <el-button size="medium" type="danger" @click="deleteItem(item.id)" icon="el-icon-delete"> </el-button>
+              <el-button size="medium" type="danger" @click="deleteItem(item.productId)" icon="el-icon-delete"> </el-button>
             </el-tooltip>
 
           </el-button-group>
@@ -62,25 +62,25 @@
       </el-col>
     </el-row>
 <!--显示套餐详情dialog，默认隐藏，通过查看套餐详情图标，唤醒该dialog,数据显示内容与listItem绑定-->
-    <el-dialog :title="listItem.name+'套餐相关信息'" :visible.sync="detailDialog" :close-on-click-modal="false" >
+    <el-dialog :title="listItem.productName+'套餐相关信息'" :visible.sync="detailDialog" :close-on-click-modal="false" >
       <el-form :model="listItem"  ref="listItem">
 <!--        每一行显示两个信息，设置为readonly-->
         <el-form-item>
           <el-col :span="12">
             <el-form-item label="套餐编码:" label-width="120px">
-              <el-input v-model="listItem.id"  readonly></el-input>
+              <el-input v-model="listItem.productId"  readonly></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="套餐名:" label-width="120px">
-              <el-input v-model="listItem.name" readonly></el-input>
+              <el-input v-model="listItem.productName" readonly></el-input>
             </el-form-item>
           </el-col>
         </el-form-item>
         <el-form-item>
           <el-col :span="12">
             <el-form-item label="套餐资费:" label-width="120px">
-              <el-input v-model="listItem.fee"  readonly></el-input>
+              <el-input v-model="listItem.productFee"  readonly></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
@@ -116,7 +116,12 @@
         <el-form-item>
           <el-col :span="12">
             <el-form-item label="套餐销售数量:" label-width="120px">
-              <el-input v-model="listItem.number"  readonly></el-input>
+              <el-input v-model="listItem.salesCount"  readonly></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="套餐简介:" label-width="120px">
+              <el-input v-model="listItem.recommend" readonly></el-input>
             </el-form-item>
           </el-col>
         </el-form-item>
@@ -132,11 +137,11 @@
 <!--    编辑新增套餐dialog，默认隐藏，通过点击添加按钮或者编辑该套餐按钮，唤醒该dialog,title根据dialogStatus显示 编辑套餐 或者添加套餐-->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" :close-on-click-modal="false"  @close="callOf('addForm')">
       <el-form :model="addForm" label-width="80px" :rules="addFormRules" ref="addForm">
-        <el-form-item label="套餐名:" prop="name">
-          <el-input v-model="addForm.name" auto-complete="off" placeholder="请输入套餐名称" clearable></el-input>
+        <el-form-item label="套餐名:" prop="productName">
+          <el-input v-model="addForm.productName" auto-complete="off" placeholder="请输入套餐名称" clearable></el-input>
         </el-form-item>
-        <el-form-item label="套餐资费:" label-width="100px" prop="fee">
-          <el-input-number v-model="addForm.fee" controls-position="right" :min="1" label="元/月"></el-input-number>&nbsp;&nbsp;元/月
+        <el-form-item label="套餐资费:" label-width="100px" prop="productFee">
+          <el-input-number v-model="addForm.productFee" controls-position="right" :min="1" label="元/月"></el-input-number>&nbsp;&nbsp;元/月
         </el-form-item>
         <el-form-item label="套餐起止时间:" label-width="120px" required>
           <el-col :span="9">
@@ -151,47 +156,38 @@
             </el-form-item>
           </el-col>
         </el-form-item>
+        <el-form-item label="套餐简介:" label-width="100px" prop="recommend">
+          <el-input placeholder="请输入套餐简介" v-model="addForm.recommend"></el-input>
+        </el-form-item>
         <el-form-item label="套餐描述:" label-width="100px" prop="description">
           <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4}" placeholder="请输入套餐的详细介绍" v-model="addForm.description"></el-input>
         </el-form-item>
         <el-form-item label="套餐图片:" label-width="100px">
-<!--          添加套餐图片区域-->
-          <el-col :span="9">
-            <el-form-item>
-              <el-upload
-                class="upload-demo"
-                drag
-                action="https://jsonplaceholder.typicode.com/posts/"
-                accept="image/jpeg,image/png"
-                :on-exceed="handleExceed"
-                :on-change="onUploadChange"
-                :before-upload="onBeforeUpload"
-                :auto-upload="false"
-                :on-remove="handleRemove"
-                :limit='2'
-                :file-list="addForm.file"
-                ref="upload">
-                <i class="el-icon-upload"></i>
-                <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-                <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过1Mb</div>
-              </el-upload>
-            </el-form-item>
-          </el-col>
-          <el-col :span="9">
-            <el-form-item>
-              <!--展示选中图片的区域-->
-                <div style="width:100%;overflow: hidden;margin-left:150px;">
-                  <img :src="src" alt="" style="width:100%;"/>
-                </div>
-            </el-form-item>
-          </el-col>
-
+          <el-upload
+            ref="upload"
+            action="http://localhost:8080/product/upload"
+            name="picture"
+            list-type="picture-card"
+            :limit="1"
+            :file-list="addForm.fileList"
+            :on-change="handleChanged"
+            :on-exceed="onExceed"
+            :auto-upload="false"
+            :before-upload="beforeUpload"
+            :on-preview="handlePreview"
+            :on-success="handleSuccess"
+            :on-remove="handleRemove">
+            <i class="el-icon-plus"></i>
+          </el-upload>
+          <el-dialog :visible.sync="dialogImgVisible">
+            <img width="100%" :src="dialogImageUrl" alt="">
+          </el-dialog>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
 <!--        根据dialogStatus显示添加按钮或者修改按钮-->
         <el-button v-if="dialogStatus=='add'" type="primary" @click="onsubmit">添加</el-button>
-        <el-button v-else type="primary" @click="updateItem(addForm.id)">修改</el-button>
+        <el-button v-else type="primary" @click="onsubmitUpdate()">修改</el-button>
         <el-button @click.native="callOf('addForm')">取消</el-button>
 
       </div>
@@ -211,59 +207,74 @@
     updatePackageInfo,
     setFirstPush
   } from '@/api/packageManage.js'
+  import { getToken, setToken, removeToken } from '@/utils/auth'
 export default {
 
   name: 'nx-package-list',
-  data() {
+  data: function () {
     return {
-      listItem:{},// 存放显示详情对话框中存放的数据
-      packageLists:{},// 存放从后台拿到的数据
+      listItem: {},// 存放显示详情对话框中存放的数据
+      packageLists: [],// 存放从后台拿到的数据
       textMap: {//根据添加或者编辑显示相关的提示信息参数
         update: '编辑套餐',
         add: '添加套餐'
       },
-      dialogStatus:'',// 根据添加或者编辑显示相关的提示信息参数 显示相关信息的键值
+      //文件上传的参数
+      dialogImageUrl: '',
+      dialogImgVisible: false,
+      //图片列表（用于在上传组件中回显图片）
+
+      cssStyle: {
+        span: 6,// 页面布局span
+        borderColor: '#fff', //页面布局边框颜色
+        color: '#fff',//文字颜色
+        bgText: '#2e323f'//背景颜色
+      },
+      dialogStatus: '',// 根据添加或者编辑显示相关的提示信息参数 显示相关信息的键值
       dialogFormVisible: false,// 控制添加或者编辑的对话框的隐藏与显示
-      detailDialog:false,// 控制显示详情的对话框的隐藏与显示
-      param:"",//表单要提交的参数
-      src:"", //展示图片的地址
-      addForm:{// 与添加或者编辑对话框显示的数据
-        id:0,
-        name: '',
-        fee: 1,
+      detailDialog: false,// 控制显示详情的对话框的隐藏与显示
+      param: "",//表单要提交的参数
+      src: "", //展示图片的地址
+      addForm: {// 与添加或者编辑对话框显示的数据
+        productId: 0,
+        productName: '',
+        productFee: 1,
+        recommend: '',
         description: '',
         startTime: '',
         endTime: '',
-        file: [],
-        img: ''
+        imgUrl: '',
+        fileList: [{name: '', url: ''}],
+        updateUser: getToken(),
       },
       addFormRules: {//添加或者编辑对话框的过滤规则
-        name: [{ required: true, message: '请输入套餐名称', trigger: 'blur'}],
-        fee: [{required:true,message: '套餐资费不能小于等于0',trigger: 'blur'}],
-        description: [{ required: true, message: '请输入套餐详细描述', trigger: 'blur' }],
+        productName: [{required: true, message: '请输入套餐名称', trigger: 'blur'}],
+        productFee: [{required: true, message: '套餐资费不能小于等于0', trigger: 'blur'}],
+        recommend: [{required: true, message: '请输入套餐简介', trigger: 'blur'}],
+        description: [{required: true, message: '请输入套餐详细描述', trigger: 'blur'}],
         startTime: [
-          { type: 'string', required: true, message: '请选择套餐的开始时间', trigger: 'blur' }
+          {type: 'string', required: true, message: '请选择套餐的开始时间', trigger: 'blur'}
         ],
-        endTime: [{ type: 'string', required: true, message: '请选择套餐的结束时间', trigger: 'blur' }],
+        endTime: [{type: 'string', required: true, message: '请选择套餐的结束时间', trigger: 'blur'}],
       },
       startTime: {// 设置套餐开始时间只能选择大于当前日期并且小于结束日期
         disabledDate: time => {
           if (this.addForm.endTime) {
             // return !(
             //   time.getTime() < new Date(this.addForm.endTime).getTime()&&time.getTime()>=Date.now())
-            return (time.getTime()<Date.now()||time.getTime()>new Date(this.addForm.endTime).getTime());
+            return (time.getTime() < Date.now() || time.getTime() > new Date(this.addForm.endTime).getTime());
           } else {
             // return !(time.getTime() > Date.now());
-            return time.getTime()<Date.now();
+            return time.getTime() < Date.now();
           }
         }
       },
       endTime: {// 设置套餐结束时间只能选择大于当且日期并且大于套餐开始日期
         disabledDate: time => {
           if (this.addForm.startTime) {
-            return time.getTime()<new Date(this.addForm.startTime).getTime()
+            return time.getTime() < new Date(this.addForm.startTime).getTime()
           } else {
-            return time.getTime()<Date.now();
+            return time.getTime() < Date.now();
           }
         }
       }
@@ -282,20 +293,24 @@ export default {
   watch: {},
   computed: {},
   methods: {
+    transIsFirstPush(){
+      for (let item of this.packageLists){
+        if (item.isFirstPush==1){
+          item.isFirstPush=true;
+        }else{
+          item.isFirstPush=false;
+        }
+      }
+    },
     /**
      * 获取套餐列表，获取成功，存放数据，失败提示相关信息
      */
+
     getPackageList(){
       fetchList().then((res)=>{
         if (res.code==0){
           this.packageLists=res.data;
-          // let maxIndex=0;
-          // for(let i=0;i<this.packageLists.length;i++){
-          //   if (this.packageLists[i].number>this.packageLists[maxIndex].number){
-          //     maxIndex=i;
-          //   }
-          // }// 获取销量最高的套餐并把它设为首推套餐
-          // this.packageLists[maxIndex].isFirstPush=true;
+          this.transIsFirstPush();
         }
         else{
           this.$message({
@@ -322,7 +337,14 @@ export default {
         const para={id:id}
         setFirstPush(para).then((res)=>{
           if (res.code==0){
-            this.packageLists=res.data;
+            this.getPackageList()
+
+          }
+          else{
+            this.$message({
+              message: res.msg,
+              type: 'error'
+            })
           }
         })
       })
@@ -342,7 +364,7 @@ export default {
           const para={id:id}
           deletePackageInfo(para).then(res=>{
             if (res.code==0){
-              this.packageLists=res.data.lists
+              this.getPackageList()
               PubSub.publish("deleted","item has been deleted");// 删除成功，使用Pubsub提示显示套餐销售数据图表更新数据
               this.$message({
                 message: '套餐信息删除成功',
@@ -350,8 +372,10 @@ export default {
               })
             }
             else{
-              message: res.data.message
-              type: 'error'
+              this.$message({
+                message: res.msg,
+                type: 'error'
+              })
             }
           })
         })
@@ -363,19 +387,22 @@ export default {
       this.dialogStatus = 'add'
       this.dialogFormVisible = true
       this.addForm={
-          name: '',
-          fee: 1,
-          description: '',
-          startTime: '',
-          endTime: '',
-          file: [],
-          img: ''
+        productName: '',
+        productFee: 1,
+        description: '',
+        startTime: '',
+        endTime: '',
+        fileList: [{name: '', url: ''}],
+        imgUrl: '',
+        recommend: '',
+        updateUser:getToken()
       }
     },
 
     //模态框取消方法，关闭后清除提示
     callOf(form){
       this.dialogFormVisible = false;
+      this.fileList=[{name: '', url: ''}],
       this.$refs[form].resetFields();
     },
     /**
@@ -386,15 +413,17 @@ export default {
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
       for (let i=0;i<this.packageLists.length;i++){
-        if (this.packageLists[i].id==id){
-          this.addForm.id=id;
-          this.addForm.name=this.packageLists[i].name;
-          this.addForm.fee=this.packageLists[i].fee;
+        if (this.packageLists[i].productId==id){
+          this.addForm.productId=id;
+          this.addForm.productName=this.packageLists[i].productName;
+          this.addForm.productFee=this.packageLists[i].productFee;
           this.addForm.description=this.packageLists[i].description;
           this.addForm.startTime=this.packageLists[i].startTime;
           this.addForm.endTime=this.packageLists[i].endTime;
-          this.addForm.file=[];
-          this.addForm.img='';
+          this.addForm.imgUrl=this.packageLists[i].imgUrl;
+          this.addForm.recommend=this.packageLists[i].recommend;
+          this.addForm.fileList=[{name: this.addForm.productName, url: this.addForm.imgUrl}];
+          this.addForm.updateUser=getToken();
         }
       }
     },
@@ -409,19 +438,25 @@ export default {
       }
       fetchPackageDetail(params)
         .then(res=>{
+          console.log(res)
         if (res.code==0){
-          this.listItem=res.data.item[0];
-          if (this.listItem.isFirstPush){
+          this.listItem=res.data;
+          if (this.listItem.isFirstPush==1){
             this.listItem.isFirstPush='是'//对是否首推进行数据转义
           } else{
             this.listItem.isFirstPush='否'
           }
-
+          this.listItem.endTime=util.formatDate.format(new Date(res.data.endTime), 'yyyy-MM-dd hh:mm:ss')
+          this.listItem.startTime=util.formatDate.format(new Date(res.data.startTime), 'yyyy-MM-dd hh:mm:ss')
+          this.listItem.updateTime=util.formatDate.format(new Date(res.data.updateTime),'yyyy-MM-dd hh:mm:ss')
+          if (this.listItem.salesCount==0) {
+            this.listItem.salesCount=(this.listItem.salesCount || 0) + "";
+          }
           this.detailDialog=true
 
         } else{
           this.$message({
-            message: res.data.message,
+            message: res.msg,
             type: 'error'
           })
           return;
@@ -439,45 +474,63 @@ export default {
     /**
      * 添加套餐信息表单提交
      */
-    onsubmit(){
+
+    addItem(){
+      const params={
+        productName:this.addForm.productName,
+        productFee:this.addForm.productFee,
+        startTime:this.addForm.startTime,
+        endTime:this.addForm.endTime,
+        description:this.addForm.description,
+        imgUrl:this.addForm.imgUrl,
+        updateUser:getToken(),
+        recommend:this.addForm.recommend
+      }
+      createPackageInfo(params)
+        .then(res=> {
+          if (res.code == 0) {
+            this.$message({
+              message: '添加套餐信息成功',
+              type: 'success'
+            })
+            this.packageLists.push(res.data);
+            this.dialogFormVisible = false;
+            this.addForm.productId=0
+            this.addForm.productName = '';
+            this.addForm.description = '';
+            this.addForm.productFee = 1;
+            this.addForm.startTime = '';
+            this.addForm.endTime = '';
+            this.addForm.recommend = '';
+            this.addForm.fileList = [{name: '', url: ''}]
+            this.addForm.updateUser=getToken();
+            this.dialogStatus='';
+            PubSub.publish("added", "item has been added");//发布信息提示表格显示进行数据刷新
+            //this.$refs.upload.submit();//文件上传
+          } else {
+            this.$message({
+              message: res.msg,
+              type: 'error'
+            })
+            return;
+          }
+        })
+    },
+    onsubmit() {
       this.$refs.addForm.validate((valid) => {
-        if (valid){
-          this.$confirm('是否添加该套餐?', '提示', {
-            type: 'warning'
-          }).then(()=>{
-            const params={
-              name:this.addForm.name,
-              fee:this.addForm.fee,
-              startTime:this.addForm.startTime,
-              endTime:this.addForm.endTime,
-              description:this.addForm.description,
-            }
-            createPackageInfo(params)
-              .then(res=>{
-                if (res.code==0){
+          if (valid) {
+            this.$confirm('是否添加该套餐?', '提示', {
+              type: 'warning'
+            })
+              .then(() => {
+                if (this.addForm.fileList[0].url==''){
                   this.$message({
-                    message: '添加套餐信息成功',
-                    type: 'success'
-                  })
-                  this.packageLists=res.data
-                  this.dialogFormVisible=false;
-                  this.addForm.name='';
-                  this.addForm.description='';
-                  this.addForm.fee=1;
-                  this.addForm.startTime='';
-                  this.addForm.endTime='';
-                  this.param='';
-                  this.src='';
-                  PubSub.publish("added","item has been added");//发布信息提示表格显示进行数据刷新
-                  //this.$refs.upload.submit();//文件上传
-                }
-                else{
-                  this.$message({
-                    message: res.data.message,
+                    message: '套餐图片不能为空',
                     type: 'error'
                   })
-                  return;
+                  return false;
                 }
+                this.$refs.upload.submit();
               })
               .catch(() => {
                 this.$message({
@@ -486,69 +539,100 @@ export default {
                 })
                 return;
               })
-          })
-
-        }else{
+          } else {
+            this.$message({
+              message: '套餐信息没有完全填写',
+              type: 'error'
+            })
+          }
+        }
+      )
+    },
+    updateItem(){
+      const params={
+        productId:this.addForm.productId,
+        productName:this.addForm.productName,
+        productFee:this.addForm.productFee,
+        startTime:this.addForm.startTime,
+        endTime:this.addForm.endTime,
+        description:this.addForm.description,
+        recommend:this.addForm.recommend,
+        imgUrl:this.addForm.imgUrl,
+        updateUser:getToken(),
+      }
+      updatePackageInfo(params)
+        .then((res)=>{
+          if (res.code==0){
+            this.$message({
+              message: '修改套餐信息成功',
+              type: 'success'
+            })
+            for(let item of this.packageLists)
+            {
+              if (item.productId==this.addForm.productId){
+                item.productName=this.addForm.productName
+                item.productFee=this.addForm.productFee
+                item.recommend=this.addForm.recommend
+                item.description=this.addForm.description
+                item.startTime=this.addForm.startTime
+                item.endTime=this.addForm.endTime
+                item.updateUser=getToken()
+                item.updateTime=util.formatDate.format(new Date(), 'yyyy-MM-dd hh:mm:ss')
+                item.imgUrl=res.data
+                this.addForm.fileList = [{name: '', url: ''}]
+              }
+            }
+            this.dialogFormVisible=false;
+            this.addForm.productName='';
+            this.addForm.description='';
+            this.addForm.productFee=1;
+            this.addForm.startTime='';
+            this.addForm.endTime='';
+            this.addForm.recommend='';
+            this.dialogStatus='';
+            PubSub.publish("updated","item has been updated");//publish服务，提示表格显示区进行数据刷新
+            //this.$refs.upload.submit();//文件上传
+          }
+          else{
+            this.$message({
+              message: res.msg,
+              type: 'error'
+            })
+            return;
+          }
+        })
+        .catch(() => {
           this.$message({
-            message: '套餐信息没有完全填写',
+            message: '更新套餐信息失败',
             type: 'error'
           })
-        }
-      })
-
+          return;
+        })
     },
     /**
      * 更新套餐信息
      * @param id {number} 套餐id
      */
-    updateItem(id){
+    onsubmitUpdate(){
       this.$refs.addForm.validate((valid) => {
         if (valid){
           this.$confirm('是否更新该套餐?', '提示', {
             type: 'warning'
           }).then(()=>{
-            const params={
-              id:id,
-              name:this.addForm.name,
-              fee:this.addForm.fee,
-              startTime:this.addForm.startTime,
-              endTime:this.addForm.endTime,
-              description:this.addForm.description,
+            if (this.addForm.fileList[0].url==''){
+              this.$message({
+                message: '套餐图片不能为空',
+                type: 'error'
+              })
+              return false;
             }
-            updatePackageInfo(params)
-              .then((res)=>{
-                if (res.code==0){
-                  this.$message({
-                    message: '修改套餐信息成功',
-                    type: 'success'
-                  })
-                  this.packageLists=res.data.lists;
-                  this.dialogFormVisible=false;
-                  this.addForm.name='';
-                  this.addForm.description='';
-                  this.addForm.fee=1;
-                  this.addForm.startTime='';
-                  this.addForm.endTime='';
-                  this.param='';
-                  this.src='';
-                  PubSub.publish("updated","item has been updated");//publish服务，提示表格显示区进行数据刷新
-                  //this.$refs.upload.submit();//文件上传
-                }
-                else{
-                  this.$message({
-                    message: res.data.message,
-                    type: 'error'
-                  })
-                  return;
-                }
-              })
-              .catch(() => {
-                this.$message({
-                  message: '添加套餐信息失败',
-                  type: 'error'
-                })
-                return;
-              })
+            if (this.addForm.imgUrl==this.addForm.fileList[0].url){
+              this.updateItem();
+
+            } else{
+              this.$refs.upload.submit();
+            }
+
           })}
           else{
             this.$message({
@@ -559,43 +643,67 @@ export default {
       })
 
     },
-    onBeforeUpload(file) {
-      const isIMAGE = file.type === 'image/jpeg'||'image/png';
-      const isLt1M = file.size / 1024 / 1024 < 1;
 
-      if (!isIMAGE) {
-        this.$message.error('上传文件只能是图片格式!');
-      }
-      if (!isLt1M) {
-        this.$message.error('上传文件大小不能超过 1MB!');
-      }
-      return isIMAGE && isLt1M;
-    },
-    onUploadChange(file,filesList){
-      const isIMAGE = (file.raw.type === 'image/jpeg' || file.raw.type === 'image/png');
-      const isLt1M = file.size / 1024 / 1024 < 1;
 
-      if (!isIMAGE) {
-        this.$message.error('只能上传jpg/png图片!');
-        return false;
-      }
-      if (!isLt1M) {
-        this.$message.error('上传文件大小不能超过 1MB!');
-        return false;
-      }
+    //文件上传前的前的钩子函数
+    //参数是上传的文件，若返回false，或返回Primary且被reject，则停止上传
+    beforeUpload(file) {
+      console.log(file)
+      const isJPG = file.type === 'image/jpeg';
+      const isGIF = file.type === 'image/gif';
+      const isPNG = file.type === 'image/png';
+      const isBMP = file.type === 'image/bmp';
+      const isLt10M = file.size / 1024 / 1024 < 10;
 
-      //创建临时的路径来展示图片
-      var windowURL = window.URL || window.webkitURL;
-      this.src=windowURL.createObjectURL(file.raw);
-      //重新写一个表单上传的方法
-      this.param = new FormData();
-      this.param.append('file', file.raw, file.name);
-      // return false;
+      if (!isJPG && !isGIF && !isPNG && !isBMP) {
+        this.$message.error('上传图片必须是JPG/GIF/PNG/BMP 格式!');
+      }
+      if (!isLt10M) {
+        this.$message.error('上传图片大小不能超过 10MB!');
+      }
+      return (isJPG || isBMP || isGIF || isPNG) && isLt10M;
     },
-    handleRemove(file,filesList){
-      this.param.delete('file')
+    //上传的文件个数超出设定时触发的函数
+    onExceed(files, fileList) {
+      this.$message({
+        type: 'info',
+        message: '最多只能上传一个图片',
+        duration: 6000
+      });
     },
-    handleExceed(){},
+    //点击列表中已上传的文件事的钩子函数
+    handlePreview(file) {
+    },
+    handleChanged(file,fileList){
+      this.addForm.fileList[0].url="modified"
+    },
+    //删除文件之前的钩子函数
+    handleRemove(file, fileList) {
+      this.$message({
+        type: 'info',
+        message: '已删除原有图片',
+        duration: 6000
+      });
+      this.addForm.fileList[0].url=''
+    },
+    //文件上传成功的钩子函数
+    handleSuccess(res, file) {
+      this.$message({
+        type: 'info',
+        message: '图片上传成功',
+        duration: 6000
+      });
+      // if (res.code==0){
+      //   this.addForm.img=file.response.message;
+      // }
+      this.addForm.imgUrl=res.data;
+      if (this.dialogStatus=='add'){
+        this.addItem();
+      }
+      else if (this.dialogStatus=='update'){
+        this.updateItem();
+      }
+    },
 
 
 

@@ -69,7 +69,7 @@
         <el-button v-if="dialogStatus=='create'" type="primary" @click="createData">确认发布</el-button>
         <el-button v-else type="primary" @click="updateData">确认修改</el-button>
       </div>
-    </el-dialog>
+    </el-dialog>/
   </section>
 </template>
 <script>
@@ -100,8 +100,10 @@
         page: 1,
         sels: [], // 列表选中列
         editFormRules: {
+
           title: [{ required: true, message: '请输入奖励规则标题', trigger: 'blur' }],
           content: [{ required: true, message: '请输入奖励规则内容', trigger: 'blur' }]
+
         },
         // 编辑界面数据
         editForm: {
@@ -138,9 +140,9 @@
           this.total = res.data.total
           this.awards = res.data.awards
         })
-        if(this.filters.title==''&&this.filters.createDate==''){
-          console.log("0000")
-        }
+        // if(this.filters.title==''&&this.filters.createDate==''){
+        //   console.log("0000")
+        // }
       },
       // 删除
       handleDel(index, row) {

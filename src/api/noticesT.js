@@ -8,36 +8,36 @@ import request from '@/utils/request'
 
 export function getNoticeListPage(params) {
   return request({
-    url: '/notice/listpage',
+    url: 'http://localhost:8080/notice/list',
     method: 'get',
     params: params
   })
 }
 export function removeNotice(params) {
   return request({
-    url: '/notice/remove',
-    method: 'get',
+    url: 'http://localhost:8080/notice/remove',
+    method: 'delete',
     params: params
   })
 }
 export function batchRemoveNotice(params) {
   return request({
-    url: '/notice/batchremove',
-    method: 'get',
+    url: 'http://localhost:8080/notice/batchremove',
+    method: 'delete',
     params: params
   })
 }
 export function editNotice(params) {
   return request({
-    url: '/notice/edit',
-    method: 'get',
+    url: 'http://localhost:8080/notice/edit',
+    method: 'put',
     params: params
   })
 }
 export function addNotice(params) {
   return request({
-    url: '/notice/add',
-    method: 'get',
-    params: params
+    url: 'http://localhost:8080/notice/add',
+    method: 'post',
+    data: params
   })
 }

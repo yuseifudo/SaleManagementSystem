@@ -1,23 +1,22 @@
-<!--
-作者：杨昌海
-时间：2019.05.06
-功能：奖励规则显示页面
--->
+
 <template>
   <section class="app-container">
     <!--工具条-->
     <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
       <el-form :inline="true" :model="filters" @submit.native.prevent style="text-align: center">
         <el-form-item >
-          <el-input v-model="filters.title" placeholder="请输入公告标题"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-input v-model="filters.createDate" placeholder="日期查询"></el-input>
+
+          <el-input v-model="filters.noticeTitle" placeholder="请输入公告标题"></el-input>
+          <el-input v-model="filters.updateTime" placeholder="请输入公告日期"></el-input>
+
         </el-form-item>
         <el-form-item>
           <el-button type="primary" v-on:click="getNotice" >查询公告</el-button>
         </el-form-item>
         <el-form-item>
+
+          <el-button type="primary" @click="handleAdd">发布公告</el-button>
+
           <el-button type="primary" @click="handleAdd">发布新的公告</el-button>
         </el-form-item>
       </el-form>
@@ -30,11 +29,11 @@
       </el-table-column>
       <el-table-column type="index"  label="编号" width="60" header-align="center">
       </el-table-column>
-      <el-table-column prop="title" label="公告标题" width="150" align="center">
+      <el-table-column prop="noticeTitle" label="公告标题" width="150" align="center">
       </el-table-column>
-      <el-table-column prop="content" label="公告内容" width="480" header-align="center">
+      <el-table-column prop="noticeContent" label="公告内容" width="480" header-align="center">
       </el-table-column>
-      <el-table-column prop="createDate" label="发布/更新时间" width="150" header-align="center" sortable>
+      <el-table-column prop="updateTime" label="发布/更新时间" width="150" header-align="center" align="center" sortable>
       </el-table-column>
       <el-table-column label="操作" width="180" header-align="center">
         <template slot-scope="scope">
@@ -43,12 +42,11 @@
         </template>
       </el-table-column>
     </el-table>
-
+    <el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="10" :total="total" style="float:right;">
+    </el-pagination>
     <!--工具条-->
     <el-col :span="24" class="toolbar">
       <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">删除所选</el-button>
-      <el-pagination background layout="total,prev, pager, next" @current-change="handleCurrentChange" :page-size="10" :total="total" style="float:right;">
-      </el-pagination>
     </el-col>
 
     <!--编辑界面-->
@@ -56,11 +54,11 @@
                 center @close="callOf('editForm')">
 
       <el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm" >
-        <el-form-item label="公告标题" prop="title">
-          <el-input v-model="editForm.title" auto-complete="off"></el-input>
+        <el-form-item label="公告标题" prop="noticeTitle">
+          <el-input v-model="editForm.noticeTitle" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="公告内容" prop="content">
-          <el-input type="textarea" v-model="editForm.content"auto-complete="off"></el-input>
+        <el-form-item label="公告内容" prop="noticeContent">
+          <el-input type="textarea" v-model="editForm.noticeContent"auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
 
@@ -92,26 +90,30 @@
         },
         dialogFormVisible: false,
         filters: {
-          title: '',
-          createDate:''
+          noticeTitle: '',
+          updateTime:''
         },
         notices: [],
         total: 0,
         page: 1,
         sels: [], // 列表选中列
         editFormRules: {
-          title: [{ required: true, message: '请输入公告标题', trigger: 'blur' }],
-          content: [{ required: true, message: '请输入公告内容', trigger: 'blur' }]
+          noticeTitle: [{ required: true, message: '请输入公告标题', trigger: 'blur' }],
+          //noticeContent: [{ required: true, message: '请输入公告内容', trigger: 'blur' }]
         },
         // 编辑界面数据
         editForm: {
           id: '0',
-          title: '',
-          content: '',
-          createDate:''
+          noticeTitle: '',
+          noticeContent: '',
+          updateTime:''
         },
 
-        addFormVisible: false, // 新增公告界面是否显示
+        addFormVisible: false// 新增公告界面是否显示
+
+        // addFormRules: {
+        //   name: [{ required: true, message: '请输入姓名', trigger: 'blur' }]
+        // }
 
       }
     },
@@ -129,13 +131,14 @@
       getNotice() {
         const para = {
           page: this.page,
-          title: this.filters.title,
-          createDate: this.filters.createDate
+          noticeTitle: this.filters.noticeTitle,
+          updateTime:this.filters.updateTime,
         }
         getNoticeListPage(para).then(res => {
           this.total = res.data.total
-          this.notices = res.data.notices
+          this.notices = res.data.list
         })
+        console.log("notices=============="+this.notices)
       },
       // 删除
       handleDel(index, row) {
@@ -143,7 +146,7 @@
           type: 'warning'
         })
           .then(() => {
-            const para = { id: row.id }
+            const para = { noticeId: row.noticeId }
             removeNotice(para).then(res => {
               this.$message({
                 message: '删除成功',
@@ -169,8 +172,8 @@
         this.dialogFormVisible = true
         this.editForm = {
           id: '0',
-          title: '',
-          content: '',
+          noticeTitle: '',
+          noticeContent: '',
 
         }
       },
@@ -180,17 +183,20 @@
           if (valid) {
             this.$confirm('确认提交吗？', '提示', {})
               .then(() => {
-                this.editForm.createDate=util.formatDate.format(new Date(), 'yyyy-MM-ddhh:mm')
+                this.editForm.updateTime=util.formatDate.format(new Date())
+                console.log(this.editForm.updateTime)
                 const para = Object.assign({}, this.editForm)
                 //para是一个对象
-                para.content = para.content.replace(/(\r\n|\n|\r)/gm, "\\r")
+                para.noticeContent = para.noticeContent.replace(/(\r\n|\n|\r)/gm, "\\r")
                 editNotice(para).then(res => {
-                  this.$message({
-                    message: '编辑成功',
-                    type: 'success'
-                  })
-                  this.$refs['editForm'].resetFields()
-                  this.dialogFormVisible = false
+                  if(res.code==0){
+                    this.$message({
+                      message: '编辑成功',
+                      type: 'success'
+                    })
+                    this.$refs['editForm'].resetFields()
+                    this.dialogFormVisible = false
+                  }
                   this.getNotice()
                 })
               })
@@ -208,17 +214,21 @@
           if (valid) {
             this.$confirm('确认提交吗？', '提示', {})
               .then(() => {
-                this.editForm.id = (parseInt(Math.random() * 100)).toString() // mock a id
-                this.editForm.createDate=util.formatDate.format(new Date(), 'yyyy-MM-dd-hh:mm')
+                // this.editForm.id = (parseInt(Math.random() * 100)).toString() // mock a id
+                this.editForm.updateTime=util.formatDate.format(new Date())
                 const para = Object.assign({}, this.editForm)
-                para.content = para.content.replace(/(\r\n|\n|\r)/gm, "\\r")
+                para.noticeContent = para.noticeContent.replace(/(\r\n|\n|\r)/gm, "\\r")
+                console.log("前端传回的是"+para)
                 addNotice(para).then(res => {
-                  this.$message({
-                    message: '提交成功',
-                    type: 'success'
-                  })
-                  this.$refs['editForm'].resetFields()
-                  this.dialogFormVisible = false
+                  if(res.code==0){
+                    this.$message({
+                      message: '提交成功',
+                      type: 'success'
+                    })
+                    this.$refs['editForm'].resetFields()
+                    this.dialogFormVisible = false
+                  }
+
                   this.getNotice()
                 })
               })
@@ -228,8 +238,7 @@
               })
           }
         })
-        this.filters.title='',
-          this.filters.createDate=''
+
 
       },
       // 全选单选多选
@@ -238,7 +247,7 @@
       },
       // 批量删除
       batchRemove() {
-        var ids = this.sels.map(item => item.id).toString()
+        var ids = this.sels.map(item => item.noticeId).toString()
         this.$confirm('确认删除选中记录吗？', '提示', {
           type: 'warning'
         })

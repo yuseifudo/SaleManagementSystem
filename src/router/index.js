@@ -109,7 +109,7 @@ export const constantRouterMap = [
     component: Layout,
 
     redirect: '/infoManage/packageManage',
-    name: 'infoManage',
+    name: '信息管理',
     meta: {title: 'infoManage', icon: 'tree'},
     children: [
       {

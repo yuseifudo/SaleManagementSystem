@@ -153,6 +153,6 @@
     position: relative;
     width: 100%;
     height: calc(100vh - 84px);
-
+    background-color: #d0f0ff;
   }
 </style>

@@ -15,7 +15,7 @@ import request from '@/utils/request'
  */
 export function fetchList(params) {
   return request({
-    url: '/packageManage/list',// url请求
+    url: 'http://localhost:8080/product/list',// url请求
     method: 'get', //请求方式
     params: params //参数列表
   })
@@ -29,7 +29,7 @@ export function fetchList(params) {
  */
 export function fetchPackageDetail(params) {
   return request({
-    url: '/packageManage/detail',// url请求
+    url: 'http://localhost:8080/product/detail',// url请求
     method: 'get',//请求方式
     params: { params }//参数列表
   })
@@ -43,9 +43,12 @@ export function fetchPackageDetail(params) {
  */
 export function createPackageInfo(params) {
   return request({
-    url: '/packageManage/create',// url请求
+    url: 'http://localhost:8080/product/add',// url请求
     method: 'post',//请求方式
-    params:{params}//参数列表
+    data:params,//参数列表
+    // contentType: 'application/json;charset=utf-8',
+    // dataType:'json'
+
   })
 }
 
@@ -57,9 +60,10 @@ export function createPackageInfo(params) {
  */
 export function deletePackageInfo(params) {
   return request({
-    url: '/packageManage/delete',// url请求
-    method: 'get',//请求方式
-    params: {params}//参数列表
+    url: 'http://localhost:8080/product/delete',// url请求
+    method: 'put',//请求方式
+    params: {params},//参数列表
+    headers:{'content-type':'application/x-www-form-urlencoded'}
   })
 }
 
@@ -71,9 +75,9 @@ export function deletePackageInfo(params) {
  */
 export function updatePackageInfo(params) {
   return request({
-    url: '/packageManage/update',// url请求
+    url: 'http://localhost:8080/product/update',// url请求
     method: 'post',//请求方式
-    params: {params}//参数列表
+    data: params//参数列表
   })
 }
 
@@ -85,8 +89,9 @@ export function updatePackageInfo(params) {
  */
 export function setFirstPush(params) {
   return request({
-    url: '/packageManage/setFirstPush',// url请求
-    method: 'post',//请求方式
-    params:{params}//参数列表
+    url: 'http://localhost:8080/product/setFirstPush',// url请求
+    method: 'put',//请求方式
+    params:{params}, //参数列表
+    headers:{'content-type':'application/x-www-form-urlencoded'}
   })
 }

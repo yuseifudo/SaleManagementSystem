@@ -1,20 +1,20 @@
 <template>
   <div class="data-tabs">
     <el-row :span="24">
-      <el-col :span="span" v-for="(item,index) in data" :key="index">
-        <div class="item" :style="{background:item.color}">
+      <el-col :span="6" v-for="(item,index) in data" :key="index">
+        <div class="item" :style="{background:'rgb(56, 161, 242)'}">
           <div class="item-header">
-            <p>{{item.title}}</p>
-            <span>{{item.subtitle}}</span>
+            <p>{{item.productName}}</p>
+            <span>{{item.productFee}}元/月</span>
           </div>
           <div class="item-body">
-            <h2><nx-count-up :start="14" :end="item.count"/></h2>
+            <h2><nx-count-up :start="14" :end="item.salesCount"/></h2>
           </div>
           <div class="item-footer">
             <!--<span>{{item.allcount}}</span>-->
-            <p>{{item.text}}</p>
+            <p>{{item.recommend}}</p>
           </div>
-          <p class="item-tip">{{item.key}}</p>
+          <p class="item-tip">畅</p>
         </div>
       </el-col>
     </el-row>
@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       homeTc:{},
-      span: '',
+     // span: '6',
       data: ''
     }
   },
@@ -43,9 +43,9 @@ export default {
     // 获取首页套餐数据
     getHomeTc() {
       getHomeTc().then(res => {
-        this.homeTc = res.data.homeTc
-        this.span=this.homeTc.span || 6
-        this.data=this.homeTc.data || []
+        this.homeTc = res.data
+        //this.span=this.homeTc.span || 6
+        this.data=this.homeTc.items
         // console.log(this.homeTc.data)
       })
     },

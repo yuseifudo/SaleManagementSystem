@@ -46,7 +46,8 @@ let SaleList = Mock.mock({
 })
 
 export default {
-  getHomeData:()=>{
+  getHomeData:config=>{
+    const { } = param2Obj(config.url)
     return {
       code: 0,
       data: {

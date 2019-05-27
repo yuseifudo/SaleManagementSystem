@@ -10,10 +10,10 @@
     <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
       <el-form :inline="true" :model="filters" @submit.native.prevent>
         <el-form-item>
-          <el-input v-model="filters.name" placeholder="请输入姓名"></el-input>
+          <el-input v-model="filters.saleName" placeholder="请输入姓名"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-input v-model="filters.num" placeholder="请输入编号"></el-input>
+          <el-input v-model="filters.saleId" placeholder="请输入编号"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" v-on:click="getSalesman">查询</el-button>
@@ -31,36 +31,36 @@
       <!--</el-table-column >-->
       <!--<el-table-column type="index" label="序号" width="60"  >-->
       </el-table-column>
-      <el-table-column prop="num" label="编号" width="80" sortable >
+      <el-table-column prop="saleId" label="编号" width="80" sortable >
       </el-table-column>
-      <el-table-column prop="name" label="姓名" width="100" align="center">
+      <el-table-column prop="saleName" label="姓名" width="100" align="center">
       </el-table-column>
-      <el-table-column prop="sex" label="性别" width="60" :formatter="formatSex" align="center">
+      <el-table-column prop="saleSex" label="性别" width="80" :formatter="formatSex" align="center">
       </el-table-column>
-      <el-table-column prop="telephone" label="联系号码" width="160" align="center">
+      <el-table-column prop="saleTelNum" label="联系号码" width="160" align="center">
       </el-table-column>
-      <el-table-column prop="count" label="销售套餐总数" width="150" sortable align="center"
-                       :filters="[{ text: '销售高手', value: '100' }, { text: '销售精英', value: '200' }]"
+      <el-table-column prop="saleProductNum" label="销售套餐总数" width="200" sortable align="center"
+                       :filters="[{ text: '销售高手', value: '10' }, { text: '销售精英', value: '15' }]"
                        :filter-method="filtercount">
 
         <template slot-scope="scope">
           <el-tag
-            :type="scope.row.count >=   200 ? 'danger' : scope.row.count <=100 ? 'success':'warning'"
-            disable-transitions>{{scope.row.count}}</el-tag>
+            :type="scope.row.saleProductNum >=   15 ? 'danger' : scope.row.saleProductNum <=10 ? 'success':'warning'"
+            disable-transitions>{{scope.row.saleProductNum}}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column prop="totals" label="销售总额" width="150" sortable align="center"
-                       :filters="[{ text: '赚钱小能手', value: '7000' }, { text: '赚钱担当', value: '15000' }]"
+      <el-table-column prop="saleTotalPrice" label="销售总额" width="200" sortable align="center"
+                       :filters="[{ text: '赚钱小能手', value: '1000' }, { text: '赚钱担当', value: '2000' }]"
                        :filter-method="filtertotals"
                        filter-placement="bottom-end">
           <template slot-scope="scope">
             <el-tag
-              :type="scope.row.totals >= 15000 ? 'danger' : scope.row.totals <=7000 ? 'success':'warning'"
-              disable-transitions>{{scope.row.totals}}</el-tag>
+              :type="scope.row.saleTotalPrice >= 2000 ? 'danger' : scope.row.saleTotalPrice <=1000 ? 'success':'warning'"
+              disable-transitions>{{scope.row.saleTotalPrice}}</el-tag>
           </template>
       </el-table-column>
-      <el-table-column prop="commission" label="已获取佣金" width="100" align="center">
-      </el-table-column>
+      <!--<el-table-column prop="commision" label="已获取佣金" width="100" align="center">-->
+      <!--</el-table-column>-->
       <el-table-column label="操作" width="240" align="center">
         <template slot-scope="scope">
           <el-button type="primary" size="small" @click="handleDetail(scope.$index, scope.row)">查看</el-button>
@@ -72,8 +72,8 @@
 
     <!--工具条-->
     <el-col :span="24" class="toolbar">
-
-    <el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="10" :total="total" style="float:right;">
+,
+    <el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">
     </el-pagination>
     </el-col>
 
@@ -81,13 +81,13 @@
     <!--查看界面-->
     <el-dialog title="销售人员详情信息" :visible.sync="detailFormVisible" :close-on-click-modal="false" >
       <el-form :model="detailForm" label-width="130px" ref="detailForm" style="padding-left: 20px">
-        <el-form-item label="姓名" prop="name" style="width:300px">
-          <el-input v-model="detailForm.name" auto-complete="off"  readonly=”readonly”></el-input>
+        <el-form-item label="姓名" prop="saleName" style="width:300px">
+          <el-input v-model="detailForm.saleName" auto-complete="off"  readonly=”readonly”></el-input>
         </el-form-item>
       <el-row>
         <el-col :span="12">
           <el-form-item label="性别" >
-            <el-radio-group v-model="detailForm.sex" >
+            <el-radio-group v-model="detailForm.saleSex" >
               <el-radio class="radio" :label=1  :disabled="true" >男</el-radio>
               <el-radio class="radio" :label=0 :disabled="true">女</el-radio>
             </el-radio-group>
@@ -95,21 +95,21 @@
 
         </el-col>
         <el-col :span="12">
-          <el-form-item label="获得佣金" prop="commission" style="width: 300px">
-            <el-input v-model="detailForm.commission" readonly=”readonly”></el-input>
+          <el-form-item label="获得佣金" prop="commision" style="width: 300px">
+            <el-input v-model="detailForm.commision" readonly=”readonly”></el-input>
           </el-form-item>
 
         </el-col>
       </el-row>
         <el-row>
           <el-col :span="12">
-        <el-form-item label="员工编号" prop="num" style="width:300px">
-          <el-input v-model="detailForm.num" auto-complete="off" readonly=”readonly”></el-input>
+        <el-form-item label="员工编号" prop="saleId" style="width:300px">
+          <el-input v-model="detailForm.saleId" auto-complete="off" readonly=”readonly”></el-input>
         </el-form-item>
           </el-col>
           <el-col :span="12">
-        <el-form-item label="联系电话" prop="telephone" style="width:300px">
-          <el-input v-model="detailForm.telephone" readonly=”readonly”></el-input>
+        <el-form-item label="联系电话" prop="saleTelNum" style="width:300px">
+          <el-input v-model="detailForm.saleTelNum" readonly=”readonly”></el-input>
         </el-form-item>
           </el-col>
 
@@ -117,13 +117,13 @@
 
         <el-row>
           <el-col :span="12">
-        <el-form-item label="销售套餐总数" prop="count" style="width:300px">
-          <el-input v-model="detailForm.count" readonly=”readonly”></el-input>
+        <el-form-item label="销售套餐总数" prop="saleProductNum" style="width:300px">
+          <el-input v-model="detailForm.saleProductNum" readonly=”readonly”></el-input>
         </el-form-item>
           </el-col>
           <el-col :span="12">
-        <el-form-item label="销售总金额" prop="totals" style="width:300px">
-          <el-input v-model="detailForm.totals" readonly=”readonly”></el-input>
+        <el-form-item label="销售总金额" prop="saleTotalPrice" style="width:300px">
+          <el-input v-model="detailForm.saleTotalPrice" readonly=”readonly”></el-input>
         </el-form-item>
           </el-col>
         </el-row>
@@ -163,30 +163,30 @@
     <!--编辑界面和新增加界面-->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" @close="callOf('editForm')">
     <el-form :model="editForm" label-width="100px" :rules="editFormRules" ref="editForm" style="padding-left: 50px">
-    <el-form-item label="姓名" prop="name" style="width: 600px">
-      <el-input v-model="editForm.name" auto-complete="off"></el-input>
+    <el-form-item label="姓名" prop="saleName" style="width: 600px">
+      <el-input v-model="editForm.saleName" auto-complete="off"></el-input>
     </el-form-item>
     <el-form-item label="性别" >
-        <el-radio-group v-model="editForm.sex">
+        <el-radio-group v-model="editForm.saleSex">
           <el-radio class="radio" :label=1>男</el-radio>
-          <el-radio class="radio" :label=0>女</el-radio>0
+          <el-radio class="radio" :label=0>女</el-radio>
         </el-radio-group>
       </el-form-item>
-    <el-form-item label="员工编号" prop="num" style="width: 600px">
-       <el-input v-model="editForm.num" auto-complete="off"></el-input>
+    <el-form-item label="员工编号" prop="saleId" style="width: 600px">
+       <el-input v-model="editForm.saleId" auto-complete="off"></el-input>
     </el-form-item>
-    <el-form-item label="联系电话" prop="telephone" style="width: 600px">
-        <el-input v-model="editForm.telephone"></el-input>
+    <el-form-item label="联系电话" prop="saleTelNum" style="width: 600px">
+        <el-input v-model="editForm.saleTelNum"></el-input>
     </el-form-item>
-    <el-form-item label="销售套餐总数" prop="count" style="width: 600px">
-        <el-input v-model="editForm.count"></el-input>
+    <el-form-item v-if="dialogStatus=='update'" label="销售套餐总数" prop="saleProductNum" style="width: 600px">
+        <el-input v-model="editForm.saleProductNum"></el-input>
     </el-form-item>
-    <el-form-item label="销售总金额" prop="totals" style="width: 600px">
-        <el-input v-model="editForm.totals"></el-input>
+    <el-form-item v-if="dialogStatus=='update'"label="销售总金额" prop="saleTotalPrice" style="width: 600px">
+        <el-input v-model="editForm.saleTotalPrice"></el-input>
     </el-form-item>
-    <el-form-item label="获得佣金" prop="commission" style="width: 600px">
-        <el-input v-model="editForm.commission"></el-input>
-    </el-form-item>
+    <!--<el-form-item label="获得佣金" prop="commision" style="width: 600px">-->
+        <!--<el-input v-model="editForm.commision"></el-input>-->
+    <!--</el-form-item>-->
 
     </el-form>
       <div slot="footer" class="dialog-footer">
@@ -224,40 +224,40 @@
         dialogFormVisible: false,
         detailFormVisible: false,//详情界面是否显示
         filters: {
-          name: '',
-          num:''
+          saleName: '',
+          saleId:''
         },
         salesmanList: [],
         total: 0,
         page: 1,
         sels: [], // 列表选中列
         editFormRules: {
-          name: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
-          telephone: [{ required: true, message: '请输入联系电话', trigger: 'blur' }],
-          num: [{ required: true, message: '请输入员工编号', trigger: 'blur' }],
+          saleName: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
+          saleTelNum: [{ required: true, message: '请输入联系电话', trigger: 'blur' }],
+          saleId: [{ required: true, message: '请输入员工编号', trigger: 'blur' }],
         },
 
         // 编辑界面数据
         editForm: {
-          id: '0',
-          num:'',
-          name: '',
-          telephone:'',
-          sex: 1,
-          count:"",
-          totals:'',
-          commission:''
+          id: '',
+          saleId:'',
+          saleName: '',
+          saleTelNum:'',
+          saleSex: 1,
+          saleProductNum:"",
+          saleTotalPrice:'',
+          commision:''
         },
         //详情界面数据
         detailForm: {
           id: '0',
-          num:'',
-          name: '',
-          telephone:'',
-          sex: 1,
-          count:'',
-          totals:'',
-          commission:'',
+          saleId:'',
+          saleName: '',
+          saleTelNum:'',
+          saleSex: 1,
+          saleProductNum:'',
+          saleTotalPrice:'',
+          commision:'',
           count1:'',
           count2:'',
           count3:'',
@@ -266,7 +266,7 @@
 
         addFormVisible: false, // 新增界面是否显示
         addFormRules: {
-          name: [{ required: true, message: '请输入姓名', trigger: 'blur' }]
+          saleName: [{ required: true, message: '请输入姓名', trigger: 'blur' }]
         }
       }
     },
@@ -279,21 +279,21 @@
 
       //销售总数筛选方法
       filtercount(value,row){
-        if(value==100)
-          return row.count>100 && row.count<=200;
-        if(value==200)
-          return row.count>=200;
+        if(value==10)
+          return row.saleProductNum>10 && row.saleProductNum<=15;
+        if(value==15)
+          return row.saleProductNum>=15;
       },
       //销售总额筛选方法
       filtertotals(value,row){
-        if(value==7000)
-          return row.totals>7000 && row.totals<=15000;
-        if(value==15000)
-          return row.totals>=15000;
+        if(value==1000)
+          return row.saleTotalPrice>1000 && row.saleTotalPrice<=2000;
+        if(value==2000)
+          return row.saleTotalPrice>=2000;
       },
       // 性别显示转换
       formatSex: function(row, column) {
-        return row.sex == 1 ? '男' : row.sex == 0 ? '女' : '未知'
+        return row.saleSex == 1 ? '男' : row.saleSex == 0 ? '女' : '未知'
       },
       handleCurrentChange(val) {
         this.page = val
@@ -303,12 +303,13 @@
       getSalesman() {
         const para = {
           page: this.page,
-          name: this.filters.name,
-          num: this.filters.num,
+          saleName: this.filters.saleName,
+          saleId: this.filters.saleId,
         }
         getSalesmanListPage(para).then(res => {
+          console.log(res)
           this.total = res.data.total;
-          this.salesmanList = res.data.salesmanList
+          this.salesmanList = res.data.list
         })
 
 
@@ -319,16 +320,15 @@
             type: 'warning'
           })
             .then(() => {
-              const para = { id: row.id }
+              const para = { saleId: row.saleId }
               removeSalesman(para).then(res => {
-                this.$message({
-                  message: '删除成功',
-                  type: 'success'
-                })
-                if ((this.salesmanList.length-1)==0)
-                  this.page=this.page-1
-                this.getSalesman()
-
+                if (res.code==0){
+                  this.$message({
+                    message: '删除成功',
+                    type: 'success'
+                  })
+                  this.getSalesman()
+                }
               })
             })
             .catch(() => {})
@@ -351,12 +351,10 @@
           this.dialogStatus = 'create'
           this.dialogFormVisible = true
           this.editForm = {
-            id: '0',
-            name: '',
-            sex: 1,
-            age: 0,
-            birth: '',
-            addr: ''
+            saleId: '0',
+            saleName: '',
+            saleSex: 1,
+
           }
         },
         // 编辑
@@ -371,10 +369,12 @@
                       ? ''
                       : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd')
                   editSalesman(para).then(res => {
+                    if (res.code==0){
                     this.$message({
                       message: '提交成功',
                       type: 'success'
                     })
+                    }
                     this.$refs['editForm'].resetFields()
                     this.dialogFormVisible = false
                     this.getSalesman()
@@ -397,19 +397,21 @@
                   const para = Object.assign({}, this.editForm)
                   console.log(para)
 
-                  para.birth =
-                    !para.birth || para.birth === ''
-                      ? ''
-                      : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd')
+                  // para.birth =
+                  //   !para.birth || para.birth === ''
+                  //     ? ''
+                  //     : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd')
                   addSalesman(para).then(res => {
+                    if (res.code==0){
                     this.$message({
                       message: '提交成功',
                       type: 'success'
                     })
+                    }
                     this.$refs['editForm'].resetFields()
                     this.dialogFormVisible = false
-                    this.filters.num=''
-                    this.filters.name=''
+                    this.filters.saleId=''
+                    this.filters.saleName=''
                     this.getSalesman()
                   })
                 })
@@ -426,17 +428,19 @@
       },
       //  批量删除
         batchRemove() {
-          var ids = this.sels.map(item => item.id).toString()
+          var list = this.sels.map(item => item.saleId).toString()
           this.$confirm('确认删除选中记录吗？', '提示', {
             type: 'warning'
           })
             .then(() => {
-              const para = { ids: ids }
+              const para = { list: list }
               batchRemoveSalesman(para).then(res => {
+                if (res.code==0) {
                 this.$message({
                   message: '删除成功',
                   type: 'success'
                 })
+                }
                 if ((this.salesmanList.length-this.sels.length)==0){
                   if (this.page!=1) {
                   this.page=this.page-1

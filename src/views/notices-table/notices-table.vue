@@ -33,11 +33,11 @@
       </el-table-column>
       <el-table-column type="index" label="编号" width="60" header-align="center">
       </el-table-column>
-      <el-table-column prop="noticeTitle" label="公告标题" width="150" align="center">
+      <el-table-column prop="noticeTitle" label="公告标题" width="150" align="center" :show-overflow-tooltip="true">
       </el-table-column>
-      <el-table-column prop="noticeContent" label="公告内容" width="400" header-align="center">
+      <el-table-column prop="noticeContent" label="公告内容" width="400"  height="100px" header-align="center" :show-overflow-tooltip="true">
       </el-table-column>
-      <el-table-column prop="updateTime" label="发布/更新时间" width="150" header-align="center" align="center" sortable>
+      <el-table-column prop="updateTime" label="发布/更新时间" width="150"  header-align="center" align="center" sortable>
       </el-table-column>
       <el-table-column prop="updateUser" label="发布人" width="150" header-align="center" align="center" sortable>
       </el-table-column>
@@ -314,6 +314,14 @@
     }
   }
 </script>
-<style>
+<style lang="css">
+  .el-tooltip__popper{
+    font-size: 15px; max-width:50%;
+    color: grey;
 
+  } /*设置显示隐藏部分内容，按50%显示*/
+  .el-tooltip__popper.is-dark{
+    background-color: #f3f3f3;
+    color: grey;
+  }
 </style>

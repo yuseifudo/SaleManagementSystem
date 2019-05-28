@@ -26,10 +26,24 @@
 </template>
 
 <script>
+  import {updatePassword} from '@/api/passwdChange.js'
+  import {getToken} from  '@/utils/auth.js'
 
 export default {
   data() {
-    // validateField:对部分表单字段进行校验的方法
+//     validateField:对部分表单字段进行校验的方法
+//    let validatePassword = (rule, value, callback) => {
+//      if (value === '') {
+//        callback(new Error('请输入新密码'));
+//      } else if (value ===password) {
+//          callback(new Error('密码正确'));
+//        }else {
+//            callback(new Error('密码错误'));
+//        }
+//        callback();
+//      }
+//    };
+
     let validateNewpassword = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入新密码'));
@@ -74,6 +88,13 @@ export default {
 
 
   methods: {
+    getPassword() {
+      const params={token:getToken()}
+      getPassword(params).then(res => {
+        this.password = res.data
+        console.log(this.password)
+      })
+    },
     showMessage(type,message){
       this.$message({
         type: type,
@@ -84,30 +105,59 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          if(formName == 'pwdForm'){
-            this.showMessage('success','修改密码成功!');
-          }
-
-          axios({
-            fn:data=>{
-              console.log(data);
-              if(data.status == 1){
-                this.showMessage('success','修改密码成功!');
-                this.$router.push('/infoList');
-              }else{
-                this.$message.error('修改失败请重试')
-              }
-            },
-            errFn:(res)=>{
-              this.showMessage('error',res.message);
-            }
+          this.$confirm('是否修改用户密码?', '提示', {
+            type: 'warning'
           })
-        } else {
-          console.log('error submit!!');
-          return false;
-        }
+            .then(()=>{
+              const params={
+                  token:getToken(),
+                  oldPassword:this.pwdForm.password,
+                  newPassword:this.pwdForm.newpassword,
+                  confirmPassword:this.pwdForm.surepassword
+              }
+              updatePassword(params).then(res=>{
+                if(res.code==0){
+                  this.$message({
+                    message: '密码更新成功',
+                    type: 'success'
+                  })
+                  this.$refs[formName].resetFields();
+                }else {
+                  this.$message({
+                    message: res.msg,
+                    type: 'error'
+                  })
+                }
+              })
+            })
+      }
       });
     },
+//
+//    updateData() {
+//      this.$refs.pwdForm.validate(valid => {
+//        if (valid) {
+//          this.$confirm('确认提交吗？', '提示', {})
+//            .then(() => {
+//              const para = Object.assign({}, this.pwdForm)
+//
+//              updatepassWord(para).then(res => {
+//                this.$message({
+//                  message: '修改成功',
+//                  type: 'success'
+//                })
+//                this.$refs['pwdForm'].resetFields()
+//                this.dialogFormVisible = false
+//                this.getAdmins()
+//              })
+//            })
+//            .catch(e => {
+//              // 打印一下错误
+//              console.log(e)
+//            })
+//        }
+//      })
+//    },
 
     resetForm(formName) {
       this.$refs[formName].resetFields();
@@ -153,6 +203,4 @@ export default {
   .fa{
     margin-right:5px;
   }
-
-
 </style>

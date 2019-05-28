@@ -57,7 +57,7 @@
             this.chart=echarts.init(document.getElementById("id1"));
             const option = {
               title : {
-                text: '语音短彩信流量消耗数据',
+                text: 'B侧/CB侧用户对比图',
                 // subtext: '单位：亿',
                 x:'center'
               },
@@ -79,7 +79,7 @@
                 }
               },
               legend: {
-                data:['移动话音','短信彩信','移动数据'],
+                data:['B侧用户','CB侧用户','销售额'],
                 x:'center',
                 y:'bottom'
               },
@@ -95,40 +95,40 @@
               yAxis: [
                 {
                   type: 'value',
-                  name: ['话音/分钟','短信/条'],
+                  name: ['用户'],
                   min: 0,
                   max: 250,
                   interval: 50,
                   axisLabel: {
-                    formatter: '{value} 亿'
+                    formatter: '{value} 万'
                   }
                 },
                 {
                   type: 'value',
-                  name: '流量：Mb',
+                  name: '销售额',
                   min: 0,
                   max: 25,
                   interval: 5,
                   axisLabel: {
-                    formatter: '{value} 万亿'
+                    formatter: '{value} 百万'
                   }
                 }
               ],
               series: [
                 {
-                  name:'移动话音',
+                  name:'B侧用户',
                   type:'bar',
                   data:this.yyData
                   // [126, 219, 190, 154, 207, 170.7, 175.6, 182.2, 148.7, 188, 166.0, 222.3]
                 },
                 {
-                  name:'短信彩信',
+                  name:'CB侧用户',
                   type:'bar',
                   data:this.dxData
                     // [80, 94, 70, 232, 215, 176, 135.2, 162.2, 132.6, 100, 94, 133]
                 },
                 {
-                  name:'移动数据',
+                  name:'销售额',
                   type:'line',
                   yAxisIndex: 1,
                   data:this.llData

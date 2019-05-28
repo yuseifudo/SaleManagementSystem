@@ -40,12 +40,12 @@
       <el-table-column prop="saleTelNum" label="联系号码" width="160" align="center">
       </el-table-column>
       <el-table-column prop="saleProductNum" label="销售套餐总数" width="200" sortable align="center"
-                       :filters="[{ text: '销售高手', value: '10' }, { text: '销售精英', value: '15' }]"
+                       :filters="[{ text: '销售高手', value: '15' }, { text: '销售精英', value: '25' }]"
                        :filter-method="filtercount">
 
         <template slot-scope="scope">
           <el-tag
-            :type="scope.row.saleProductNum >=   15 ? 'danger' : scope.row.saleProductNum <=10 ? 'success':'warning'"
+            :type="scope.row.saleProductNum >=   25 ? 'danger' : scope.row.saleProductNum <=15 ? 'success':'warning'"
             disable-transitions>{{scope.row.saleProductNum}}</el-tag>
         </template>
       </el-table-column>
@@ -280,9 +280,9 @@
       //销售总数筛选方法
       filtercount(value,row){
         if(value==10)
-          return row.saleProductNum>10 && row.saleProductNum<=15;
+          return row.saleProductNum>15 && row.saleProductNum<=15;
         if(value==15)
-          return row.saleProductNum>=15;
+          return row.saleProductNum>=25;
       },
       //销售总额筛选方法
       filtertotals(value,row){
@@ -293,7 +293,7 @@
       },
       // 性别显示转换
       formatSex: function(row, column) {
-        return row.saleSex == 1 ? '男' : row.saleSex == 0 ? '女' : '未知'
+        return row.saleSex == 1 ? '女' : row.saleSex == 0 ? '男' : '未知'
       },
       handleCurrentChange(val) {
         this.page = val

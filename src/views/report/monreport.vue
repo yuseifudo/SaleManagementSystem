@@ -1,7 +1,7 @@
 <template>
   <div class="block">
     <div id="title">
-      <span style="display: block">福州营业厅月销售报表</span>
+      <span style="display: block">月销售报表</span>
       <div id="search">
         <el-input v-model="MonthSaleId" @keyup.native.enter="getSaleList" :placeholder="tip" style="width: 200px;" />
         <el-button type="primary" icon="el-icon-search" @click="getSaleList"></el-button>
@@ -12,21 +12,27 @@
     <el-table id="out-table" :data="tempList" border :summary-method="getSummaries"  show-summary style="width: 100%">
     <el-table-column prop="saleMonthId" label="编号" width="150" align="center"></el-table-column>
     <el-table-column prop="saleMonth" sortable label="日期" align="center"></el-table-column>
-    <el-table-column align="center" prop="saleVolume" sortable label="月销售额(元)">
+    <el-table-column align="center" prop="saleVolume" sortable label="月销售额(元)"
+                     :filters="[{ text: '良好', value: '100' }, { text: '优秀', value: '200' }]"
+                     :filter-method="filterTotals">
       <template slot-scope="scope">
         <el-tag
           :type="scope.row.saleVolume >= 10000 ? 'danger' : scope.row.saleVolume <=5000 ? 'success':'warning'"
           disable-transitions>{{scope.row.saleVolume}}</el-tag>
       </template>
     </el-table-column>
-    <el-table-column align="center" prop="saleCount" sortable label="月销售量（份）">
+    <el-table-column align="center" prop="saleCount" sortable label="月销售量（份）"
+                     :filters="[{ text: '良好', value: '1' }, { text: '优秀', value: '2' }]"
+                     :filter-method="filterCount">
       <template slot-scope="scope">
         <el-tag
           :type="scope.row.saleCount>= 300 ? 'danger' : scope.row.saleCount <=150 ? 'success':'warning'"
           disable-transitions>{{scope.row.saleCount}}</el-tag>
       </template>
     </el-table-column>
-    <el-table-column align="center" prop="monthDifference" sortable label="较上月销售差额（元）">
+    <el-table-column align="center" prop="monthDifference" sortable label="较上月销售差额（元）"
+                     :filters="[{ text: '增长', value: '1' }, { text: '下降', value: '0' }]"
+                     :filter-method="difference">
       <template slot-scope="scope">
         <el-tag
           :type="scope.row.monthDifference >= 0 ? 'danger' :'success'"
@@ -70,6 +76,30 @@
       this.getSales()
     },
     methods: {
+
+      //月销售额筛选
+      filterTotals(value,row){
+        if(value==100)
+          return row.saleVolume>=5000 && row.saleVolume<10000;
+        if(value==200)
+          return row.saleVolume>=10000;
+      },
+
+      //月销售量筛选
+      filterCount(value,row){
+        if(value==1)
+          return row.saleCount>=150 && row.saleCount<300;
+        if(value==2)
+          return row.saleCount>=300;
+      },
+
+      //较上月营业差额筛选
+      difference(value,row){
+        if(value==1)
+          return row.monthDifference>=0;
+        if(value==0)
+          return row.monthDifference<0;
+      },
       //导出报表
       exportExcel () {
         /* generate workbook object from table */
@@ -77,7 +107,7 @@
         /* get binary string as output */
         var wbout = XLSX.write(wb, { bookType: 'xlsx', bookSST: true, type: 'array' })
         try {
-          FileSaver.saveAs(new Blob([wbout], { type: 'application/octet-stream' }), '福州营业厅月销售报表.xlsx')
+          FileSaver.saveAs(new Blob([wbout], { type: 'application/octet-stream' }), '月销售报表.xlsx')
         } catch (e) { if (typeof console !== 'undefined') console.log(e, wbout) }
         return wbout
       },

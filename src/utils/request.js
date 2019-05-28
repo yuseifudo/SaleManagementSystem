@@ -32,7 +32,7 @@ service.interceptors.response.use(
     console.log(response)
     if (res.code !== 0) {
       Message({
-        message: res.message,
+        message: res.msg,
         type: 'error',
         duration: 5 * 1000
       })
@@ -50,7 +50,8 @@ service.interceptors.response.use(
         })
       }
       return Promise.reject('error')
-    } else {
+    }
+    else {
       return response.data
     }
   },

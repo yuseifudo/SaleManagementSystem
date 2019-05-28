@@ -6,6 +6,9 @@
 
     <div class="right-menu">
      <error-log class="errLog-container right-menu-item"></error-log>
+      <div class="titleDiv right-menu-item">
+        <span class="title">欢迎您：{{managerName}}</span>
+      </div>
 
       <!--<nx-github style="margin-top:2px" class="nx-help right-menu-item"></nx-github>
        <error-log class="errLog-container right-menu-item"></error-log>
@@ -72,6 +75,11 @@ export default {
     nxGithub,
     ErrorLog
   },
+  data(){
+    return{
+      managerName:'',
+    }
+  },
   computed: {
     ...mapGetters(['sidebar', 'name', 'avatar'])
   },
@@ -79,11 +87,19 @@ export default {
     toggleSideBar() {
       this.$store.dispatch('ToggleSideBar')
     },
+    getManagerName(){
+      this.$store.dispatch('GetInfo').then(res=>{
+            this.managerName=res.managerName;
+      })
+    },
     logout() {
       this.$store.dispatch('LogOut').then(() => {
         location.reload() // In order to re-instantiate the vue-router object to avoid bugs
       })
     }
+  },
+  mounted(){
+    this.getManagerName();
   }
 }
 </script>
@@ -106,6 +122,7 @@ export default {
     display: inline-block;
     vertical-align: top;
   }
+
   .errLog-container {
     display: inline-block;
     vertical-align: top;
@@ -115,6 +132,20 @@ export default {
     height: 100%;
     &:focus {
       outline: none;
+    }
+
+    .titleDiv{
+      padding-top: 0;
+      margin-top: 0!important;
+      position: relative;
+      height: 50px;
+      vertical-align:top;
+      .title{
+        padding: 0;
+        line-height: 50px;
+        font-size:14px;
+      text-align: center;
+      }
     }
     .right-menu-item {
       display: inline-block;

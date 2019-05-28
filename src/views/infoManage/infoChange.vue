@@ -66,8 +66,8 @@
           </el-form-item>
           <el-form-item label="性别" prop="managerSex" >
             <el-select v-model="infoForm.managerSex"  size="mini"  placeholder="请选择性别">
-              <el-option label="男" value="1"></el-option>
-              <el-option label="女" value="2"></el-option>
+              <el-option label="男" value="0"></el-option>
+              <el-option label="女" value="1"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="绑定邮箱" prop="managerEmail">
@@ -185,7 +185,7 @@ export default {
   methods: {
     // 性别显示转换
     formatSex: function(row, column) {
-      return row.managerSex === 1 ? '男' : row.managerSex === 0 ? '女' : '未知'
+     row.managerSex === 1 ? '女' : '男';
     },
 
     showMessage(type,message){
@@ -199,22 +199,52 @@ export default {
        const params={token:getToken()}
       getUser(params).then(res => {
         this.infoForm = res.data
-        console.log(this.infoForm)
-      })
-    },
-    submitForm() {
-      this.$confirm('确认提交吗？', '提示', {});
-      const params={token:getToken()}
-      submitForm(params).then(res => {
-        if (res.data!=null){
-          this.infoForm = res.data
-          return this.$message.success('提交成功！');
+        if (this.infoForm.managerSex==1){
+          this.infoForm.managerSex='女'
+        }else{
+          this.infoForm.managerSex='男'
         }
-        else this.showMessage('warning', '请您填写相关信息！');
-        console.log(this.infoForm)
       })
     },
+  // ,managerEmail:this.infoForm.managerEmail,managerTel:this.infoForm.managerTel
+    submitForm() {
+        this.$confirm('是否修改用户信息?', '提示', {
+            type: 'warning'
+          })
+          .then(()=>{
+            const params={
+              token:getToken(),
+              managerName:this.infoForm.managerName,
+              loginName:this.infoForm.loginName,
+              managerSex:this.infoForm.managerSex,
+              managerTel:this.infoForm.managerTel,
+              managerEmail:this.infoForm.managerEmail
+              }
+            submitForm(params).then(res => {
+              if (res.code==0){
+                this.$message({
+                  message: '修改成功',
+                  type: 'success'
+                })
+              } else{
+                this.$message({
+                  message: res.msg,
+                  type: 'error'
+                })
+              }
 
+
+            })
+
+          })
+
+
+
+            // .catch(e => {
+            //   // 打印一下错误
+            // })
+
+    },
 
 
  // submitForm(formName) {
@@ -240,13 +270,11 @@ export default {
  //          //保存修改的相关信息
  //          let userinfo = this.infoForm;
  //          let userData = Object.assign(userinfo);
- //          console.log(userData);
  //          axios({
  //            type:'get',
  //            path:'http://localhost:8080/personal/putInfo',
  //            data:userData,
  //            fn:data=>{
- //              console.log(data);
  //              if(data.status == 1){
  //                this.showMessage('success','修改个人信息成功！');
  //                this.$router.push('/getInfo');
@@ -262,7 +290,6 @@ export default {
  //          })
  //
  //        } else {
- //          console.log('error submit!!');
  //          return false;
  //        }
  //      });

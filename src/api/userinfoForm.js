@@ -12,7 +12,7 @@ export function getUser(params) {
 export function submitForm(params) {
   return request({
     url: 'http://localhost:8080/personal/putInfo',
-    method: 'put',
-    params: params
+    method: 'post',
+    data: params
   })
 }

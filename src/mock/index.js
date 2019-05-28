@@ -144,8 +144,8 @@ Mock.mock(/\/taocanList\/edit/, 'get', taocanListAPI.updateTaocan)
  *作者：王从竹
  *日期：2019/5/9
  */
-Mock.mock(/\/user\/wcz/, 'get', formAPI.getUser)
-Mock.mock(/\/user\/searchtable/, 'get', searchtableAPI.getUsers)
+// Mock.mock(/\/user\/wcz/, 'get', formAPI.getUser)
+// Mock.mock(/\/user\/searchtable/, 'get', searchtableAPI.getUsers)
 
 //功能：套餐销量热力图随机数据
 //作者：吴丽娟

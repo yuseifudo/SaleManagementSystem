@@ -178,12 +178,12 @@ export const constantRouterMap = [
         component: () => import('@/views/dataMap/userAddress'),
         meta: { title: 'CYuserAddress', icon: 'pointMap' }
       },
-      {
+      /*{
         path: 'salesVolumeHeat',
         name: 'salesVolumeHeat',
         component: () => import('@/views/dataMap/salesVolumeHeat'),
         meta: { title: 'FJsalesVolumeHeat', icon: 'barGraph' }
-      },
+      },*/
       {
         path: 'branchAddress',
         name: 'branchAddress',

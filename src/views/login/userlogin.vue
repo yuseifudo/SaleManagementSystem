@@ -2,7 +2,7 @@
   <el-form class="login-form" status-icon :rules="loginRules" ref="loginForm" :model="loginForm" label-width="0">
     <el-form-item prop="username">
       <el-input size="small" @keyup.enter.native="handleLogin" v-model="loginForm.username" auto-complete="off"
-                placeholder="请输入用户名">
+                placeholder="请输入登录名">
         <i slot="prefix" class="icon-yonghu"></i>
       </el-input>
     </el-form-item>

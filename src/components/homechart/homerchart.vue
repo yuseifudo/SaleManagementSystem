@@ -55,7 +55,7 @@
             this.chart = echarts.init(document.getElementById("id2"));
             const option = {
               title: {
-                text: '全国热销套餐',
+                text: '全国热销产品',
                 subtext: '单位：百万',
                 x: 'center'
               },

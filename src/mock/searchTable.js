@@ -22,11 +22,15 @@ for (let i = 0; i < count; i++) {
 }
 
 export default {
-  getUsers: config => {
-    const { name, page = 1, limit = 20 } = param2Obj(config.url)
+  getUserList: config => {
+    const { userName, productName,tel,fee,onlineTime,page = 1, limit = 5 } = param2Obj(config.url)
 
     const mockList = List.filter(user => {
-      if (name && user.name.indexOf(name) === -1) return false
+      if (userName && user.userName.indexOf(userName) === -1) return false
+      if (productName && user.productName.indexOf(productName) === -1) return false
+      if (tel && user.tel.indexOf(tel) === -1) return false
+      if (fee && user.fee != fee) return false
+      if (onlineTime && user.onlineTime != onlineTime) return false
       return true
     })
 

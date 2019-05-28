@@ -1,27 +1,32 @@
 <template>
   <div class="block">
     <div id="title">
-      <span>福州营业厅月销售报表</span>
+      <span style="display: block">福州营业厅月销售报表</span>
+      <div id="search">
+        <el-input v-model="MonthSaleId" @keyup.native.enter="getSaleList" :placeholder="tip" style="width: 200px;" />
+        <el-button type="primary" icon="el-icon-search" @click="getSaleList"></el-button>
+      </div>
+
       <el-button id='button' type="primary" @click="exportExcel">导出<i class="el-icon-upload el-icon--right"></i></el-button>
     </div>
     <el-table id="out-table" :data="tempList" border :summary-method="getSummaries"  show-summary style="width: 100%">
     <el-table-column prop="saleMonthId" label="编号" width="150" align="center"></el-table-column>
     <el-table-column prop="saleMonth" sortable label="日期" align="center"></el-table-column>
-    <el-table-column align="center" prop="saleVolume" sortable label="月销售额">
+    <el-table-column align="center" prop="saleVolume" sortable label="月销售额(元)">
       <template slot-scope="scope">
         <el-tag
-          :type="scope.row.saleVolume >= 30000 ? 'danger' : scope.row.saleVolume <=10000 ? 'success':'warning'"
+          :type="scope.row.saleVolume >= 10000 ? 'danger' : scope.row.saleVolume <=5000 ? 'success':'warning'"
           disable-transitions>{{scope.row.saleVolume}}</el-tag>
       </template>
     </el-table-column>
-    <el-table-column align="center" prop="saleCount" sortable label="月销售量">
+    <el-table-column align="center" prop="saleCount" sortable label="月销售量（份）">
       <template slot-scope="scope">
         <el-tag
           :type="scope.row.saleCount>= 300 ? 'danger' : scope.row.saleCount <=150 ? 'success':'warning'"
           disable-transitions>{{scope.row.saleCount}}</el-tag>
       </template>
     </el-table-column>
-    <el-table-column align="center" prop="monthDifference" sortable label="较上月销售差额">
+    <el-table-column align="center" prop="monthDifference" sortable label="较上月销售差额（元）">
       <template slot-scope="scope">
         <el-tag
           :type="scope.row.monthDifference >= 0 ? 'danger' :'success'"
@@ -33,12 +38,12 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page.sync="currentPage1"
-        :next-text="ne"
-        :prev-text="fi"
+        :prev-text="lastPage"
+        :next-text="nextPage"
         :page-sizes="[3, 12, 20, 50]"
         :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="users.length"
+        :total="monthSales.length"
       >
       </el-pagination>
     </div>
@@ -51,19 +56,21 @@
   export default {
     data() {
       return {
-        fi:"上一页",
-        ne:'下一页',
-        tempList:[],
-        users:[],
+        MonthSaleId:null,
+        tip:"编号",
+        lastPage:"上一页",
+        nextPage:'下一页',
+        tempList:[],//每页展示的数据
+        monthSales:[],//后台获取的总数据
         currentPage1:1,  //初始页
         pageSize:12,  //每页的数据量
       };
     },
     mounted(){
-      this.getUsers()
+      this.getSales()
     },
     methods: {
-
+      //导出报表
       exportExcel () {
         /* generate workbook object from table */
         var wb = XLSX.utils.table_to_book(document.querySelector('#out-table'))
@@ -75,12 +82,11 @@
         return wbout
       },
 
-      // 获取用户列表
-      getUsers() {
+      // 获取总销售列表
+      getSales() {
         getUserList().then(res => {
-          this.users = res.data.items
-          console.log(this.user)
-          this.currentChangePage(this.users,1)
+          this.monthSales = res.data.items
+          this.currentChangePage(this.monthSales,1)
         })
       },
 
@@ -90,7 +96,7 @@
       },
       handleCurrentChange: function(currentPage) {//页码切换
         this.currentPage1 = currentPage
-        this.currentChangePage(this.users,currentPage)
+        this.currentChangePage(this.monthSales,currentPage)
 
       },
       //分页方法
@@ -105,12 +111,24 @@
         }
       },
 
+      //根据编号查询
+      getSaleList(){
+        //过滤查询结果集（先过滤，再分页）
+        let filterData=this.monthSales.filter(item=>{
+          if(this.MonthSaleId  && item.saleMonthId.indexOf(this.MonthSaleId)<0) return false
+          return true
+        })
+        //对过滤后结果分页显示
+        this.currentChangePage(filterData,1)
+
+      },
+      //表格末行显示
       getSummaries(param) {
         const { columns, data } = param;
         const sums = [];
         columns.forEach((column, index) => {
           if (index === 0) {
-            sums[index] = '销售总额';
+            sums[index] = '合计';
             return;
           }
           const values = data.map(item => Number(item[column.property]));
@@ -123,7 +141,7 @@
                 return prev;
               }
             }, 0);
-            sums[index] += ' 元';
+            sums[index] += '';
           } else {
             sums[index] = 'N/A';
           }
@@ -137,12 +155,15 @@
   #title{
   text-align: center;
   }
+
   #button{
     float: right;
-    margin:5px 25px 5px ;
-
+    margin:5px 15px 5px ;
   }
-
+  #search{
+    float: left;
+    margin:5px;
+  }
   #title >span{
     font-size: 20px;
     color: #333;

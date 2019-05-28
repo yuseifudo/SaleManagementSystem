@@ -34,7 +34,7 @@
               系统首页
             </el-dropdown-item>
           </router-link>
-          <router-link to="/infoManage/infoChange">
+          <router-link to="/infoManage/ChangePassword">
             <el-dropdown-item>
               修改密码
             </el-dropdown-item>

@@ -6,7 +6,7 @@
           <img :src="srcimg" class="item-img" />
           <div class="item-text" :style="{color:colorText,backgroundColor:bgText}">
             <h3>{{item.saleName}}</h3>
-            <h4 v-if="item.saleSex=0">性别：男</h4>
+            <h4 v-if="item.saleSex==0">性别：男</h4>
             <h4 v-else>性别：女</h4>
             <h4>联系方式：{{item.saleTelNum}}</h4>
             <h4>当月销量：{{item.salesCount}}</h4>

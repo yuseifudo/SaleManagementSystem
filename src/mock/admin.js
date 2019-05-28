@@ -20,7 +20,6 @@ for (let i = 0; i < count; i++) {
 
 export default {
   getAdminList: config => {
-    console.log(config);
     const { managerName,loginName,managerTel, page = 1, limit = 20 } = param2Obj(config.url)
     const mockList = List.filter(admin => {
       if (managerName && admin.managerName.indexOf(managerName) === -1) return false

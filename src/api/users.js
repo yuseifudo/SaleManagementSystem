@@ -20,5 +20,5 @@ export const addUser = params => { return axios.get(`${base}/user/add`, { params
  *日期：2019/5/9
  */
 export const getUser= params => { return axios.get(`${base}/user/wcz`, { params: params }) }
-export const getUsers = params => { return axios.get(`${base}/user/searchtable`, { params: params }) }
+export const getUserList = params => { return axios.get(`${base}/user/list`, { params: params }) }
 

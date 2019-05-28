@@ -30,7 +30,7 @@ export function batchRemoveNotice(params) {
 export function editNotice(params) {
   return request({
     url: 'http://localhost:8080/notice/edit',
-    method: 'put',
+    method: 'post',
     params: {params}
   })
 }

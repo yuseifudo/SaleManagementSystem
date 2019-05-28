@@ -1,4 +1,140 @@
 <template>
+  <div class="chart-container">
+    <div ref="chart" :class="className" :style="{height:height,width:width}">
+    </div>
+  </div>
+</template>
+<script>
+  import {getmapdata} from "../../api/mapdatatable";
+  import echarts from 'echarts'
+  import '../../../node_modules/echarts/map/js/province/fujian'
+  export default {
+    props: {
+      className: {
+        type: String,
+        default: 'chart'
+      },
+      id: {
+        type: String,
+        default: 'chart'
+      },
+      width: {
+        type: String,
+        default: '200px'
+      },
+      height: {
+        type: String,
+        default: '200px'
+      }
+    },
+    data() {
+      return {
+        chart:null,
+        list:[]
+      }
+    },
+    methods:{
+
+    },
+    mounted(){
+      this.chart = echarts.init(this.$refs.chart)
+      getmapdata().then(res=>{
+        let list=res.data.data
+
+
+        let option = {
+
+          title: {
+            text: '福建省联通用户分布',
+
+            left: 'center',
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: '{b}<br/>{c}'
+          },
+          legend: {
+            orient: 'vertical',
+            x:'left',
+            data:['用户']
+          },
+          dataRange: {
+            min: 0,
+            max: 2500,
+            x: 'left',
+            y: 'bottom',
+            text:['高','低'],
+            calculable : true
+          },
+          toolbox: {
+            show: true,
+            orient: 'horizontal',
+            left: 'right',
+            top: 'top',
+            feature : {
+              mark : {show: true},
+              dataView : {show: true, readOnly: false},
+              restore : {show: true},
+              saveAsImage : {show: true}
+            }
+          },
+          visualMap: {
+            min: 1000,
+            max: 10000,
+            text:['High','Low'],
+            realtime: false,
+            top: 'center',
+            calculable: true,
+            inRange: {
+              color: ['lightskyblue','yellow', 'orangered']
+            }
+          },
+          series: [
+            {
+              name: '福建省联通用户分布',
+              type: 'map',
+              mapType: '福建', // 自定义扩展图表类型
+              zoom:1.07,
+              roam: true,
+              itemStyle:{
+                normal:{label:{show:true}},
+                emphasis:{label:{show:true}}
+              },
+              data: list
+            }
+          ]
+        }
+
+        this.chart.setOption(option)
+
+        // let listStr=JSON.stringify(list)
+        // listStr=listStr.replace(/"data"/g,"data").replace(/"name"/g,"name").replace(/"value"/g,"value");
+        // console.log(listStr)
+        // let listObj=eval(listStr)
+        // this.list=listObj[0].data
+        // console.log(JSON.stringify(this.list))
+        //
+        //  console.log(JSON.stringify(lists))
+        // this.list=lists
+        // // console.log((this.list))
+      })
+
+
+
+
+    }
+  }
+</script>
+<style>
+  .chart-container{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+</style>
+
+<!--
+<template>
   <div id="id3" :class="className" :style="{height:height,width:width}" />
 </template>
 
@@ -148,3 +284,4 @@
 <style>
 
 </style>
+-->

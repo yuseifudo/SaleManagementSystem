@@ -45,7 +45,7 @@
 
         <template slot-scope="scope">
           <el-tag
-            :type="scope.row.saleProductNum >=   100 ? 'danger' : scope.row.saleProductNum <=200 ? 'success':'warning'"
+            :type="scope.row.saleProductNum >=   200 ? 'danger' : scope.row.saleProductNum <=100 ? 'success':'warning'"
             disable-transitions>{{scope.row.saleProductNum}}</el-tag>
         </template>
       </el-table-column>
@@ -55,7 +55,7 @@
                        filter-placement="bottom-end">
           <template slot-scope="scope">
             <el-tag
-              :type="scope.row.saleTotalPrice >= 2000 ? 'danger' : scope.row.saleTotalPrice <=1000 ? 'success':'warning'"
+              :type="scope.row.saleTotalPrice >= 15000 ? 'danger' : scope.row.saleTotalPrice <=7000 ? 'success':'warning'"
               disable-transitions>{{scope.row.saleTotalPrice}}</el-tag>
           </template>
       </el-table-column>
@@ -280,9 +280,9 @@
       //销售总数筛选方法
       filtercount(value,row){
         if(value==100)
-          return row.saleProductNum>100 && row.saleProductNum<=2000;
+          return row.saleProductNum>100 && row.saleProductNum<=200;
         if(value==200)
-          return row.saleProductNum>=50;
+          return row.saleProductNum>=200;
       },
       //销售总额筛选方法
       filtertotals(value,row){

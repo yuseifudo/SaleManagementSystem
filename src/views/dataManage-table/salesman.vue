@@ -40,12 +40,12 @@
       <el-table-column prop="saleTelNum" label="联系号码" width="160" align="center">
       </el-table-column>
       <el-table-column prop="saleProductNum" label="销售套餐总数" width="200" sortable align="center"
-                       :filters="[{ text: '销售高手', value: '15' }, { text: '销售精英', value: '25' }]"
+                       :filters="[{ text: '销售高手', value: '20' }, { text: '销售精英', value: '50' }]"
                        :filter-method="filtercount">
 
         <template slot-scope="scope">
           <el-tag
-            :type="scope.row.saleProductNum >=   25 ? 'danger' : scope.row.saleProductNum <=15 ? 'success':'warning'"
+            :type="scope.row.saleProductNum >=   50 ? 'danger' : scope.row.saleProductNum <=20 ? 'success':'warning'"
             disable-transitions>{{scope.row.saleProductNum}}</el-tag>
         </template>
       </el-table-column>
@@ -279,10 +279,10 @@
 
       //销售总数筛选方法
       filtercount(value,row){
-        if(value==10)
-          return row.saleProductNum>15 && row.saleProductNum<=15;
-        if(value==15)
-          return row.saleProductNum>=25;
+        if(value==20)
+          return row.saleProductNum>20 && row.saleProductNum<=50;
+        if(value==50)
+          return row.saleProductNum>=50;
       },
       //销售总额筛选方法
       filtertotals(value,row){
